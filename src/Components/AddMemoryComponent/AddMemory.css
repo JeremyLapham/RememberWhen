@@ -1,0 +1,62 @@
+#custom-input {
+    background-color: #D3C0B2;
+    background-image: url(../../assets/addimage.png);
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    border-radius: 20px;
+    border: 1px solid black;
+    height: 200px;
+    width: 200px;
+    padding: 0 !important;
+}
+
+.input1 {
+    border-radius: 20px;
+    opacity: 0;
+    height: 200px;
+    width: 200px;
+    z-index: 1200;
+}
+
+.selectedImg {
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+    background-color: #D3C0B2;
+    border: 1px solid black;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+#custom-input2 {
+    background-color: #A99282;
+    background-image: url(../../assets/Microphone.png);
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 8px;
+    border-radius: 10px;
+    border: 1px solid black;
+    height: 50px;
+    width: 200px;
+    padding: 0 !important;
+}
+
+.input2 {
+    border-radius: 10px;
+    opacity: 0;
+    height: 50px;
+    width: 200px;
+    z-index: 1200;
+}
+
+.selectedImg2 {
+    height: 50px;
+    width: 196px;
+    padding-left: 1rem;
+    border-radius: 20px;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}

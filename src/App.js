@@ -1,9 +1,9 @@
 import './App.css';
-import AddMemory from './Components/AddMemoryComponent/AddMemory';
-import DashBoard from './Components/HomePageComponent/DashBoard';
-import SignIn from './Components/SignInComponent/SignIn';
-import SignInInfo from './Components/SignInComponent/SignInInfo';
-import SignUpInfo from './Components/SignUpComponent/SignUp';
+import AddMemory from './Components/AddMemoryComponent/AddMemory.tsx';
+import DashBoard from './Components/HomePageComponent/DashBoard.tsx';
+import SignIn from './Components/SignInComponent/SignIn.tsx';
+import SignInInfo from './Components/SignInComponent/SignInInfo.tsx';
+import SignUpInfo from './Components/SignUpComponent/SignUp.tsx';
 
 function App() {
   return (

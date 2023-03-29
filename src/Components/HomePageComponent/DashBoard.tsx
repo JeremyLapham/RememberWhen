@@ -33,8 +33,8 @@ export default function DashBoard() {
 
     return (
         <Container fluid>
-            {[false].map((expand) => (
-                <Navbar key={expand} expand={expand} className="mb-3">
+            {[false].map((expand, idx) => (
+                <Navbar key={idx} expand={expand} className="mb-3">
                     <Container fluid>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
                         <Navbar.Offcanvas id={`offcanvasNavbar-expand-${expand}`} aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`} placement="start" className='offCanvas w-50'>
@@ -62,7 +62,7 @@ export default function DashBoard() {
             ))}
             <Row className='d-flex align-items-center'>
                 <Col>
-                    <img className='logo' src={logo} alt='remember when logo, elephant holding balloon' />
+                    <img className='logoEle' src={logo} alt='remember when logo, elephant holding balloon' />
                 </Col>
                 <Col className='d-flex flex-column justify-content-end'>
                     <p className='addNewTxt'>Add new</p>
