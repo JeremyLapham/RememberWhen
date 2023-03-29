@@ -1,0 +1,125 @@
+@font-face {
+    font-family: Comfortaa;
+    src: url(../../assets/Comfortaa-VariableFont_wght.ttf);
+}
+
+.offCanvas {
+    height: 302px;
+    width: 205px;
+    border-radius: 0 50px 50px 0;
+}
+
+.offCanvasBody {
+    border-radius: 0 50px 50px 0;
+    background-color: #857B74;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.navWords {
+    font-family: Comfortaa;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo {
+    width: 174px;
+    margin-left: 42px;
+    margin-top: 32px;
+}
+
+.addNew {
+    background-color: #F4F2F0;
+    height: 51px;
+    width: 84px;
+    margin-right: -12px;
+    border-radius: 50px 0 0 50px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.addNewTxt {
+    font-size: 10px;
+    margin-bottom: -1px;
+    font-weight: bold;
+    display: flex;
+    justify-content: end;
+}
+
+.addNewBtn {
+    height: 45px;
+    width: 45px;
+    padding: 0px !important;
+    margin: 3px 0 0 2px;
+    border-radius: 100px !important;
+}
+
+.helloTopTxt {
+    padding-top: 39px;
+    margin-left: 2.5rem;
+}
+
+.helloTxt {
+    color: #5C5A5A;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.welcomeTxt {
+    font-size: 10px;
+    color: #5C5A5A;
+    font-weight: bold;
+}
+
+.memoryBox {
+    width: 100%;
+    height: 370px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    display: flex;
+    flex-wrap: nowrap;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.memoryCards {
+    height: 355px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: rgba(163, 163, 163, 0.6);
+}
+
+.txtOnImg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: bold;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.dateOnImg {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    font-weight: bold;
+    width: 100%;
+    padding: 0 2rem;
+}
+
+.moreMemories {
+    width: 300px;
+    height: 45px;
+    background-color: #857B74 !important;
+    font-weight: bold !important;
+    font-size: 18px;
+    margin-top: 35px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

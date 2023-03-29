@@ -1,0 +1,81 @@
+.signInPlacing {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rememberTxt {
+    font-size: 35px;
+    width: 269px;
+    font-weight: 800;
+}
+
+.logo {
+    margin-bottom: -2rem;
+}
+
+.signInBtn {
+    width: 250px;
+    height: 45px;
+    background-color: #857B74;
+    font-weight: 800;
+    font-size: 18px;
+    margin-top: 1rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.signInBtnTwo {
+    width: 250px;
+    height: 45px;
+    background-color: #D7D2CE;
+    font-weight: 800;
+    font-size: 18px;
+    margin-top: 1rem;
+    margin-left: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.noAccount {
+    font-size: 15px;
+    width: 250px;
+    margin-top: 1rem;
+}
+
+.signInBg {
+    background-color: #857B74;
+    height: 530px;
+    margin-left: -12px;
+    margin-top: 47px;
+    width: 100vw;
+    border-radius: 50px 50px 0 0;
+}
+
+.inputField {
+    border-radius: 10px;
+    margin-left: 2rem;
+    height: 45px;
+    width: 300px;
+    border: none;
+}
+
+.userNameInput {
+    font-size: 20px;
+    margin: 86px 0 0 2rem;
+    font-weight: bold;
+}
+
+.passwordInput {
+    font-size: 20px;
+    margin: 39px 0 0 2rem;
+    font-weight: bold;
+}
+
+.forgotPass {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 1rem 0 1rem 0;
+}
