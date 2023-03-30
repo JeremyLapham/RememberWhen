@@ -11,8 +11,8 @@ function App() {
       {/* <SignIn /> */}
       {/* <SignInInfo /> */}
       {/* <SignUpInfo /> */}
-      {/* <DashBoard /> */}
-      <AddMemory />
+      <DashBoard />
+      {/* <AddMemory /> */}
     </div>
   );
 }

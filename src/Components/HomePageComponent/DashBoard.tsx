@@ -8,6 +8,7 @@ import memories from '../../assets/memories.svg';
 import addBtn from '../../assets/PlusCircle.png';
 import placer from '../../assets/placer.png';
 import placerTwo from '../../assets/placerTwo.png';
+import folderPic from '../../assets/folderpic.png';
 import './DashBoard.css';
 
 export default function DashBoard() {
@@ -81,19 +82,32 @@ export default function DashBoard() {
                     <p className='welcomeTxt'>Welcome to your memories, remember when...</p>
                 </Col>
             </Row>
-            <Row>
-                <Col className='memoryBox'>
-                    {placerCard.map((cardInfo, idx) => {
-                        return (
-                            <Button key={idx} style={{ position: 'relative' }} variant=''>
-                                <img className='memoryCards' src={cardInfo.img} />
-                                <div className='txtOnImg'>{cardInfo.overImgTxt}</div>
-                                <div className='dateOnImg'>{cardInfo.dateTxt}</div>
-                            </Button>
-                        );
-                    })}
-                </Col>
-            </Row>
+            {moreMemoryClicked ?
+                <Row>
+                    <Col className='d-flex justify-content-center folderDisplay'>
+                        <div>
+                            <Button variant=''><img src={folderPic}/></Button>
+                            <Button variant=''><img src={folderPic}/></Button>
+                            <Button variant=''><img src={folderPic}/></Button>
+                        </div>
+                    </Col>
+                </Row>
+                :
+                <Row>
+                    <Col className='memoryBox'>
+                        {placerCard.map((cardInfo, idx) => {
+                            return (
+                                <Button key={idx} style={{ position: 'relative' }} variant=''>
+                                    <img className='memoryCards' src={cardInfo.img} />
+                                    <div className='txtOnImg'>{cardInfo.overImgTxt}</div>
+                                    <div className='dateOnImg'>{cardInfo.dateTxt}</div>
+                                </Button>
+                            );
+                        })}
+                    </Col>
+                </Row>
+            }
+
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={handleClick} className='moreMemories' variant=''>{moreMemoryClicked ? 'Go Back' : 'Click for all memories'}</Button>

@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { Col, Container, Navbar, Offcanvas, Row } from 'react-bootstrap';
+import { Col, Container, Navbar, Offcanvas, Row,  Button, Form } from 'react-bootstrap';
 import home from '../../assets/home.svg';
 import setting from '../../assets/setting.svg';
 import addnew from '../../assets/addnew.svg';
 import memories from '../../assets/memories.svg';
 import sound from '../../assets/sound.png';
-import addBtn from '../../assets/PlusCircle.png';
-import addImage from '../../assets/addimage.png'
 import './AddMemory.css';
-import { Button, InputGroup, Form } from 'react-bootstrap';
 
 export default function AddMemory() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -77,7 +74,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Folder</Form.Label>
-                        <Form.Select className=''>
+                        <Form.Select className='textInputs'>
                             <option hidden>Folder</option>
                             <option >Dates</option>
                             <option >Trips</option>
@@ -90,7 +87,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Memory Title</Form.Label>
-                        <Form.Control type='text' placeholder='Memory Title' />
+                        <Form.Control className='textInputs' type='text' placeholder='Memory Title' />
                     </Form.Group>
                 </Col>
             </Row>
@@ -98,7 +95,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Date</Form.Label>
-                        <Form.Control type='text' placeholder='Memory Title' />
+                        <Form.Control className='textInputs' type='text' placeholder='Date' />
                     </Form.Group>
                 </Col>
             </Row>
@@ -106,18 +103,18 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control placeholder='Memory Title' />
+                        <Form.Control className='textInputs' placeholder='Description' />
                     </Form.Group>
                 </Col>
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button>Add</Button>
+                    <Button className='addCancelBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button>Cancel</Button>
+                    <Button className='addCancelBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
         </Container>
-    )
+    );
 }
