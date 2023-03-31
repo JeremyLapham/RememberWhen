@@ -3,8 +3,20 @@ import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
+
+    const navigate = useNavigate();
+    const navigateSignUp = useNavigate();
+
+    const handleSignInClick = () => {
+        navigate('/SignInInfo');
+    };
+    const handleSignUpClick = () => {
+        navigate('/SignUp');
+    };
+
     return (
         <Container className='signInPlacing'>
             <Row>
@@ -19,12 +31,12 @@ export default function SignIn() {
             </Row>
             <Row>
                 <Col>
-                    <Button variant='' className='signInBtn'>Sign In</Button>
+                    <Button variant='' className='signInBtn' onClick={handleSignInClick}>Sign In</Button>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <p className='noAccount'>Dont have an account? <strong>Sign Up</strong></p>
+                    <p className='noAccount'>Dont have an account? <Button onClick={handleSignUpClick} className='dontHaveAccount' variant=''><strong>Sign Up</strong></Button></p>
                 </Col>
             </Row>
         </Container>

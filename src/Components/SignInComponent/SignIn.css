@@ -41,14 +41,14 @@
 }
 
 .noAccount {
-    font-size: 15px;
+    font-size: 14px;
     width: 250px;
     margin-top: 1rem;
 }
 
 .signInBg {
     background-color: #857B74;
-    height: 530px;
+    height: 600px;
     margin-left: -12px;
     margin-top: 47px;
     width: 100vw;
@@ -79,4 +79,12 @@
     font-size: 15px;
     font-weight: bold;
     margin: 1rem 0 1rem 0;
+}
+
+.dontHaveAccount {
+    width:64px;
+    font-size: 14px;
+    margin:0 !important;
+    padding:0 !important;
+    text-decoration: underline;
 }

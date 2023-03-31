@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.6"
+    "@types/bootstrap": "^5.2.6",
+    "@types/react-svg": "^5.0.0"
   }
 }

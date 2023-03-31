@@ -3,8 +3,21 @@ import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUpInfo() {
+
+    const navigate = useNavigate();
+    const navigateToHome = useNavigate();
+
+    const handleSignInClick = () => {
+        navigate('/SignInInfo');
+    };
+
+    const handleHomeClick = () => {
+        navigateToHome('/DashBoard');
+    };
+
     return (
         <Container fluid>
             <Row>
@@ -18,7 +31,7 @@ export default function SignUpInfo() {
                         <Container>
                             <Row className='pt-4'>
                                 <Col className='d-flex justify-content-center'>
-                                    <h1>Sign In</h1>
+                                    <Button onClick={handleSignInClick} variant=''><h1>Sign In</h1></Button>
                                 </Col>
                                 <Col className='d-flex justify-content-center'>
                                     <h1 style={{ textDecoration: 'underline' }}>Sign Up</h1>
@@ -32,7 +45,7 @@ export default function SignUpInfo() {
                                 <Row>
                                     <Col>
                                         <h4 className='signUpInput'>Last Name</h4>
-                                        <input className='inputField' type='password' placeholder='Enter your last name' />
+                                        <input className='inputField' type='text' placeholder='Enter your last name' />
                                     </Col>
                                 </Row>
                                 <Row>
@@ -49,7 +62,7 @@ export default function SignUpInfo() {
                                 </Row>
                                 <Row>
                                     <Col className='d-flex justify-content-center'>
-                                        <Button className='signUpBtn' variant=''>Sign Up</Button>
+                                        <Button onClick={handleHomeClick} className='signUpBtn' variant=''>Sign Up</Button>
                                     </Col>
                                 </Row>
                             </Row>

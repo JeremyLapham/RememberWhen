@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { Col, Container, Navbar, Offcanvas, Row,  Button, Form } from 'react-bootstrap';
+import { Col, Container, Navbar, Offcanvas, Row, Button, Form, Nav } from 'react-bootstrap';
 import home from '../../assets/home.svg';
 import setting from '../../assets/setting.svg';
 import addnew from '../../assets/addnew.svg';
 import memories from '../../assets/memories.svg';
 import sound from '../../assets/sound.png';
 import './AddMemory.css';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function AddMemory() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedAudio, setSelectedAudio] = useState('');
+    const navigate = useNavigate()
 
     const handleFileSelect = (e) => {
         setSelectedImage(e.target.files[0]);
@@ -18,6 +21,10 @@ export default function AddMemory() {
     const handleAudio = () => {
         setSelectedAudio(sound)
     };
+
+    const handleBackToHome = () => {
+        navigate('/DashBoard')
+    }
 
     return (
         <Container fluid>
@@ -28,16 +35,16 @@ export default function AddMemory() {
                         <Navbar.Offcanvas id={`offcanvasNavbar-expand-${expand}`} aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`} placement="start" className='offCanvas w-50'>
                             <Offcanvas.Body className='offCanvasBody'>
                                 <div style={{ marginLeft: '1rem' }}>
-                                    <img src={home} alt='home picture' />
-                                    <h1 className='navWords d-inline'>Home</h1>
+                                    <Nav.Link as={Link} to='/DashBoard'><img src={home} alt='home picture' />
+                                        <h1 className='navWords d-inline'>Home</h1></Nav.Link>
                                 </div>
                                 <div style={{ marginLeft: '1rem' }}>
                                     <img src={setting} alt='setting picture' />
                                     <h1 className='navWords d-inline'>Setting</h1>
                                 </div>
                                 <div style={{ marginLeft: '1rem' }}>
-                                    <img src={addnew} alt='addnew picture' />
-                                    <h1 className='navWords d-inline'>Add new</h1>
+                                    <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
+                                        <h1 className='navWords d-inline'>Add new</h1></Nav.Link>
                                 </div>
                                 <div style={{ marginLeft: '1rem' }}>
                                     <img src={memories} alt='memories picture' />
@@ -112,7 +119,7 @@ export default function AddMemory() {
                     <Button className='addCancelBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button className='addCancelBtn' variant=''>Cancel</Button>
+                    <Button onClick={handleBackToHome} className='addCancelBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
         </Container>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Container, Row, Navbar, Offcanvas, Button } from 'react-bootstrap';
+import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
 import logo from '../../assets/elephantLogo.svg';
 import home from '../../assets/home.svg';
 import setting from '../../assets/setting.svg';
@@ -10,14 +10,20 @@ import placer from '../../assets/placer.png';
 import placerTwo from '../../assets/placerTwo.png';
 import folderPic from '../../assets/folderpic.png';
 import './DashBoard.css';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function DashBoard() {
     const [hello, setHello] = useState('First');
     const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
+    const navigate = useNavigate();
 
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
+
+    const handleSignInClick = () => {
+        navigate('/AddMemory');
+    };
 
     const [placerCard, setPlacerCard] = useState([
         {
@@ -41,16 +47,16 @@ export default function DashBoard() {
                         <Navbar.Offcanvas id={`offcanvasNavbar-expand-${expand}`} aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`} placement="start" className='offCanvas w-50'>
                             <Offcanvas.Body className='offCanvasBody'>
                                 <div style={{ marginLeft: '1rem' }}>
-                                    <img src={home} alt='home picture' />
-                                    <h1 className='navWords d-inline'>Home</h1>
+                                <Nav.Link as={Link} to='/DashBoard'><img src={home} alt='home picture' />
+                                    <h1 className='navWords d-inline'>Home</h1></Nav.Link>
                                 </div>
                                 <div style={{ marginLeft: '1rem' }}>
                                     <img src={setting} alt='setting picture' />
                                     <h1 className='navWords d-inline'>Setting</h1>
                                 </div>
                                 <div style={{ marginLeft: '1rem' }}>
-                                    <img src={addnew} alt='addnew picture' />
-                                    <h1 className='navWords d-inline'>Add new</h1>
+                                    <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
+                                    <h1 className='navWords d-inline'>Add new</h1></Nav.Link>
                                 </div>
                                 <div style={{ marginLeft: '1rem' }}>
                                     <img src={memories} alt='memories picture' />
@@ -69,7 +75,7 @@ export default function DashBoard() {
                     <p className='addNewTxt'>Add new</p>
                     <div className='d-flex justify-content-end'>
                         <p className='addNew'>
-                            <Button className='addNewBtn' variant=''>
+                            <Button onClick={handleSignInClick} className='addNewBtn' variant=''>
                                 <img src={addBtn} alt='add new memories' />
                             </Button>
                         </p>
@@ -83,15 +89,32 @@ export default function DashBoard() {
                 </Col>
             </Row>
             {moreMemoryClicked ?
-                <Row>
-                    <Col className='d-flex justify-content-center folderDisplay'>
-                        <div>
-                            <Button variant=''><img src={folderPic}/></Button>
-                            <Button variant=''><img src={folderPic}/></Button>
-                            <Button variant=''><img src={folderPic}/></Button>
-                        </div>
-                    </Col>
-                </Row>
+                <Container>
+                    <Row>
+                        <Col className='d-flex justify-content-center folderDisplay'>
+                            <Row>
+                                <Col xs={4}>
+                                    <Button variant=''>
+                                        <img src={folderPic} />
+                                        <p className='folderFont'>Dates</p>
+                                    </Button>
+                                </Col>
+                                <Col xs={4}>
+                                    <Button variant=''>
+                                        <img src={folderPic} />
+                                        <p className='folderFont'>Trips</p>
+                                    </Button>
+                                </Col>
+                                <Col xs={4}>
+                                    <Button variant=''>
+                                        <img src={folderPic} />
+                                        <p className='folderFont'>Camping</p>
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </Container>
                 :
                 <Row>
                     <Col className='memoryBox'>

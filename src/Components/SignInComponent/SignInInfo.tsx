@@ -3,8 +3,21 @@ import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignInInfo() {
+
+    const navigate = useNavigate();
+    const navigateToHome = useNavigate();
+
+    const handleSignInClick = () => {
+        navigate('/SignUp');
+    };
+
+    const handleHomeClick = () => {
+        navigateToHome('/DashBoard');
+    };
+
     return (
         <Container fluid>
             <Row>
@@ -21,7 +34,7 @@ export default function SignInInfo() {
                                     <h1 style={{ textDecoration: 'underline' }}>Sign In</h1>
                                 </Col>
                                 <Col className='d-flex justify-content-center'>
-                                    <h1>Sign Up</h1>
+                                    <Button onClick={handleSignInClick} variant=''><h1>Sign Up</h1></Button>
                                 </Col>
                                 <Row>
                                     <Col>
@@ -42,7 +55,7 @@ export default function SignInInfo() {
                                 </Row>
                                 <Row>
                                     <Col className='d-flex justify-content-center'>
-                                        <Button className='signInBtnTwo' variant=''>Sign In</Button>
+                                        <Button onClick={handleHomeClick} className='signInBtnTwo' variant=''>Sign In</Button>
                                     </Col>
                                 </Row>
                             </Row>
