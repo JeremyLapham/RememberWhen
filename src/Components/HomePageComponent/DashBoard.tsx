@@ -72,7 +72,7 @@ export default function DashBoard() {
                     <img className='logoEle' src={logo} alt='remember when logo, elephant holding balloon' />
                 </Col>
                 <Col className='d-flex flex-column justify-content-end'>
-                    <p className='addNewTxt'>Add new</p>
+                    <p className='addNewTxt'>Add Memory</p>
                     <div className='d-flex justify-content-end'>
                         <p className='addNew'>
                             <Button onClick={handleSignInClick} className='addNewBtn' variant=''>

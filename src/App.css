@@ -11,7 +11,6 @@
   left: 0;
   background-color: #D7D2CE;
   font-family: Comfortaa;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
-  overflow: hidden;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/elephantLogo.svg';
+import logo  from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 export default function SignIn() {
 
     const navigate = useNavigate();
-    const navigateSignUp = useNavigate();
 
     const handleSignInClick = () => {
         navigate('/SignInInfo');

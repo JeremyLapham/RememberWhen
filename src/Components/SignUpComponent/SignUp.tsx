@@ -8,14 +8,13 @@ import { useNavigate } from 'react-router-dom';
 export default function SignUpInfo() {
 
     const navigate = useNavigate();
-    const navigateToHome = useNavigate();
 
     const handleSignInClick = () => {
         navigate('/SignInInfo');
     };
 
     const handleHomeClick = () => {
-        navigateToHome('/DashBoard');
+        navigate('/DashBoard');
     };
 
     return (

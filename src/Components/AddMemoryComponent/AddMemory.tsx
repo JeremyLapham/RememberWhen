@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Col, Container, Navbar, Offcanvas, Row, Button, Form, Nav } from 'react-bootstrap';
-import home from '../../assets/home.svg';
+import { Col, Container, Navbar, Offcanvas, Row, Button, Form, Nav, Toast } from 'react-bootstrap';
+import home  from '../../assets/home.svg';
 import setting from '../../assets/setting.svg';
 import addnew from '../../assets/addnew.svg';
 import memories from '../../assets/memories.svg';
@@ -12,6 +12,8 @@ import { Link } from 'react-router-dom';
 export default function AddMemory() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedAudio, setSelectedAudio] = useState('');
+    const [show, setShow] = useState(false);
+
     const navigate = useNavigate()
 
     const handleFileSelect = (e) => {
@@ -28,6 +30,22 @@ export default function AddMemory() {
 
     return (
         <Container fluid>
+            <Row>
+                <Col xs={6}>
+                    <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+                        <Toast.Header>
+                            <img
+                                src="holder.js/20x20?text=%20"
+                                className="rounded me-2"
+                                alt=""
+                            />
+                            <strong className="me-auto">Bootstrap</strong>
+                            <small>11 mins ago</small>
+                        </Toast.Header>
+                        <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+                    </Toast>
+                </Col>
+            </Row>
             {[false].map((expand, idx) => (
                 <Navbar key={idx} expand={expand} className="mb-3">
                     <Container fluid>
@@ -116,7 +134,7 @@ export default function AddMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button className='addCancelBtn' variant=''>Add</Button>
+                    <Button onClick={()=> setShow(true)} className='addCancelBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={handleBackToHome} className='addCancelBtn' variant=''>Cancel</Button>
