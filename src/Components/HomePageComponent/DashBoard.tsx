@@ -13,7 +13,7 @@ import './DashBoard.css';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function DashBoard() {
-    const [hello, setHello] = useState('First');
+    const [hello, setHello] = useState('Jeremy');
     const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
     const navigate = useNavigate();
 
@@ -72,6 +72,7 @@ export default function DashBoard() {
                     <img className='logoEle' src={logo} alt='remember when logo, elephant holding balloon' />
                 </Col>
                 <Col className='d-flex flex-column justify-content-end'>
+                    <Row>
                     <p className='addNewTxt'>Add Memory</p>
                     <div className='d-flex justify-content-end'>
                         <p className='addNew'>
@@ -80,6 +81,17 @@ export default function DashBoard() {
                             </Button>
                         </p>
                     </div>
+                    </Row>
+                    <Row>
+                    <p className='addNewFolderTxt'>Add Folder</p>
+                    <div className='d-flex justify-content-end'>
+                        <p className='addNewFolder'>
+                            <Button onClick={handleSignInClick} className='addNewBtn' variant=''>
+                                <img src={addBtn} alt='add new memories' />
+                            </Button>
+                        </p>
+                    </div>
+                    </Row>
                 </Col>
             </Row>
             <Row>
