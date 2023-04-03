@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
 import logo from '../../assets/elephantLogo.svg';
-import home from '../../assets/home.svg';
-import setting from '../../assets/setting.svg';
-import addnew from '../../assets/addnew.svg';
-import memories from '../../assets/memories.svg';
 import addBtn from '../../assets/PlusCircle.png';
 import placer from '../../assets/placer.png';
 import placerTwo from '../../assets/placerTwo.png';
 import folderPic from '../../assets/folderpic.png';
 import './DashBoard.css';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import CustomNavbar from '../NavbarComponent';
 
 export default function DashBoard() {
     const [hello, setHello] = useState('Jeremy');
@@ -40,57 +37,31 @@ export default function DashBoard() {
 
     return (
         <Container fluid>
-            {[false].map((expand, idx) => (
-                <Navbar key={idx} expand={expand} className="mb-3">
-                    <Container fluid>
-                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-                        <Navbar.Offcanvas id={`offcanvasNavbar-expand-${expand}`} aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`} placement="start" className='offCanvas w-50'>
-                            <Offcanvas.Body className='offCanvasBody'>
-                                <div style={{ marginLeft: '1rem' }}>
-                                <Nav.Link as={Link} to='/DashBoard'><img src={home} alt='home picture' />
-                                    <h1 className='navWords d-inline'>Home</h1></Nav.Link>
-                                </div>
-                                <div style={{ marginLeft: '1rem' }}>
-                                    <img src={setting} alt='setting picture' />
-                                    <h1 className='navWords d-inline'>Setting</h1>
-                                </div>
-                                <div style={{ marginLeft: '1rem' }}>
-                                    <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
-                                    <h1 className='navWords d-inline'>Add new</h1></Nav.Link>
-                                </div>
-                                <div style={{ marginLeft: '1rem' }}>
-                                    <img src={memories} alt='memories picture' />
-                                    <h1 className='navWords d-inline'>Memories</h1>
-                                </div>
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                    </Container>
-                </Navbar>
-            ))}
+            <CustomNavbar />
             <Row className='d-flex align-items-center'>
                 <Col>
                     <img className='logoEle' src={logo} alt='remember when logo, elephant holding balloon' />
                 </Col>
                 <Col className='d-flex flex-column justify-content-end'>
                     <Row>
-                    <p className='addNewTxt'>Add Memory</p>
-                    <div className='d-flex justify-content-end'>
-                        <p className='addNew'>
-                            <Button onClick={handleSignInClick} className='addNewBtn' variant=''>
-                                <img src={addBtn} alt='add new memories' />
-                            </Button>
-                        </p>
-                    </div>
+                        <p className='addNewTxt'>Add Memory</p>
+                        <div className='d-flex justify-content-end'>
+                            <p className='addNew'>
+                                <Button onClick={handleSignInClick} className='addNewBtn' variant=''>
+                                    <img src={addBtn} alt='add new memories' />
+                                </Button>
+                            </p>
+                        </div>
                     </Row>
                     <Row>
-                    <p className='addNewFolderTxt'>Add Folder</p>
-                    <div className='d-flex justify-content-end'>
-                        <p className='addNewFolder'>
-                            <Button onClick={handleSignInClick} className='addNewBtn' variant=''>
-                                <img src={addBtn} alt='add new memories' />
-                            </Button>
-                        </p>
-                    </div>
+                        <p className='addNewFolderTxt'>Add Folder</p>
+                        <div className='d-flex justify-content-end'>
+                            <p className='addNewFolder'>
+                                <Button className='addNewBtn' variant=''>
+                                    <img src={addBtn} alt='add new memories' />
+                                </Button>
+                            </p>
+                        </div>
                     </Row>
                 </Col>
             </Row>

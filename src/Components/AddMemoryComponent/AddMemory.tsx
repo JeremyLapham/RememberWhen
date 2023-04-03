@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { Col, Container, Navbar, Offcanvas, Row, Button, Form, Nav, Toast } from 'react-bootstrap';
-import home  from '../../assets/home.svg';
-import setting from '../../assets/setting.svg';
-import addnew from '../../assets/addnew.svg';
-import memories from '../../assets/memories.svg';
 import sound from '../../assets/sound.png';
 import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import CustomNavbar from '../NavbarComponent';
 
 export default function AddMemory() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -46,33 +42,7 @@ export default function AddMemory() {
                     </Toast>
                 </Col>
             </Row>
-            {[false].map((expand, idx) => (
-                <Navbar key={idx} expand={expand} className="mb-3">
-                    <Container fluid>
-                        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
-                        <Navbar.Offcanvas id={`offcanvasNavbar-expand-${expand}`} aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`} placement="start" className='offCanvas w-50'>
-                            <Offcanvas.Body className='offCanvasBody'>
-                                <div style={{ marginLeft: '1rem' }}>
-                                    <Nav.Link as={Link} to='/DashBoard'><img src={home} alt='home picture' />
-                                        <h1 className='navWords d-inline'>Home</h1></Nav.Link>
-                                </div>
-                                <div style={{ marginLeft: '1rem' }}>
-                                    <img src={setting} alt='setting picture' />
-                                    <h1 className='navWords d-inline'>Setting</h1>
-                                </div>
-                                <div style={{ marginLeft: '1rem' }}>
-                                    <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
-                                        <h1 className='navWords d-inline'>Add new</h1></Nav.Link>
-                                </div>
-                                <div style={{ marginLeft: '1rem' }}>
-                                    <img src={memories} alt='memories picture' />
-                                    <h1 className='navWords d-inline'>Memories</h1>
-                                </div>
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                    </Container>
-                </Navbar>
-            ))}
+            <CustomNavbar />
             <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
@@ -134,7 +104,7 @@ export default function AddMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={()=> setShow(true)} className='addCancelBtn' variant=''>Add</Button>
+                    <Button onClick={() => setShow(true)} className='addCancelBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={handleBackToHome} className='addCancelBtn' variant=''>Cancel</Button>
