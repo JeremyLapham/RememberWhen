@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../Services/DataService';
 
 export default function SignInInfo() {
+    const [Username, setUsername] = useState('');
+    const [Password, setPassword] = useState('');
 
     const navigate = useNavigate();
 
@@ -13,9 +16,19 @@ export default function SignInInfo() {
         navigate('/SignUp');
     };
 
-    const handleHomeClick = () => {
-        navigate('/DashBoard');
-    };
+    const handleLogin = async () => {
+        let userData = {
+            Username,
+            Password
+        }
+        console.log(userData);
+        let token = await login(userData);
+        if(token.token != null){
+            localStorage.setItem("Token", token.token);
+            //GetLoggedInUserData(username);
+            navigate('/DashBoard');
+        }
+    }
 
     return (
         <Container fluid>
@@ -38,13 +51,13 @@ export default function SignInInfo() {
                                 <Row>
                                     <Col>
                                         <h4 className='userNameInput'>Username</h4>
-                                        <input type='text' className='inputField' placeholder='Enter your username' />
+                                        <input onChange={({ target: { value } }) => setUsername(value)} type='text' className='inputField' placeholder='Enter your username' />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
                                         <h4 className='passwordInput'>Password</h4>
-                                        <input className='inputField' type='password' placeholder='Enter your password' />
+                                        <input  onChange={({ target: { value } }) => setPassword(value)} className='inputField' type='password' placeholder='Enter your password' />
                                     </Col>
                                 </Row>
                                 <Row>
@@ -54,7 +67,7 @@ export default function SignInInfo() {
                                 </Row>
                                 <Row>
                                     <Col className='d-flex justify-content-center'>
-                                        <Button onClick={handleHomeClick} className='signInBtnTwo' variant=''>Sign In</Button>
+                                        <Button onClick={handleLogin} className='signInBtnTwo' variant=''>Sign In</Button>
                                     </Col>
                                 </Row>
                             </Row>

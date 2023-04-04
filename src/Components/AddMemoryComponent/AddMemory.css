@@ -71,3 +71,9 @@
     width:300px !important;
     border:1px solid black !important;
 }
+.addToast {
+    position:absolute;
+    top: 0;
+    right:0;
+    z-index: 100;
+}

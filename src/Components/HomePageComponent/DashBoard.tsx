@@ -7,7 +7,7 @@ import placerTwo from '../../assets/placerTwo.png';
 import folderPic from '../../assets/folderpic.png';
 import './DashBoard.css';
 import { useNavigate } from 'react-router-dom';
-import CustomNavbar from '../NavbarComponent';
+import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 
 export default function DashBoard() {
     const [hello, setHello] = useState('Jeremy');
@@ -65,12 +65,21 @@ export default function DashBoard() {
                     </Row>
                 </Col>
             </Row>
-            <Row>
-                <Col className='helloTopTxt'>
-                    <h1 className='helloTxt'>Hello, <p style={{ color: 'black' }} className='d-inline'>{hello}</p></h1>
-                    <p className='welcomeTxt'>Welcome to your memories, remember when...</p>
-                </Col>
-            </Row>
+            {moreMemoryClicked ?
+                <Row>
+                    <Col className='rememberWhenTop'>
+                        <h1 className='remmeberWhen'>Remember When...</h1>
+                    </Col>
+                </Row>
+                :
+                <Row>
+                    <Col className='helloTopTxt'>
+                        <h1 className='helloTxt'>Hello, <p style={{ color: 'black' }} className='d-inline'>{hello}</p></h1>
+                        <p className='welcomeTxt'>Welcome to your memories, remember when...</p>
+                    </Col>
+                </Row>
+            }
+
             {moreMemoryClicked ?
                 <Container>
                     <Row>

@@ -27,3 +27,14 @@
     align-self: flex-end;
     width: 13px;
 }
+
+.offCanvas {
+    width:220px !important;
+    position: relative;
+}
+
+.navWords {
+    font-family: Comfortaa;
+    font-size: 20px;
+    font-weight: bold;
+}

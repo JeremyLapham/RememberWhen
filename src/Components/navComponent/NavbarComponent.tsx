@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import "./NavbarStyle.css";
 import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import home from '../assets/home.svg';
-import setting from '../assets/setting.svg';
-import addnew from '../assets/addnew.svg';
-import memories from '../assets/memories.svg';
+import home from '../../assets/home.svg';
+import setting from '../../assets/setting.svg';
+import addnew from '../../assets/addnew.svg';
+import memories from '../../assets/memories.svg';
 
 export default function CustomNavbar() {
     const [isActive, setIsActive] = useState(false);
@@ -30,22 +30,26 @@ export default function CustomNavbar() {
                     show={isActive}
                     onHide={() => setIsActive(false)}
                     placement="start"
-                    className="offCanvas w-50"
+                    className="offCanvas"
                 >
                     <Offcanvas.Body className="offCanvasBody">
-                        <div style={{ marginLeft: '1rem' }}>
+                        <div style={{ marginLeft: '25px' }}>
                             <Nav.Link as={Link} to='/DashBoard'><img src={home} alt='home picture' />
                                 <h1 className='navWords d-inline'>Home</h1></Nav.Link>
                         </div>
-                        <div style={{ marginLeft: '0.9rem' }}>
+                        <div style={{ marginLeft: '24px' }}>
                             <img src={setting} alt='setting picture' />
                             <h1 className='navWords d-inline'>Setting</h1>
                         </div>
-                        <div style={{ marginLeft: '0.8rem' }}>
+                        <div style={{ marginLeft: '21px' }}>
                             <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
                                 <h1 className='navWords d-inline'>Add Memory</h1></Nav.Link>
                         </div>
-                        <div style={{ marginLeft: '0.9rem' }}>
+                        <div style={{ marginLeft: '21px' }}>
+                            <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
+                                <h1 className='navWords d-inline'>Add Folder</h1></Nav.Link>
+                        </div>
+                        <div style={{ marginLeft: '22px' }}>
                             <img src={memories} alt='memories picture' />
                             <h1 className='navWords d-inline'>Memories</h1>
                         </div>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Col, Container, Navbar, Offcanvas, Row, Button, Form, Nav, Toast } from 'react-bootstrap';
+import { Col, Container, Row, Button, Form, Toast } from 'react-bootstrap';
 import sound from '../../assets/sound.png';
 import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
-import CustomNavbar from '../NavbarComponent';
+import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 
 export default function AddMemory() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -28,17 +28,17 @@ export default function AddMemory() {
         <Container fluid>
             <Row>
                 <Col xs={6}>
-                    <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+                    <Toast className='addToast' onClose={() => setShow(false)} show={show} delay={3000} autohide>
                         <Toast.Header>
                             <img
                                 src="holder.js/20x20?text=%20"
                                 className="rounded me-2"
                                 alt=""
                             />
-                            <strong className="me-auto">Bootstrap</strong>
-                            <small>11 mins ago</small>
+                            <strong className="me-auto">Remember when</strong>
+                            <small>1s ago</small>
                         </Toast.Header>
-                        <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+                        <Toast.Body>Memory has been added</Toast.Body>
                     </Toast>
                 </Col>
             </Row>

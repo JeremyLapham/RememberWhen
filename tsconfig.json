@@ -9,11 +9,11 @@
     "files": [
       "src/Components/AddMemoryComponent/AddMemory.tsx",
       "src/Components/HomePageComponent/DashBoard.tsx",
-      "src/Components/NavbarComponent.tsx",
+      "src/Components/navComponent/NavbarComponent.tsx",
       "globals.d.ts"
     ],
     "include": [
       "src/Components/AddMemoryComponent/AddMemory.tsx",
-      "src/Components/NavbarComponent.tsx"
+      "src/Components/navComponent/NavbarComponent.tsx"
     ]
 }

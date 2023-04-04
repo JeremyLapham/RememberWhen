@@ -17,12 +17,6 @@
     justify-content: space-evenly;
 }
 
-.navWords {
-    font-family: Comfortaa;
-    font-size: 20px;
-    font-weight: bold;
-}
-
 .logoEle {
     width: 174px;
     margin-left: 42px;
@@ -153,4 +147,16 @@
 .folderFont {
     font-size:15px;
     font-weight: bold;
+}
+
+.remmeberWhen {
+    font-size: 20px;
+    color:#848383;
+    
+}
+.rememberWhenTop {
+    height:114px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

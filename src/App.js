@@ -12,7 +12,6 @@ function App() {
     <div className='body'>
       <BrowserRouter>
         <Routes>
-
           <Route path='/' element={<SignIn />} />
           <Route path='SignInInfo' element={<SignInInfo />} />
           <Route path='/SignUp' element={<SignUpInfo />} />
