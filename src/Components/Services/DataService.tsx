@@ -2,7 +2,7 @@
 
 
 async function createAccount(createdUser: any) {
-    const res = await fetch('https://rememberwhenwebsite.azurewebsites.net/User/CreateAccount',{
+    const res = await fetch('https://rememberwhenwebsite.azurewebsites.net/User/adduser',{
         method: "POST",
         headers:{
             'Content-Type':"application/json"
@@ -32,6 +32,5 @@ export async function login(loginUser: { Username: string; Password: string; }) 
     }
 
     let data = await res.json();
-    console.log(data);
     return data;
 }

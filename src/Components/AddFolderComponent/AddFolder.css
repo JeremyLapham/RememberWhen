@@ -1,0 +1,30 @@
+.addFolderTxt {
+    margin:100px 0 50px 0;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.folderIMG {
+    width:123px;
+    margin-bottom:76px;
+}
+
+.inputTxt {
+    padding-left:4px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.inputFolder {
+    margin-bottom:50px;
+    width: 300px;
+    height:40px;
+}
+
+.folderBtn {
+    width:68px;
+    height:31px;
+    background-color: #857B74;
+    font-size:10px;
+    font-weight:bold;
+}

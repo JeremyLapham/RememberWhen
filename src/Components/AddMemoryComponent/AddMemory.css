@@ -63,17 +63,19 @@
 
 .addCancelBtn {
     background-color: #857B74 !important;
-    font-size:10px;
+    font-size: 10px;
     font-weight: bold;
 }
 
 .textInputs {
-    width:300px !important;
-    border:1px solid black !important;
+    width: 300px !important;
+    border: 1px solid black !important;
 }
+
 .addToast {
-    position:absolute;
+    position: absolute;
+    position: fixed;
     top: 0;
-    right:0;
+    right: 0;
     z-index: 100;
 }

@@ -7,10 +7,14 @@
       "esModuleInterop": true
     },
     "files": [
-      "src/Components/AddMemoryComponent/AddMemory.tsx",
+      "globals.d.ts",
+      "src/Components/SignInComponent/SignInInfo.tsx",
+      "src/Components/SignInComponent/SignIn.tsx",
+      "src/Components/AddFolderComponent/AddFolder.tsx",
+      "src/Components/SignUpComponent/SignUp.tsx",
       "src/Components/HomePageComponent/DashBoard.tsx",
-      "src/Components/navComponent/NavbarComponent.tsx",
-      "globals.d.ts"
+      "src/Components/ClickedFolder/ClickedFolder.tsx",
+      "src/Components/Logout/Logout.tsx"
     ],
     "include": [
       "src/Components/AddMemoryComponent/AddMemory.tsx",

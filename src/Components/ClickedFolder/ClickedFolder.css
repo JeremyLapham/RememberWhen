@@ -1,0 +1,17 @@
+.heart {
+    width: 80px;
+}
+
+.displayMemory {
+    background-color: #D3C0B2;
+    height: 598px;
+    width: 365px;
+    border-radius: 20px;
+    border: 1px solid;
+}
+
+.nameFolder {
+    margin-top: 30px;
+    font-size: 25px;
+    font-weight:bold;
+}

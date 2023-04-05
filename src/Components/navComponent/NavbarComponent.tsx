@@ -19,7 +19,7 @@ export default function CustomNavbar() {
             <Container fluid>
                 <Navbar.Toggle
                     aria-controls="responsive-navbar-nav"
-                    className={`hamburger ${isActive ? "active" : ""} border-0`}
+                    className={`hamburger border-0`}
                     onClick={handleClick}
                 >
                     <div></div>
@@ -38,15 +38,15 @@ export default function CustomNavbar() {
                                 <h1 className='navWords d-inline'>Home</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '24px' }}>
-                            <img src={setting} alt='setting picture' />
-                            <h1 className='navWords d-inline'>Setting</h1>
+                            <Nav.Link as={Link} to='/Settings'><img src={setting} alt='home picture' />
+                                <h1 className='navWords d-inline'>Settings</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '21px' }}>
                             <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
                                 <h1 className='navWords d-inline'>Add Memory</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '21px' }}>
-                            <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
+                            <Nav.Link as={Link} to='/AddFolder'><img src={addnew} alt='addnew picture' />
                                 <h1 className='navWords d-inline'>Add Folder</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '22px' }}>

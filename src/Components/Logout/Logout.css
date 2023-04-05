@@ -1,0 +1,21 @@
+.logoutBtn {
+    background-color: #857B74 !important;
+    font-size: 18px;
+    font-weight:bold;
+    border-radius: 10px !important;
+    width:172px;
+    height:56px;
+    margin-top:80px;
+    margin-bottom:90%;
+}
+
+.settingTxt {
+    font-size:25px;
+    font-weight: bold;
+    margin-top:30px;
+}
+
+.elephant {
+    width:160px;
+    margin-top:140px;
+}

@@ -25,7 +25,7 @@ export default function SignInInfo() {
         let token = await login(userData);
         if(token.token != null){
             localStorage.setItem("Token", token.token);
-            //GetLoggedInUserData(username);
+            login(userData);
             navigate('/DashBoard');
         }
     }

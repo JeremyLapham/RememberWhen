@@ -37,26 +37,20 @@ export default function SignUpInfo() {
                                 </Col>
                                 <Row>
                                     <Col>
-                                        <h4 className='signUpInput'>First Name</h4>
-                                        <input type='text' className='inputField' placeholder='Enter your first name' />
+                                        <h4 className='signUpInput'>Username</h4>
+                                        <input type='text' className='inputField' placeholder='Enter your username' />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <h4 className='signUpInput'>Last Name</h4>
-                                        <input className='inputField' type='text' placeholder='Enter your last name' />
+                                        <h4 className='signUpInput'>Email</h4>
+                                        <input className='inputField' type='email' placeholder='Enter your email' />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
                                         <h4 className='signUpInput'>Password</h4>
                                         <input className='inputField' type='password' placeholder='Enter your password' />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <h4 className='signUpInput'>Confirm Password</h4>
-                                        <input className='inputField' type='password' placeholder='Confrim your password' />
                                     </Col>
                                 </Row>
                                 <Row>

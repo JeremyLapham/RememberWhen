@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
 import logo from '../../assets/elephantLogo.svg';
 import addBtn from '../../assets/PlusCircle.png';
@@ -8,18 +8,23 @@ import folderPic from '../../assets/folderpic.png';
 import './DashBoard.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function DashBoard() {
     const [hello, setHello] = useState('Jeremy');
     const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
+    const [clickedName, setClickedName] = useState('');
     const navigate = useNavigate();
 
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
 
-    const handleSignInClick = () => {
+    const handleAddMemoryClick = () => {
         navigate('/AddMemory');
+    };
+    const handleAddFolderClick = () => {
+        navigate('/AddFolder');
     };
 
     const [placerCard, setPlacerCard] = useState([
@@ -34,33 +39,57 @@ export default function DashBoard() {
             img: placerTwo
         }
     ]);
+    interface Folder {
+        folderName: string;
+    }
+
+    const [placerFolder, setPlacerFolder] = useState<Folder[]>([
+        {
+            folderName: 'Dates'
+        },
+        {
+            folderName: 'Trips'
+        },
+        {
+            folderName: 'Camping'
+        }
+    ]);
+
+    const handleFolderClick = (folderName: string) => {
+        setClickedName(folderName);
+        navigate('/ClickedMemory', { state: { name: folderName } })
+    }
 
     return (
         <Container fluid>
             <CustomNavbar />
             <Row className='d-flex align-items-center'>
-                <Col>
+                <Col xs={6}>
                     <img className='logoEle' src={logo} alt='remember when logo, elephant holding balloon' />
                 </Col>
-                <Col className='d-flex flex-column justify-content-end'>
+                <Col xs={6} className='d-flex flex-column justify-content-end'>
                     <Row>
-                        <p className='addNewTxt'>Add Memory</p>
                         <div className='d-flex justify-content-end'>
-                            <p className='addNew'>
-                                <Button onClick={handleSignInClick} className='addNewBtn' variant=''>
-                                    <img src={addBtn} alt='add new memories' />
-                                </Button>
-                            </p>
+                            <Button onClick={()=>navigate('/AddMemory')} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                                <Col xs={9}>
+                                    <p className='addNewTxt'>Add Memory</p>
+                                </Col>
+                                <Col xs={3} className='d-flex justify-content-center'>
+                                    <AddIcon style={{ fontSize: '28px' }} />
+                                </Col>
+                            </Button>
                         </div>
                     </Row>
                     <Row>
-                        <p className='addNewFolderTxt'>Add Folder</p>
-                        <div className='d-flex justify-content-end'>
-                            <p className='addNewFolder'>
-                                <Button className='addNewBtn' variant=''>
-                                    <img src={addBtn} alt='add new memories' />
-                                </Button>
-                            </p>
+                    <div className='d-flex justify-content-end'>
+                            <Button onClick={()=>navigate('/AddFolder')} className='addNewFolder' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                                <Col xs={9}>
+                                    <p className='addNewTxt'>Add Folder</p>
+                                </Col>
+                                <Col xs={3} className='d-flex justify-content-center'>
+                                    <AddIcon style={{ fontSize: '28px' }} />
+                                </Col>
+                            </Button>
                         </div>
                     </Row>
                 </Col>
@@ -85,24 +114,16 @@ export default function DashBoard() {
                     <Row>
                         <Col className='d-flex justify-content-center folderDisplay'>
                             <Row>
-                                <Col xs={4}>
-                                    <Button variant=''>
-                                        <img src={folderPic} />
-                                        <p className='folderFont'>Dates</p>
-                                    </Button>
-                                </Col>
-                                <Col xs={4}>
-                                    <Button variant=''>
-                                        <img src={folderPic} />
-                                        <p className='folderFont'>Trips</p>
-                                    </Button>
-                                </Col>
-                                <Col xs={4}>
-                                    <Button variant=''>
-                                        <img src={folderPic} />
-                                        <p className='folderFont'>Camping</p>
-                                    </Button>
-                                </Col>
+                                {placerFolder.map((folder, idx) => {
+                                    return (
+                                        <Col key={idx} xs={4}>
+                                            <Button onClick={() => { handleFolderClick(folder.folderName); }} variant=''>
+                                                <img src={folderPic} />
+                                                <p className='folderFont'>{folder.folderName}</p>
+                                            </Button>
+                                        </Col>
+                                    )
+                                })}
                             </Row>
                         </Col>
                     </Row>
@@ -112,7 +133,7 @@ export default function DashBoard() {
                     <Col className='memoryBox'>
                         {placerCard.map((cardInfo, idx) => {
                             return (
-                                <Button key={idx} style={{ position: 'relative' }} variant=''>
+                                <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
                                     <img className='memoryCards' src={cardInfo.img} />
                                     <div className='txtOnImg'>{cardInfo.overImgTxt}</div>
                                     <div className='dateOnImg'>{cardInfo.dateTxt}</div>
