@@ -1,0 +1,64 @@
+.memoryRemember {
+    font-size:30px;
+    color: #848383;
+    font-weight:bold;
+    margin-top:23px;
+    margin-bottom: 34px;
+}
+
+.memoryName {
+    font-size:20px;
+    font-weight:light;
+    margin-bottom:25px;
+}
+
+.phantLogo {
+    width:160px;
+    margin-bottom:-1.5rem;
+}
+
+.memoryImg {
+    width:350px;
+    height:375px;
+    border-radius: 10px;
+    border:1px solid;
+    margin-bottom:23px;
+}
+
+.displayHashtags {
+    width:350px;
+    height:51px;
+    background-color:#B7D1DA;
+    border-radius: 15px;
+    border:1px solid;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:15px;
+}
+
+.hashtags {
+    font-size: 15px;
+    margin: 0 !important;
+}
+
+.description {
+    width:350px;
+    height:213px;
+    border-radius: 20px;
+    border: 1px solid;
+}
+
+.memoryDesTxt {
+    font-size:15px;
+    font-weight: light;
+    margin:19px 10px;
+    height:136px;
+    overflow-y: scroll;
+}
+
+.memoryDesDate  {
+    font-size:20px;
+    font-weight: light;
+}
