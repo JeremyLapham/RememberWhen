@@ -63,8 +63,9 @@
 
 .addCancelBtn {
     background-color: #857B74 !important;
-    font-size: 10px;
+    font-size: 15px !important;
     font-weight: bold;
+    margin-bottom:3rem;
 }
 
 .textInputs {

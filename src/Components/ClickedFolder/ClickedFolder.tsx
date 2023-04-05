@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import CustomNavbar from '../navComponent/NavbarComponent';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import heart from '../../assets/folderpic.png';
-import addBtn from '../../assets/PlusCircle.png';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './ClickedFolder.css';
 import AddIcon from '@mui/icons-material/Add';
@@ -10,10 +9,6 @@ import AddIcon from '@mui/icons-material/Add';
 export default function ClickedFolder() {
     const navigate = useNavigate();
     const location = useLocation();
-
-    const handleAddMemoryClick = () => {
-        navigate('/AddMemory');
-    };
 
     return (
         <Container fluid>
@@ -28,9 +23,9 @@ export default function ClickedFolder() {
                     <img className='heart' src={heart} alt='remember heart in clicked folder ' />
                 </Col>
                 <Col className='d-flex flex-column justify-content-end'>
-                <Row>
+                    <Row>
                         <div className='d-flex justify-content-end'>
-                            <Button onClick={()=>navigate('/AddMemory')} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                            <Button onClick={() => navigate('/AddMemory')} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                                 <Col xs={9}>
                                     <p className='addNewTxt'>Add Memory</p>
                                 </Col>
@@ -45,7 +40,19 @@ export default function ClickedFolder() {
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <div className='displayMemory'>
-
+                        <Row>
+                            {location.state.folders.map((memory: any,idx: any) => {
+                                return (
+                                    <Col key={idx} xs={4} className='cardNoPad'>
+                                        <Button variant='' className='allFolderBtn'>
+                                            <img className='folderImg' src={memory.displayedImg} alt='clickable image' />
+                                        </Button>
+                                        <p className='text-center memoryTitle'>{memory.memoryTitle}</p>
+                                        <p className='text-center memoryDate'>{memory.memoryDate}</p>
+                                    </Col>
+                                );
+                            })}
+                        </Row>
                     </div>
                 </Col>
             </Row>

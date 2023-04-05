@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
 import logo from '../../assets/elephantLogo.svg';
-import addBtn from '../../assets/PlusCircle.png';
 import placer from '../../assets/placer.png';
 import placerTwo from '../../assets/placerTwo.png';
 import folderPic from '../../assets/folderpic.png';
@@ -13,19 +12,11 @@ import AddIcon from '@mui/icons-material/Add';
 export default function DashBoard() {
     const [hello, setHello] = useState('Jeremy');
     const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
-    const [clickedName, setClickedName] = useState('');
     const navigate = useNavigate();
 
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
-
-    const handleAddMemoryClick = () => {
-        navigate('/AddMemory');
-    };
-    const handleAddFolderClick = () => {
-        navigate('/AddFolder');
-    };
 
     const [placerCard, setPlacerCard] = useState([
         {
@@ -41,23 +32,87 @@ export default function DashBoard() {
     ]);
     interface Folder {
         folderName: string;
+        displayedImg: any;
+        memoryTitle: string;
+        memoryDate: any;
+        passData: any;
     }
 
+    const [folder1, setFolder1] = useState<Folder[]>([
+        {
+            folderName: 'Dates',
+            displayedImg: placer,
+            memoryTitle: 'First Date',
+            memoryDate: '2/14/23',
+            passData: ''
+        }, 
+        {
+            folderName: 'Dates',
+            displayedImg: placer,
+            memoryTitle: 'First Date',
+            memoryDate: '2/14/23',
+            passData: ''
+        },
+    ]);
+    const [folder2, setFolder2] = useState<Folder[]>([
+        {
+            folderName: 'Trips',
+            displayedImg: placerTwo,
+            memoryTitle: 'Bowling trip',
+            memoryDate: '5/26/23',
+            passData: ''
+        },
+        {
+            folderName: 'Trips',
+            displayedImg: placerTwo,
+            memoryTitle: 'Bowling trip',
+            memoryDate: '5/26/23',
+            passData: ''
+        }
+    ]);
+    const [folder3, setFolder3] = useState<Folder[]>([
+        {
+            folderName: 'Camping',
+            displayedImg: '',
+            memoryTitle: 'Camping',
+            memoryDate: '1/14/23',
+            passData: ''
+        },
+        {
+            folderName: 'Camping',
+            displayedImg: '',
+            memoryTitle: 'Camping',
+            memoryDate: '1/14/23',
+            passData: ''
+        }
+    ]);
+    
     const [placerFolder, setPlacerFolder] = useState<Folder[]>([
         {
-            folderName: 'Dates'
+            folderName: 'Dates',
+            displayedImg: placer,
+            memoryTitle: 'First Date',
+            memoryDate: '2/14/23',
+            passData: folder1
         },
         {
-            folderName: 'Trips'
+            folderName: 'Trips',
+            displayedImg: placerTwo,
+            memoryTitle: 'Bowling trip',
+            memoryDate: '5/26/23',
+            passData: folder2
         },
         {
-            folderName: 'Camping'
+            folderName: 'Camping',
+            displayedImg: '',
+            memoryTitle: 'Camping',
+            memoryDate: '1/14/23',
+            passData: folder3
         }
     ]);
 
-    const handleFolderClick = (folderName: string) => {
-        setClickedName(folderName);
-        navigate('/ClickedMemory', { state: { name: folderName } })
+    const handleFolderClick = (folder1: any, fileName: string) => {
+        navigate('/ClickedMemory', { state: { folders: folder1, name: fileName } })
     }
 
     return (
@@ -70,7 +125,7 @@ export default function DashBoard() {
                 <Col xs={6} className='d-flex flex-column justify-content-end'>
                     <Row>
                         <div className='d-flex justify-content-end'>
-                            <Button onClick={()=>navigate('/AddMemory')} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                            <Button onClick={() => navigate('/AddMemory')} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                                 <Col xs={9}>
                                     <p className='addNewTxt'>Add Memory</p>
                                 </Col>
@@ -81,8 +136,8 @@ export default function DashBoard() {
                         </div>
                     </Row>
                     <Row>
-                    <div className='d-flex justify-content-end'>
-                            <Button onClick={()=>navigate('/AddFolder')} className='addNewFolder' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                        <div className='d-flex justify-content-end'>
+                            <Button onClick={() => navigate('/AddFolder')} className='addNewFolder' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                                 <Col xs={9}>
                                     <p className='addNewTxt'>Add Folder</p>
                                 </Col>
@@ -117,7 +172,7 @@ export default function DashBoard() {
                                 {placerFolder.map((folder, idx) => {
                                     return (
                                         <Col key={idx} xs={4}>
-                                            <Button onClick={() => { handleFolderClick(folder.folderName); }} variant=''>
+                                            <Button onClick={() => { handleFolderClick(folder.passData, folder.folderName); }} variant=''>
                                                 <img src={folderPic} />
                                                 <p className='folderFont'>{folder.folderName}</p>
                                             </Button>

@@ -9,6 +9,7 @@ import SignUpInfo from './Components/SignUpComponent/SignUp.tsx';
 import AddFolder from './Components/AddFolderComponent/AddFolder';
 import ClickedFolder from './Components/ClickedFolder/ClickedFolder';
 import Logout from './Components/Logout/Logout';
+import ShownMemory from './Components/ShownMemory/ShownMemory';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/AddFolder' element={<AddFolder />} />
           <Route path='/ClickedMemory' element={<ClickedFolder />} />
           <Route path='/Settings' element={<Logout />} />
+          <Route path='/Memory' element={<ShownMemory />} />
         </Routes>
       </BrowserRouter>
     </div>

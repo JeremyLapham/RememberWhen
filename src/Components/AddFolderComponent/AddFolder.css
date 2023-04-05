@@ -22,9 +22,8 @@
 }
 
 .folderBtn {
-    width:68px;
-    height:31px;
     background-color: #857B74;
-    font-size:10px;
+    font-size:15px;
     font-weight:bold;
+    margin-bottom:100%;
 }
