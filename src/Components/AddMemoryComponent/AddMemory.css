@@ -62,9 +62,25 @@
 }
 
 .addCancelBtn {
+    width:68px;
+    height:31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #857B74 !important;
     font-size: 15px !important;
-    font-weight: bold;
+    font-weight: bold !important;
+    margin-bottom:3rem;
+}
+.addBtn {
+    width:68px;
+    height:31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #A99282 !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
     margin-bottom:3rem;
 }
 

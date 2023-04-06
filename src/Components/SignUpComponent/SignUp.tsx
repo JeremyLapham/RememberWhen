@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { createAccount } from '../Services/DataService';
 
 export default function SignUpInfo() {
+    const [Username, setUsername] = useState('');
+    const [Password, setPassword] = useState('');
+
+    const handelSubmit = () => {
+        let userData = {
+            Id: 0,
+            Username,
+            Password
+        }
+        createAccount(userData)
+        navigate('/SignInInfo');
+    }
 
     const navigate = useNavigate();
 
@@ -13,9 +26,6 @@ export default function SignUpInfo() {
         navigate('/SignInInfo');
     };
 
-    const handleHomeClick = () => {
-        navigate('/DashBoard');
-    };
 
     return (
         <Container fluid>
@@ -38,7 +48,7 @@ export default function SignUpInfo() {
                                 <Row>
                                     <Col>
                                         <h4 className='signUpInput'>Username</h4>
-                                        <input type='text' className='inputField' placeholder='Enter your username' />
+                                        <input onChange={({ target: { value } }) => setUsername(value)} type='text' className='inputField' placeholder='Enter your username' />
                                     </Col>
                                 </Row>
                                 <Row>
@@ -50,12 +60,12 @@ export default function SignUpInfo() {
                                 <Row>
                                     <Col>
                                         <h4 className='signUpInput'>Password</h4>
-                                        <input className='inputField' type='password' placeholder='Enter your password' />
+                                        <input onChange={({ target: { value } }) => setPassword(value)} className='inputField' type='password' placeholder='Enter your password' />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col className='d-flex justify-content-center'>
-                                        <Button onClick={handleHomeClick} className='signUpBtn' variant=''>Sign Up</Button>
+                                        <Button onClick={handelSubmit} className='signUpBtn' variant=''>Sign Up</Button>
                                     </Col>
                                 </Row>
                             </Row>

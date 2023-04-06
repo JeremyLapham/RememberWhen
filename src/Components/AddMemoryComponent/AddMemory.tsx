@@ -54,7 +54,7 @@ export default function AddMemory() {
                     </Form.Group>
                 </Col>
             </Row>
-            <Row>
+            {/* <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Add audio</Form.Label>
@@ -62,6 +62,14 @@ export default function AddMemory() {
                             {selectedAudio && <img className='selectedImg2' src={selectedAudio} alt="Selected image" />}
                             <Form.Control className='input2' onChange={handleAudio} type='file' accept='audio/mp3' />
                         </Button>
+                    </Form.Group>
+                </Col>
+            </Row> */}
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3 d-flex flex-column align-items-center">
+                        <Form.Label>Hashtags</Form.Label>
+                        <Form.Control className='textInputs' type='text' placeholder='Hashtags' />
                     </Form.Group>
                 </Col>
             </Row>
@@ -104,7 +112,7 @@ export default function AddMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => setShow(true)} className='addCancelBtn' variant=''>Add</Button>
+                    <Button onClick={() => {setShow(true); navigate('/dashboard')}} className='addBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={handleBackToHome} className='addCancelBtn' variant=''>Cancel</Button>

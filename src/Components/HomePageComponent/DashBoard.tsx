@@ -8,6 +8,7 @@ import './DashBoard.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import AddIcon from '@mui/icons-material/Add';
+import { GetPublishedMemoryItem } from '../Services/DataService';
 
 export default function DashBoard() {
     const [hello, setHello] = useState('Jeremy');
@@ -17,6 +18,22 @@ export default function DashBoard() {
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
+
+    const [memoryItems, setMemoryItems] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let res = await GetPublishedMemoryItem();
+            setMemoryItems(res);
+            console.log(res);
+        }
+        fetchData();
+    }, []);
+
+
+
+
+
 
     const [placerCard, setPlacerCard] = useState([
         {
@@ -45,7 +62,7 @@ export default function DashBoard() {
             memoryTitle: 'First Date',
             memoryDate: '2/14/23',
             passData: ''
-        }, 
+        },
         {
             folderName: 'Dates',
             displayedImg: placer,
@@ -86,7 +103,7 @@ export default function DashBoard() {
             passData: ''
         }
     ]);
-    
+
     const [placerFolder, setPlacerFolder] = useState<Folder[]>([
         {
             folderName: 'Dates',
@@ -186,12 +203,12 @@ export default function DashBoard() {
                 :
                 <Row>
                     <Col className='memoryBox'>
-                        {placerCard.map((cardInfo, idx) => {
+                        {memoryItems.map((cardInfo: any, idx: any) => {
                             return (
                                 <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
-                                    <img className='memoryCards' src={cardInfo.img} />
-                                    <div className='txtOnImg'>{cardInfo.overImgTxt}</div>
-                                    <div className='dateOnImg'>{cardInfo.dateTxt}</div>
+                                    <img className='memoryCards' src={cardInfo.image} />
+                                    <div className='txtOnImg'>{cardInfo.title}</div>
+                                    <div className='dateOnImg'>{cardInfo.date}</div>
                                 </Button>
                             );
                         })}

@@ -1,13 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ShownMemory.css';
 import CustomNavbar from '../navComponent/NavbarComponent';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import elephantLogo from '../../assets/elephantLogo.svg';
 import memory from '../../assets/memory.jpg';
+import { useNavigate } from 'react-router-dom';
 
 export default function ShownMemory() {
+    const [show, setShow] = useState(false);
+    const [editDelete, setEditDelete] = useState('')
+
+    const editOrDelte = () => {
+        console.log(editDelete)
+    }
+
+    const handleClose = () => setShow(false);
+
+    const navigate = useNavigate();
+
+    const handleBackButtonClick = () => {
+        navigate(-1);
+    };
+
     return (
         <Container fluid>
+            <Row>
+                <Modal className='modalBG' show={show} onHide={handleClose}>
+                    <Modal.Body className='modalBody'>
+                        <Row>
+                            <Col className='d-flex justify-content-center'>
+                        <p className='modalTxt'>Are you sure you want to delete this memory?</p>
+                            </Col>
+                        </Row>
+                        <Row>
+
+                        <Col className='d-flex justify-content-center'>
+                            <Button className='confirmDeleteBtn' variant="" onClick={handleClose}>
+                                Delete
+                            </Button>
+                        </Col>
+                        <Col className='d-flex justify-content-center'>
+                            <Button className='cancelDelete' variant="" onClick={handleClose}>
+                                Cancel
+                            </Button>
+                        </Col>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
+            </Row>
             <CustomNavbar />
             <Row>
                 <Col className='text-center'>
@@ -30,14 +70,14 @@ export default function ShownMemory() {
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col className='d-flex justify-content-center'>
                     <div className='displayHashtags'>
                         <h2 className='hashtags'>#Brunch #FavSpot #Yum #Food #Replay</h2>
                     </div>
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col className='d-flex justify-content-center'>
                     <div className='description'>
                         <h2 className='memoryDesTxt text-center'>This will either be a very long or very short
                             description on how the day went. It can
@@ -50,20 +90,20 @@ export default function ShownMemory() {
                     </div>
                 </Col>
             </Row>
-            <Row>
+            <Row className='rowMargin'>
                 <Col className='d-flex justify-content-center'>
-                    <Button variant=''>Edit</Button>
+                    <Button onClick={() => navigate('/addmemory')} className='editBtn' variant=''>Edit</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button variant=''>Delete</Button>
+                    <Button onClick={() => {setShow(true);}} className='deleteBtn' variant=''>Delete</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button variant=''>Share</Button>
+                    <Button className='shareBtn' variant=''>Share</Button>
                 </Col>
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button variant=''>Back</Button>
+                    <Button onClick={handleBackButtonClick} className='backBtn' variant=''>Back</Button>
                 </Col>
             </Row>
         </Container>

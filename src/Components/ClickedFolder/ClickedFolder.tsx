@@ -44,7 +44,7 @@ export default function ClickedFolder() {
                             {location.state.folders.map((memory: any,idx: any) => {
                                 return (
                                     <Col key={idx} xs={4} className='cardNoPad'>
-                                        <Button variant='' className='allFolderBtn'>
+                                        <Button onClick={() => navigate('/memory')} variant='' className='allFolderBtn'>
                                             <img className='folderImg' src={memory.displayedImg} alt='clickable image' />
                                         </Button>
                                         <p className='text-center memoryTitle'>{memory.memoryTitle}</p>
