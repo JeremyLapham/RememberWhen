@@ -90,3 +90,22 @@
     padding:0 !important;
     text-decoration: underline;
 }
+
+@media screen and (min-width: 1024px) {
+    .inputField {
+        margin-left: 25rem;
+        width: 500px;
+    }
+
+    .userNameInput {
+        margin-left: 24.8rem;
+    }
+
+    .passwordInput {
+        margin-left: 24.8rem;
+    }
+
+    .forgotPass {
+        margin-right: 23.3rem;
+    }
+}
