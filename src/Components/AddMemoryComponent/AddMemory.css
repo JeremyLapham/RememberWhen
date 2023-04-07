@@ -73,6 +73,12 @@
     border: 1px solid black !important;
 }
 
+.textInputsDescription {
+    width: 300px !important;
+    border: 1px solid black !important;
+    height: 7.8rem;
+}
+
 .addToast {
     position: absolute;
     position: fixed;
@@ -81,6 +87,43 @@
     z-index: 100;
 }
 
+.addImgTxt {
+    margin-right: 7rem;
+    font-weight: bolder;
+}
+
+.addAudioTxt {
+    margin-right: 7rem;
+    font-weight: bolder;
+}
+
+.addFolderInputTxt {
+    margin-right: 15.5rem;
+    font-weight: bolder;
+}
+
+.addMemoryTxt {
+    margin-right: 12.3rem;
+    font-weight: bolder;
+}
+
+.addDateTxt {
+    margin-right: 16.6rem;
+    font-weight: bolder;
+}
+
+.addDescriptionTxt {
+    margin-right: 13rem;
+    font-weight: bolder;
+}
+
+.addMemoryTitle {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 2rem;
+    margin-bottom: 3.5rem;
+}
+
 @media screen and (min-width: 1024px) {
-    
+
 }

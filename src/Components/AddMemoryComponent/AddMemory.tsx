@@ -43,10 +43,11 @@ export default function AddMemory() {
                 </Col>
             </Row>
             <CustomNavbar />
+            <h1 className='addMemoryTitle'>add your memory...</h1>
             <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
-                        <Form.Label>Add image</Form.Label>
+                        <Form.Label className='addImgTxt'>Add image</Form.Label>
                         <Button style={{ position: 'relative' }} id='custom-input'>
                             {selectedImage && <img className='selectedImg' src={URL.createObjectURL(selectedImage)} alt="Selected image" />}
                             <Form.Control className='input1' onChange={handleFileSelect} type="file" accept='image/png, image/jpg' placeholder="Enter an image" />
@@ -57,7 +58,7 @@ export default function AddMemory() {
             <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Add audio</Form.Label>
+                        <Form.Label className='addAudioTxt'>Add audio</Form.Label>
                         <Button style={{ position: 'relative' }} id='custom-input2'>
                             {selectedAudio && <img className='selectedImg2' src={selectedAudio} alt="Selected image" />}
                             <Form.Control className='input2' onChange={handleAudio} type='file' accept='audio/mp3' />
@@ -68,7 +69,7 @@ export default function AddMemory() {
             <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Folder</Form.Label>
+                        <Form.Label className='addFolderInputTxt'>Folder</Form.Label>
                         <Form.Select className='textInputs'>
                             <option hidden>Folder</option>
                             <option >Dates</option>
@@ -81,7 +82,7 @@ export default function AddMemory() {
             <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Memory Title</Form.Label>
+                        <Form.Label className='addMemoryTxt'>Memory Title</Form.Label>
                         <Form.Control className='textInputs' type='text' placeholder='Memory Title' />
                     </Form.Group>
                 </Col>
@@ -89,7 +90,7 @@ export default function AddMemory() {
             <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Date</Form.Label>
+                        <Form.Label className='addDateTxt'>Date</Form.Label>
                         <Form.Control className='textInputs' type='text' placeholder='Date' />
                     </Form.Group>
                 </Col>
@@ -97,8 +98,8 @@ export default function AddMemory() {
             <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control className='textInputs' placeholder='Description' />
+                        <Form.Label className='addDescriptionTxt'>Description</Form.Label>
+                        <Form.Control className='textInputsDescription' placeholder='Description' />
                     </Form.Group>
                 </Col>
             </Row>
