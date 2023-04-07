@@ -6,24 +6,38 @@ import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 
 export default function AddMemory() {
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [selectedAudio, setSelectedAudio] = useState('');
-    const [show, setShow] = useState(false);
-
     const navigate = useNavigate()
+    const [show, setShow] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    // const [selectedAudio, setSelectedAudio] = useState('');
 
-    const handleFileSelect = (e) => {
+    const [memoryImage, setMemoryImage] = useState('');
+    const [memoryTitle, setMemoryTitle] = useState('');
+    const [memoryDescription, setMemoryDescription] = useState('');
+    const [memoryFolder, setMemoryFoler] = useState('');
+    const [memoryTags, setMemoryTags] = useState('');
+    const [memoryDate, setMemoryDate] = useState('');
+    const [memoryItems, setMemoryItems] = useState([]);
+
+    const [memoryId, setMemoryId] = useState(0);
+    const [memoryUserId, setMemoryUserId] = useState(0);
+    const [memoryPublisherName, setPublisherName] = useState('');
+
+    const handleTitle = ({ target }) => setMemoryTitle(target.value);
+    const handleDescription = ({ target }) => setMemoryDescription(target.value);
+    const handleFolder = ({ target: { value } }) => setMemoryFoler(value);
+    const handleTags = ({ target }) => setMemoryTags(target.value);
+    const handleDate = ({target}) => setMemoryDate(target.value);
+
+
+
+    const handleFileSelect = (e: any) => {
         setSelectedImage(e.target.files[0]);
     };
 
-    const handleAudio = () => {
-        setSelectedAudio(sound)
-    };
-
-    const handleBackToHome = () => {
-        navigate('/DashBoard')
-    }
-
+    // const handleAudio = () => {
+    //     setSelectedAudio(sound)
+    // };
     return (
         <Container fluid>
             <Row>
@@ -69,7 +83,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Hashtags</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Hashtags' />
+                        <Form.Control className='textInputs' type='text' placeholder='Hashtags' onChange={handleTags} value={memoryTags}/>
                     </Form.Group>
                 </Col>
             </Row>
@@ -77,11 +91,11 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Folder</Form.Label>
-                        <Form.Select className='textInputs'>
+                        <Form.Select className='textInputs' onChange={handleFolder} value={memoryFolder}>
                             <option hidden>Folder</option>
-                            <option >Dates</option>
-                            <option >Trips</option>
-                            <option >Camping</option>
+                            <option value='Dates' >Dates</option>
+                            <option value='Trips' >Trips</option>
+                            <option value='Camping' >Camping</option>
                         </Form.Select>
                     </Form.Group>
                 </Col>
@@ -90,7 +104,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Memory Title</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Memory Title' />
+                        <Form.Control className='textInputs' type='text' placeholder='Memory Title' onChange={handleTitle} value={memoryTitle}/>
                     </Form.Group>
                 </Col>
             </Row>
@@ -98,7 +112,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Date</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Date' />
+                        <Form.Control className='textInputs' type='text' placeholder='Date' onChange={handleDate} value={memoryDate}/>
                     </Form.Group>
                 </Col>
             </Row>
@@ -106,7 +120,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control className='textInputs' placeholder='Description' />
+                        <Form.Control className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription}/>
                     </Form.Group>
                 </Col>
             </Row>
@@ -115,7 +129,7 @@ export default function AddMemory() {
                     <Button onClick={() => {setShow(true); navigate('/dashboard')}} className='addBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={handleBackToHome} className='addCancelBtn' variant=''>Cancel</Button>
+                    <Button onClick={()=> navigate('/DashBoard')} className='addCancelBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
         </Container>
