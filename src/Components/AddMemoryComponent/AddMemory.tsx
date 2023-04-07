@@ -4,6 +4,7 @@ import sound from '../../assets/sound.png';
 import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
+import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem } from '../Services/DataService';
 
 export default function AddMemory() {
     const navigate = useNavigate()
@@ -18,10 +19,12 @@ export default function AddMemory() {
     const [memoryTags, setMemoryTags] = useState('');
     const [memoryDate, setMemoryDate] = useState('');
     const [memoryItems, setMemoryItems] = useState([]);
-
     const [memoryId, setMemoryId] = useState(0);
     const [memoryUserId, setMemoryUserId] = useState(0);
     const [memoryPublisherName, setPublisherName] = useState('');
+
+    const [editBool, setEdit] = useState(false);
+
 
     const handleTitle = ({ target }) => setMemoryTitle(target.value);
     const handleDescription = ({ target }) => setMemoryDescription(target.value);
@@ -38,6 +41,40 @@ export default function AddMemory() {
     // const handleAudio = () => {
     //     setSelectedAudio(sound)
     // };
+
+    const handleSave = async ({target: {textContent}}) => {
+        const item = {
+            Id: memoryId,
+            Userid: memoryUserId,
+            PublishedName: memoryPublisherName,
+            Title: memoryTitle,
+            Image: memoryImage,
+            Description: memoryDescription,
+            Date: memoryDate,
+            Tags: memoryTags,
+            Category: memoryFolder,
+            isPublished: textContent === 'Save' || textContent === 'Save Changes' ? false : true,
+            isDeleted: false
+        }
+
+        console.log(item);
+        let result = false;
+        if(editBool) {
+            result = await updateMemoryItem(item);
+        } else {
+            result = await addMemoryItem(item);
+        }
+
+        if(result) {
+            let userMemoryItems = await getMemoryItemsByUserId(memoryUserId);
+            console.log(userMemoryItems);
+            setMemoryItems(userMemoryItems);
+        } else {
+            alert(`Blog Item was not ${editBool ? 'Updated' : 'Added'}`)
+        }
+        
+    }
+
     return (
         <Container fluid>
             <Row>
@@ -129,7 +166,7 @@ export default function AddMemory() {
                     <Button onClick={() => {setShow(true); navigate('/dashboard')}} className='addBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={()=> navigate('/DashBoard')} className='addCancelBtn' variant=''>Cancel</Button>
+                    <Button onClick={()=> navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
         </Container>

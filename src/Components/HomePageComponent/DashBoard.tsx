@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
 import logo from '../../assets/elephantLogo.svg';
-import placer from '../../assets/placer.png';
-import placerTwo from '../../assets/placerTwo.png';
 import folderPic from '../../assets/folderpic.png';
 import './DashBoard.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import AddIcon from '@mui/icons-material/Add';
-import { GetPublishedMemoryItem } from '../Services/DataService';
+import { GetPublishedMemoryItem, checkToken, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
 
 export default function DashBoard() {
-    const [hello, setHello] = useState('Jeremy');
     const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const [memoryId, setMemoryId] = useState(0);
+    const [memoryUserId, setMemoryUserId] = useState(0);
+    const [memoryPublisherName, setPublisherName] = useState('');
 
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
@@ -30,108 +32,26 @@ export default function DashBoard() {
         fetchData();
     }, []);
 
+    // useEffect(() => {
+    //     const GetLoggedInData = async () => {
+    //         const loggedIn = loggedInData();
+    //         setMemoryUserId(loggedIn.userId);
+    //         setPublisherName(loggedIn.publisherName);
+    //         console.log(loggedIn);
+    //         let userMemoryItems = await getMemoryItemsByUserId(loggedIn.userId);
+    //         setMemoryItems(userMemoryItems);
+    //         console.log(userMemoryItems);
+    //     }
+    //     if (!checkToken()) {
+    //         navigate('/SignInInfo');
+    //     } else {
+    //         GetLoggedInData();
+    //     }
+    // }, []);
 
-
-
-
-
-    const [placerCard, setPlacerCard] = useState([
-        {
-            overImgTxt: 'Our first date',
-            dateTxt: '2/14/23',
-            img: placer
-        },
-        {
-            overImgTxt: 'Bowling trip',
-            dateTxt: '5/26/23',
-            img: placerTwo
-        }
-    ]);
-    interface Folder {
-        folderName: string;
-        displayedImg: any;
-        memoryTitle: string;
-        memoryDate: any;
-        passData: any;
+    const handleFolderClick = (clickedFolderName: string, info: any) => {
+        navigate('/ClickedMemory', { state: { Folder: clickedFolderName, Data: info } })
     }
-
-    const [folder1, setFolder1] = useState<Folder[]>([
-        {
-            folderName: 'Dates',
-            displayedImg: placer,
-            memoryTitle: 'First Date',
-            memoryDate: '2/14/23',
-            passData: ''
-        },
-        {
-            folderName: 'Dates',
-            displayedImg: placer,
-            memoryTitle: 'First Date',
-            memoryDate: '2/14/23',
-            passData: ''
-        },
-    ]);
-    const [folder2, setFolder2] = useState<Folder[]>([
-        {
-            folderName: 'Trips',
-            displayedImg: placerTwo,
-            memoryTitle: 'Bowling trip',
-            memoryDate: '5/26/23',
-            passData: ''
-        },
-        {
-            folderName: 'Trips',
-            displayedImg: placerTwo,
-            memoryTitle: 'Bowling trip',
-            memoryDate: '5/26/23',
-            passData: ''
-        }
-    ]);
-    const [folder3, setFolder3] = useState<Folder[]>([
-        {
-            folderName: 'Camping',
-            displayedImg: '',
-            memoryTitle: 'Camping',
-            memoryDate: '1/14/23',
-            passData: ''
-        },
-        {
-            folderName: 'Camping',
-            displayedImg: '',
-            memoryTitle: 'Camping',
-            memoryDate: '1/14/23',
-            passData: ''
-        }
-    ]);
-
-    const [placerFolder, setPlacerFolder] = useState<Folder[]>([
-        {
-            folderName: 'Dates',
-            displayedImg: placer,
-            memoryTitle: 'First Date',
-            memoryDate: '2/14/23',
-            passData: folder1
-        },
-        {
-            folderName: 'Trips',
-            displayedImg: placerTwo,
-            memoryTitle: 'Bowling trip',
-            memoryDate: '5/26/23',
-            passData: folder2
-        },
-        {
-            folderName: 'Camping',
-            displayedImg: '',
-            memoryTitle: 'Camping',
-            memoryDate: '1/14/23',
-            passData: folder3
-        }
-    ]);
-
-    const handleFolderClick = (folder1: any, fileName: string) => {
-        navigate('/ClickedMemory', { state: { folders: folder1, name: fileName } })
-    }
-
     return (
         <Container fluid>
             <CustomNavbar />
@@ -175,7 +95,7 @@ export default function DashBoard() {
                 :
                 <Row>
                     <Col className='helloTopTxt'>
-                        <h1 className='helloTxt'>Hello, <p style={{ color: 'black' }} className='d-inline'>{hello}</p></h1>
+                        <h1 className='helloTxt'>Hello, <p style={{ color: 'black' }} className='d-inline'>{location.state.user}</p></h1>
                         <p className='welcomeTxt'>Welcome to your memories, remember when...</p>
                     </Col>
                 </Row>
@@ -186,12 +106,12 @@ export default function DashBoard() {
                     <Row>
                         <Col className='d-flex justify-content-center folderDisplay'>
                             <Row>
-                                {placerFolder.map((folder, idx) => {
+                                {memoryItems.map((folder: any, idx: number) => {
                                     return (
                                         <Col key={idx} xs={4}>
-                                            <Button onClick={() => { handleFolderClick(folder.passData, folder.folderName); }} variant=''>
+                                            <Button onClick={() => { handleFolderClick(folder.category, folder) }} variant=''>
                                                 <img src={folderPic} />
-                                                <p className='folderFont'>{folder.folderName}</p>
+                                                <p className='folderFont'>{folder.category}</p>
                                             </Button>
                                         </Col>
                                     )
@@ -203,7 +123,7 @@ export default function DashBoard() {
                 :
                 <Row>
                     <Col className='memoryBox'>
-                        {memoryItems.map((cardInfo: any, idx: any) => {
+                        {memoryItems.map((cardInfo: any, idx: number) => {
                             return (
                                 <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
                                     <img className='memoryCards' src={cardInfo.image} />

@@ -9,13 +9,14 @@ import AddIcon from '@mui/icons-material/Add';
 export default function ClickedFolder() {
     const navigate = useNavigate();
     const location = useLocation();
+    console.log(location.state.Data)
 
     return (
         <Container fluid>
             <CustomNavbar />
             <Row>
                 <Col>
-                    <h1 className='nameFolder text-center'>{location.state.name}...</h1>
+                    <h1 className='nameFolder text-center'>{location.state.Folder}...</h1>
                 </Col>
             </Row>
             <Row className='d-flex align-items-center'>
@@ -41,7 +42,7 @@ export default function ClickedFolder() {
                 <Col className='d-flex justify-content-center'>
                     <div className='displayMemory'>
                         <Row>
-                            {location.state.folders.map((memory: any,idx: any) => {
+                            {/* {location.state.Data.map((memory: any,idx: any) => {
                                 return (
                                     <Col key={idx} xs={4} className='cardNoPad'>
                                         <Button onClick={() => navigate('/memory')} variant='' className='allFolderBtn'>
@@ -51,14 +52,14 @@ export default function ClickedFolder() {
                                         <p className='text-center memoryDate'>{memory.memoryDate}</p>
                                     </Col>
                                 );
-                            })}
+                            })} */}
                         </Row>
                     </div>
                 </Col>
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => navigate('/DashBoard')} className='moreMemories' variant=''>Go Back</Button>
+                    <Button onClick={() => navigate(-1)} className='moreMemories' variant=''>Go Back</Button>
                 </Col>
             </Row>
         </Container>

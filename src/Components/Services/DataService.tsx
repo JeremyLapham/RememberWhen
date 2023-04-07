@@ -13,6 +13,8 @@ export async function createAccount(createdUser: any) {
         throw new Error(message);
     }
     let data = await res.json();
+    console.log(data);
+    return data;
 }
 
 export async function login(loginUser: { Username: string; Password: string; }) {
@@ -30,14 +32,16 @@ export async function login(loginUser: { Username: string; Password: string; }) 
     }
 
     let data = await res.json();
+    console.log(data);
     return data;
 }
 
 export async function GetLoggedInUserData(username: string){
-    let res = await fetch(`https://jeremyblogapi.azurewebsites.net/User/userbyusername/${username}`);
+    let res = await fetch(`https://rememberwhenwebsite.azurewebsites.net/User/userbyusername/${username}`);
     let data = await res.json();
     userData = data;
     console.log(userData);
+    return userData
 }
 
 export async function GetPublishedMemoryItem(){
@@ -60,13 +64,13 @@ export function loggedInData(){
     return userData;
 }
 
-export async function addBlogItem(blogItem: object){
+export async function addMemoryItem(memoryItem: object){
     const res = await fetch('https://rememberwhenwebsite.azurewebsites.net/Memory/AddMemoryItem',{
         method: "POST",
         headers:{
             'Content-Type':"application/json"
         },
-        body:JSON.stringify(blogItem)
+        body:JSON.stringify(memoryItem)
     });
     if(!res.ok){
         const message = `An Error has Occured ${res.status}`;
@@ -77,19 +81,19 @@ export async function addBlogItem(blogItem: object){
     return data;
 }
 
-export async function getBlogItemsByUserId(userId: number){
+export async function getMemoryItemsByUserId(userId: any){
     let res = await fetch(`https://rememberwhenwebsite.azurewebsites.net/Memory/GetItemsByUserId/${userId}`);
     let data = await res.json();
     return data;
 }
 
-export async function updateBlogItem(blogItem: object){
+export async function updateMemoryItem(memoryItem: object){
     const res = await fetch('https://rememberwhenwebsite.azurewebsites.net/Memory/UpdateMemoryItem',{
         method: "POST",
         headers:{
             'Content-Type':"application/json"
         },
-        body:JSON.stringify(blogItem)
+        body:JSON.stringify(memoryItem)
     });
     if(!res.ok){
         const message = `An Error has Occured ${res.status}`;

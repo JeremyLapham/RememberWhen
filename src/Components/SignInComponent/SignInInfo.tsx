@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../Services/DataService';
+import { GetLoggedInUserData, login } from '../Services/DataService';
 
 export default function SignInInfo() {
     const [Username, setUsername] = useState('');
@@ -16,7 +16,7 @@ export default function SignInInfo() {
         navigate('/SignUp');
     };
 
-    const handleLogin = async () => {
+    const handleLogin = async (name: string) => {
         let userData = {
             Username,
             Password
@@ -24,8 +24,8 @@ export default function SignInInfo() {
         let token = await login(userData);
         if(token.token != null){
             localStorage.setItem("Token", token.token);
-            login(userData);
-            navigate('/DashBoard');
+            await GetLoggedInUserData(Username);
+            navigate('/DashBoard', {state: {user: name}});
         }
     }
 
@@ -66,7 +66,7 @@ export default function SignInInfo() {
                                 </Row>
                                 <Row>
                                     <Col className='d-flex justify-content-center'>
-                                        <Button onClick={handleLogin} className='signInBtnTwo' variant=''>Sign In</Button>
+                                        <Button onClick={()=>handleLogin(Username)} className='signInBtnTwo' variant=''>Sign In</Button>
                                     </Col>
                                 </Row>
                             </Row>
