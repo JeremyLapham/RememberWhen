@@ -71,6 +71,7 @@
     font-size: 15px !important;
     font-weight: bold !important;
     margin-bottom:3rem;
+    padding:0 !important;
 }
 .addBtn {
     width:68px;

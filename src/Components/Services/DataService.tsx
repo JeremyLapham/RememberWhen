@@ -1,5 +1,4 @@
-
-
+let userData = {};
 
 export async function createAccount(createdUser: any) {
     const res = await fetch('https://rememberwhenwebsite.azurewebsites.net/User/adduser',{
@@ -32,6 +31,13 @@ export async function login(loginUser: { Username: string; Password: string; }) 
 
     let data = await res.json();
     return data;
+}
+
+async function GetLoggedInUserData(username: any){
+    let res = await fetch(`https://jeremyblogapi.azurewebsites.net/User/userbyusername/${username}`);
+    let data = await res.json();
+    userData = data;
+    console.log(userData);
 }
 
 export async function GetPublishedMemoryItem(){
