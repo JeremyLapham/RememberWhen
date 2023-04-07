@@ -152,14 +152,14 @@ export default function DashBoard() {
             {moreMemoryClicked ?
                 <Row>
                     <Col className='rememberWhenTop'>
-                        <h1 className='remmeberWhen'>Remember When...</h1>
+                        <h1 className='remmeberWhen'>lets remember your memories...</h1>
                     </Col>
                 </Row>
                 :
                 <Row>
                     <Col className='helloTopTxt'>
                         <h1 className='helloTxt'>Hello, <p style={{ color: 'black' }} className='d-inline'>{hello}</p></h1>
-                        <p className='welcomeTxt'>Welcome to your memories, remember when...</p>
+                        <p className='welcomeTxt'>welcome to your memory album, remember when...</p>
                     </Col>
                 </Row>
             }

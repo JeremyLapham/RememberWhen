@@ -171,4 +171,34 @@
     .logoEle {
         margin-top: -2rem;
     }
+
+    .helloTopTxt {
+        text-align: center;
+    }
+
+    .helloTxt {
+        font-size: 50px;
+    }
+
+    .txtOnImg {
+        font-size: 30px;
+    }
+
+    .dateOnImg {
+        font-size: 20px;
+    }
+
+    .welcomeTxt {
+        font-size: 28px;
+        margin-bottom: 5rem;
+        margin-top: 1rem;
+    }
+
+    .memoryBox {
+        margin-bottom: 3rem;
+    }
+
+    .remmeberWhen {
+        font-size: 50px;
+    }
 }
