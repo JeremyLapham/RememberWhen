@@ -1,6 +1,6 @@
 let userData = {};
 
-export async function createAccount(createdUser: any) {
+export async function createAccount(createdUser: { Id: number; Username: string; Password: string; }) {
     const res = await fetch('https://rememberwhenwebsite.azurewebsites.net/User/adduser',{
         method: "POST",
         headers:{
@@ -36,9 +36,10 @@ export async function login(loginUser: { Username: string; Password: string; }) 
     return data;
 }
 
-export async function GetLoggedInUserData(username: string){
+export async function GetLoggedInUserData(username: any){
     let res = await fetch(`https://rememberwhenwebsite.azurewebsites.net/User/userbyusername/${username}`);
     let data = await res.json();
+    console.log(data);
     userData = data;
     console.log(userData);
     return userData
@@ -81,7 +82,7 @@ export async function addMemoryItem(memoryItem: object){
     return data;
 }
 
-export async function getMemoryItemsByUserId(userId: any){
+export async function getMemoryItemsByUserId(userId: number){
     let res = await fetch(`https://rememberwhenwebsite.azurewebsites.net/Memory/GetItemsByUserId/${userId}`);
     let data = await res.json();
     return data;

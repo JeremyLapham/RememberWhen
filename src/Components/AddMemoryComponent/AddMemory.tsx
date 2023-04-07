@@ -42,7 +42,7 @@ export default function AddMemory() {
     //     setSelectedAudio(sound)
     // };
 
-    const handleSave = async ({target: {textContent}}) => {
+    const handleSave = async () => {
         const item = {
             Id: memoryId,
             Userid: memoryUserId,
@@ -53,7 +53,7 @@ export default function AddMemory() {
             Date: memoryDate,
             Tags: memoryTags,
             Category: memoryFolder,
-            isPublished: textContent === 'Save' || textContent === 'Save Changes' ? false : true,
+            isPublished: true,
             isDeleted: false
         }
 
@@ -163,7 +163,7 @@ export default function AddMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => {setShow(true); navigate('/dashboard')}} className='addBtn' variant=''>Add</Button>
+                    <Button onClick={() => {setShow(true); handleSave()}} className='addBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={()=> navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>

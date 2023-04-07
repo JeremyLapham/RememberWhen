@@ -12,42 +12,48 @@ export default function DashBoard() {
     const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-
+    
     const [memoryId, setMemoryId] = useState(0);
     const [memoryUserId, setMemoryUserId] = useState(0);
     const [memoryPublisherName, setPublisherName] = useState('');
-
+    
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
 
     const [memoryItems, setMemoryItems] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            let res = await GetPublishedMemoryItem();
-            setMemoryItems(res);
-            console.log(res);
-        }
-        fetchData();
-    }, []);
-
+    
     // useEffect(() => {
-    //     const GetLoggedInData = async () => {
-    //         const loggedIn = loggedInData();
-    //         setMemoryUserId(loggedIn.userId);
-    //         setPublisherName(loggedIn.publisherName);
-    //         console.log(loggedIn);
-    //         let userMemoryItems = await getMemoryItemsByUserId(loggedIn.userId);
-    //         setMemoryItems(userMemoryItems);
-    //         console.log(userMemoryItems);
+    //     const fetchData = async () => {
+    //         let res = await GetPublishedMemoryItem();
+    //         setMemoryItems(res);
+    //         console.log(res);
     //     }
-    //     if (!checkToken()) {
-    //         navigate('/SignInInfo');
-    //     } else {
-    //         GetLoggedInData();
-    //     }
+    //     fetchData();
     // }, []);
+
+    // console.log(loggedInData())
+    
+    useEffect(() => {
+        const GetLoggedInData = async () => {
+            const loggedIn: {} = loggedInData();
+            const LoggedIn = {
+                userId: loggedIn['userId'],
+                publisherName: loggedIn['publisherName']
+            }
+            setMemoryUserId(LoggedIn.userId);
+            setPublisherName(LoggedIn.publisherName);
+            console.log(LoggedIn);
+            let userMemoryItems = await getMemoryItemsByUserId(LoggedIn.userId);
+            setMemoryItems(userMemoryItems);
+            console.log(userMemoryItems);
+        }
+        if (!checkToken()) {
+            navigate('/SignInInfo');
+        } else {
+            GetLoggedInData();
+        }
+    }, []);
 
     const handleFolderClick = (clickedFolderName: string, info: any) => {
         navigate('/ClickedMemory', { state: { Folder: clickedFolderName, Data: info } })
@@ -123,7 +129,7 @@ export default function DashBoard() {
                 :
                 <Row>
                     <Col className='memoryBox'>
-                        {memoryItems.map((cardInfo: any, idx: number) => {
+                        {/* {memoryItems.map((cardInfo: any, idx: number) => {
                             return (
                                 <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
                                     <img className='memoryCards' src={cardInfo.image} />
@@ -131,7 +137,7 @@ export default function DashBoard() {
                                     <div className='dateOnImg'>{cardInfo.date}</div>
                                 </Button>
                             );
-                        })}
+                        })} */}
                     </Col>
                 </Row>
             }

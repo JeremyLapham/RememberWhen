@@ -21,6 +21,7 @@ export default function SignInInfo() {
             Username,
             Password
         }
+        console.log(userData);
         let token = await login(userData);
         if(token.token != null){
             localStorage.setItem("Token", token.token);
