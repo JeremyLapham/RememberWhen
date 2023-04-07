@@ -18,5 +18,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-    
+    .signUpInput {
+        margin-left: 24.8rem;
+    }
 }
