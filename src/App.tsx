@@ -14,14 +14,19 @@ import MyContext from './Components/context';
 
 export default function App() {
   const [username, setUsername] = useState('');
+  const [memoryItems, setMemory] = useState<[]>([]);
 
   const setUser = (newUsername: string) => {
     setUsername(newUsername);
   };
 
+  const setMemoryItems = (moreMemory: any) => {
+    setMemory(moreMemory);
+  }
+
   return (
     <div className='body'>
-      <MyContext.Provider value={{ username, setUser }}>
+      <MyContext.Provider value={{ username, setUser, memoryItems, setMemoryItems }}>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<SignIn />} />

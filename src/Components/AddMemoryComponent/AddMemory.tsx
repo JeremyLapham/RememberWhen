@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Col, Container, Row, Button, Form, Toast } from 'react-bootstrap';
 import sound from '../../assets/sound.png';
 import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem } from '../Services/DataService';
+import MyContext from '../context';
 
 export default function AddMemory() {
+    const { setMemoryItems } = useContext(MyContext);
+
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -18,7 +21,6 @@ export default function AddMemory() {
     const [memoryFolder, setMemoryFoler] = useState('');
     const [memoryTags, setMemoryTags] = useState('');
     const [memoryDate, setMemoryDate] = useState('');
-    const [memoryItems, setMemoryItems] = useState([]);
     const [memoryId, setMemoryId] = useState(0);
     const [memoryUserId, setMemoryUserId] = useState(0);
     const [memoryPublisherName, setPublisherName] = useState('');
@@ -32,11 +34,15 @@ export default function AddMemory() {
     const handleTags = ({ target }) => setMemoryTags(target.value);
     const handleDate = ({target}) => setMemoryDate(target.value);
 
-
-
-    const handleFileSelect = (e: any) => {
+    const handleImage = (e: any) => {
+        let file = e.target.files[0];
+        const reader: any = new FileReader();
+        reader.onloadend = () => {
+            setMemoryImage(reader.result);
+        }
+        reader.readAsDataURL(file);
         setSelectedImage(e.target.files[0]);
-    };
+    }
 
     // const handleAudio = () => {
     //     setSelectedAudio(sound)
@@ -100,7 +106,7 @@ export default function AddMemory() {
                         <Form.Label>Add image</Form.Label>
                         <Button style={{ position: 'relative' }} id='custom-input'>
                             {selectedImage && <img className='selectedImg' src={URL.createObjectURL(selectedImage)} alt="Selected image" />}
-                            <Form.Control className='input1' onChange={handleFileSelect} type="file" accept='image/png, image/jpg' placeholder="Enter an image" />
+                            <Form.Control className='input1' onChange={handleImage} type="file" accept='image/png, image/jpg' placeholder="Enter an image" />
                         </Button>
                     </Form.Group>
                 </Col>
@@ -163,7 +169,7 @@ export default function AddMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => {setShow(true); handleSave()}} className='addBtn' variant=''>Add</Button>
+                    <Button onClick={() => {setShow(true); handleSave(); navigate('/dashboard')}} className='addBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={()=> navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>

@@ -19,7 +19,7 @@ export default function SignInInfo() {
         navigate('/SignUp');
     };
 
-    const handleLogin = async (name: string) => {
+    const handleLogin = async () => {
         let userData = {
             Username,
             Password
@@ -30,7 +30,7 @@ export default function SignInInfo() {
         if(token.token != null){
             localStorage.setItem("Token", token.token);
             await GetLoggedInUserData(Username);
-            navigate('/DashBoard', {state: {user: name}});
+            navigate('/DashBoard');
         }
     }
 
@@ -71,7 +71,7 @@ export default function SignInInfo() {
                                 </Row>
                                 <Row>
                                     <Col className='d-flex justify-content-center'>
-                                        <Button onClick={()=>handleLogin(Username)} className='signInBtnTwo' variant=''>Sign In</Button>
+                                        <Button onClick={()=>handleLogin()} className='signInBtnTwo' variant=''>Sign In</Button>
                                     </Col>
                                 </Row>
                             </Row>

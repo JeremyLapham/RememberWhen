@@ -11,6 +11,9 @@ import MyContext from '../context';
 
 export default function DashBoard() {
     const { username } = useContext(MyContext);
+    const { memoryItems } = useContext(MyContext);
+    const { setMemoryItems } = useContext(MyContext);
+
     const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,7 +26,7 @@ export default function DashBoard() {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
 
-    const [memoryItems, setMemoryItems] = useState([]);
+    // const [memoryItems, setMemoryItems] = useState([]);
     
     // useEffect(() => {
     //     const fetchData = async () => {
@@ -131,7 +134,7 @@ export default function DashBoard() {
                 :
                 <Row>
                     <Col className='memoryBox'>
-                        {/* {memoryItems.map((cardInfo: any, idx: number) => {
+                        {memoryItems.map((cardInfo: any, idx: number) => {
                             return (
                                 <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
                                     <img className='memoryCards' src={cardInfo.image} />
@@ -139,7 +142,7 @@ export default function DashBoard() {
                                     <div className='dateOnImg'>{cardInfo.date}</div>
                                 </Button>
                             );
-                        })} */}
+                        })}
                     </Col>
                 </Row>
             }
