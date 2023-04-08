@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
 import logo from '../../assets/elephantLogo.svg';
 import folderPic from '../../assets/folderpic.png';
@@ -7,8 +7,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import AddIcon from '@mui/icons-material/Add';
 import { GetPublishedMemoryItem, checkToken, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
+import MyContext from '../context';
 
 export default function DashBoard() {
+    const { username } = useContext(MyContext);
     const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -101,7 +103,7 @@ export default function DashBoard() {
                 :
                 <Row>
                     <Col className='helloTopTxt'>
-                        <h1 className='helloTxt'>Hello, <p style={{ color: 'black' }} className='d-inline'>{location.state.user}</p></h1>
+                        <h1 className='helloTxt'>Hello, <p style={{ color: 'black' }} className='d-inline'>{ username }</p></h1>
                         <p className='welcomeTxt'>Welcome to your memories, remember when...</p>
                     </Col>
                 </Row>

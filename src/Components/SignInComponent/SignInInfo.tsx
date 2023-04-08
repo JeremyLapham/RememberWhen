@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { GetLoggedInUserData, login } from '../Services/DataService';
+import MyContext from '../context';
 
 export default function SignInInfo() {
+    const { setUser } = useContext(MyContext);
+
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
 
@@ -21,6 +24,7 @@ export default function SignInInfo() {
             Username,
             Password
         }
+        setUser(Username);
         console.log(userData);
         let token = await login(userData);
         if(token.token != null){
@@ -51,7 +55,7 @@ export default function SignInInfo() {
                                 <Row>
                                     <Col>
                                         <h4 className='userNameInput'>Username</h4>
-                                        <input onChange={({ target: { value } }) => setUsername(value)} type='text' className='inputField' placeholder='Enter your username' />
+                                        <input onChange={({ target: { value } }) => setUsername(value)} type='text' value={Username} className='inputField' placeholder='Enter your username' />
                                     </Col>
                                 </Row>
                                 <Row>
