@@ -1,43 +1,27 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import logo from '../../assets/elephantLogo.svg';
 import folderPic from '../../assets/folderpic.png';
 import './DashBoard.css';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import AddIcon from '@mui/icons-material/Add';
-import { GetPublishedMemoryItem, checkToken, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
-import MyContext from '../context';
+import { checkToken, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
+import {MyContext} from '../context';
 
 export default function DashBoard() {
     const { username } = useContext(MyContext);
     const { memoryItems } = useContext(MyContext);
     const { setMemoryItems } = useContext(MyContext);
+    const { setUsersId } = useContext(MyContext);
+    const { moreMemoryClicked } = useContext(MyContext);
+    const { setMoreMemoryClicked } = useContext(MyContext);
 
-    const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
     const navigate = useNavigate();
-    const location = useLocation();
-    
-    const [memoryId, setMemoryId] = useState(0);
-    const [memoryUserId, setMemoryUserId] = useState(0);
-    const [memoryPublisherName, setPublisherName] = useState('');
-    
+        
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
-
-    // const [memoryItems, setMemoryItems] = useState([]);
-    
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         let res = await GetPublishedMemoryItem();
-    //         setMemoryItems(res);
-    //         console.log(res);
-    //     }
-    //     fetchData();
-    // }, []);
-
-    // console.log(loggedInData())
     
     useEffect(() => {
         const GetLoggedInData = async () => {
@@ -46,9 +30,7 @@ export default function DashBoard() {
                 userId: loggedIn['userId'],
                 publisherName: loggedIn['publisherName']
             }
-            setMemoryUserId(LoggedIn.userId);
-            setPublisherName(LoggedIn.publisherName);
-            console.log(LoggedIn);
+            setUsersId(LoggedIn.userId);
             let userMemoryItems = await getMemoryItemsByUserId(LoggedIn.userId);
             setMemoryItems(userMemoryItems);
             console.log(userMemoryItems);
@@ -121,8 +103,8 @@ export default function DashBoard() {
                                     return (
                                         <Col key={idx} xs={4}>
                                             <Button onClick={() => { handleFolderClick(folder.category, folder) }} variant=''>
-                                                <img src={folderPic} />
-                                                <p className='folderFont'>{folder.category}</p>
+                                                <img style={{width:65,height:65}} src={folder.image} />
+                                                <p className='folderFont'>{folder.title}</p>
                                             </Button>
                                         </Col>
                                     )

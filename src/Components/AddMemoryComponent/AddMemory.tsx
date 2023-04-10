@@ -1,14 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Col, Container, Row, Button, Form, Toast } from 'react-bootstrap';
-import sound from '../../assets/sound.png';
 import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem } from '../Services/DataService';
-import MyContext from '../context';
+import {MyContext} from '../context';
 
 export default function AddMemory() {
     const { setMemoryItems } = useContext(MyContext);
+    const { usersId } = useContext(MyContext);
 
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
@@ -22,7 +22,6 @@ export default function AddMemory() {
     const [memoryTags, setMemoryTags] = useState('');
     const [memoryDate, setMemoryDate] = useState('');
     const [memoryId, setMemoryId] = useState(0);
-    const [memoryUserId, setMemoryUserId] = useState(0);
     const [memoryPublisherName, setPublisherName] = useState('');
 
     const [editBool, setEdit] = useState(false);
@@ -51,7 +50,7 @@ export default function AddMemory() {
     const handleSave = async () => {
         const item = {
             Id: memoryId,
-            Userid: memoryUserId,
+            Userid: usersId,
             PublishedName: memoryPublisherName,
             Title: memoryTitle,
             Image: memoryImage,
@@ -62,8 +61,6 @@ export default function AddMemory() {
             isPublished: true,
             isDeleted: false
         }
-
-        console.log(item);
         let result = false;
         if(editBool) {
             result = await updateMemoryItem(item);
@@ -72,7 +69,7 @@ export default function AddMemory() {
         }
 
         if(result) {
-            let userMemoryItems = await getMemoryItemsByUserId(memoryUserId);
+            let userMemoryItems = await getMemoryItemsByUserId(usersId);
             console.log(userMemoryItems);
             setMemoryItems(userMemoryItems);
         } else {
@@ -172,7 +169,7 @@ export default function AddMemory() {
                     <Button onClick={() => {setShow(true); handleSave(); navigate('/dashboard')}} className='addBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={()=> navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>
+                    <Button onClick={()=> navigate('/dashboard')} className='addCancelBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
         </Container>

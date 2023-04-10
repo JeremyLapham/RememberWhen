@@ -39,7 +39,6 @@ export async function login(loginUser: { Username: string; Password: string; }) 
 export async function GetLoggedInUserData(username: any){
     let res = await fetch(`https://rememberwhenwebsite.azurewebsites.net/User/userbyusername/${username}`);
     let data = await res.json();
-    console.log(data);
     userData = data;
     console.log(userData);
     return userData

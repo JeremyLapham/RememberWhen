@@ -1,18 +1,26 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./NavbarStyle.css";
-import { Col, Container, Row, Navbar, Offcanvas, Button, Nav } from 'react-bootstrap';
+import { Container, Navbar, Offcanvas, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import home from '../../assets/home.svg';
 import setting from '../../assets/setting.svg';
 import addnew from '../../assets/addnew.svg';
 import memories from '../../assets/memories.svg';
+import { MyContext } from '../context';
 
 export default function CustomNavbar() {
     const [isActive, setIsActive] = useState(false);
 
+    const { moreMemoryClicked } = useContext(MyContext);
+    const { setMoreMemoryClicked } = useContext(MyContext);
+
     const handleClick = () => {
         setIsActive(!isActive);
     };
+
+    const handleMemoryClick = () => {
+        setMoreMemoryClicked(!moreMemoryClicked);
+    }
 
     return (
         <Navbar expand="md" className="navbar-container">
@@ -34,7 +42,7 @@ export default function CustomNavbar() {
                 >
                     <Offcanvas.Body className="offCanvasBody">
                         <div style={{ marginLeft: '25px' }}>
-                            <Nav.Link as={Link} to='/DashBoard'><img src={home} alt='home picture' />
+                            <Nav.Link as={Link} to='/DashBoard' onClick={handleMemoryClick}><img src={home} alt='home picture' />
                                 <h1 className='navWords d-inline'>Home</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '24px' }}>
@@ -50,8 +58,8 @@ export default function CustomNavbar() {
                                 <h1 className='navWords d-inline'>Add Folder</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '22px' }}>
-                            <img src={memories} alt='memories picture' />
-                            <h1 className='navWords d-inline'>Memories</h1>
+                        <Nav.Link as={Link} to='/DashBoard' onClick={handleMemoryClick}><img src={memories} alt='home picture' />
+                        <h1 className='navWords d-inline'>Memories</h1></Nav.Link>
                         </div>
                     </Offcanvas.Body>
                 </Offcanvas>
