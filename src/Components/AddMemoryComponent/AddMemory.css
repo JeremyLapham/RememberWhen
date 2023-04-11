@@ -125,5 +125,30 @@
 }
 
 @media screen and (min-width: 1024px) {
+    .addMemoryTitle {
+        font-size: 50px;
+    }
+
+    .addImgCol {
+        margin-right: 50rem;
+    }
+
+    .addImgTxt {
+        font-size: 25px;
+        margin-left: 3rem;
+    }
+
+    .addAudioCol {
+        margin-right: 50rem;
+    }
+
+    .addAudioRow {
+        margin-top: 1rem;
+    }
+
+    .addAudioTxt {
+        font-size: 25px;
+        margin-left: 3rem;
+    }
 
 }

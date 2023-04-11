@@ -45,7 +45,7 @@ export default function AddMemory() {
             <CustomNavbar />
             <h1 className='addMemoryTitle'>add your memory...</h1>
             <Row>
-                <Col>
+                <Col className='addImgCol'>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
                         <Form.Label className='addImgTxt'>Add image</Form.Label>
                         <Button style={{ position: 'relative' }} id='custom-input'>
@@ -55,8 +55,8 @@ export default function AddMemory() {
                     </Form.Group>
                 </Col>
             </Row>
-            <Row>
-                <Col>
+            <Row className='addAudioRow'>
+                <Col className='addAudioCol'>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label className='addAudioTxt'>Add audio</Form.Label>
                         <Button style={{ position: 'relative' }} id='custom-input2'>
@@ -67,7 +67,7 @@ export default function AddMemory() {
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col className='addFolderCol'>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label className='addFolderInputTxt'>Folder</Form.Label>
                         <Form.Select className='textInputs'>
