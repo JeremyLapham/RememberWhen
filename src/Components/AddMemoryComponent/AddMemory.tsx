@@ -4,7 +4,7 @@ import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem } from '../Services/DataService';
-import {MyContext} from '../context';
+import { MyContext } from '../context';
 
 export default function AddMemory() {
     const { setMemoryItems } = useContext(MyContext);
@@ -31,7 +31,7 @@ export default function AddMemory() {
     const handleDescription = ({ target }) => setMemoryDescription(target.value);
     const handleFolder = ({ target: { value } }) => setMemoryFoler(value);
     const handleTags = ({ target }) => setMemoryTags(target.value);
-    const handleDate = ({target}) => setMemoryDate(target.value);
+    const handleDate = ({ target }) => setMemoryDate(target.value);
 
     const handleImage = (e: any) => {
         let file = e.target.files[0];
@@ -62,20 +62,19 @@ export default function AddMemory() {
             isDeleted: false
         }
         let result = false;
-        if(editBool) {
+        if (editBool) {
             result = await updateMemoryItem(item);
         } else {
             result = await addMemoryItem(item);
         }
 
-        if(result) {
+        if (result) {
             let userMemoryItems = await getMemoryItemsByUserId(usersId);
-            console.log(userMemoryItems);
             setMemoryItems(userMemoryItems);
         } else {
             alert(`Blog Item was not ${editBool ? 'Updated' : 'Added'}`)
         }
-        
+
     }
 
     return (
@@ -123,7 +122,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Hashtags</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Hashtags' onChange={handleTags} value={memoryTags}/>
+                        <Form.Control className='textInputs' type='text' placeholder='Hashtags' onChange={handleTags} value={memoryTags} />
                     </Form.Group>
                 </Col>
             </Row>
@@ -144,7 +143,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Memory Title</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Memory Title' onChange={handleTitle} value={memoryTitle}/>
+                        <Form.Control className='textInputs' type='text' placeholder='Memory Title' onChange={handleTitle} value={memoryTitle} />
                     </Form.Group>
                 </Col>
             </Row>
@@ -152,7 +151,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Date</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Date' onChange={handleDate} value={memoryDate}/>
+                        <Form.Control className='textInputs' type='text' placeholder='Date' onChange={handleDate} value={memoryDate} />
                     </Form.Group>
                 </Col>
             </Row>
@@ -160,16 +159,16 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription}/>
+                        <Form.Control className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription} />
                     </Form.Group>
                 </Col>
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => {setShow(true); handleSave(); navigate('/dashboard')}} className='addBtn' variant=''>Add</Button>
+                    <Button onClick={() => { setShow(true); handleSave(); navigate('/dashboard') }} className='addBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={()=> navigate('/dashboard')} className='addCancelBtn' variant=''>Cancel</Button>
+                    <Button onClick={() => navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
         </Container>

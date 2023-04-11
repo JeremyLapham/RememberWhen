@@ -5,7 +5,7 @@ import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { GetLoggedInUserData, login } from '../Services/DataService';
-import {MyContext} from '../context';
+import { MyContext } from '../context';
 
 export default function SignInInfo() {
     const { setUser } = useContext(MyContext);
@@ -27,10 +27,10 @@ export default function SignInInfo() {
         setUser(Username);
         console.log(userData);
         let token = await login(userData);
-        if(token.token != null){
+        if (token.token != null) {
             localStorage.setItem("Token", token.token);
             await GetLoggedInUserData(Username);
-            navigate('/DashBoard', {state: {user: name}});
+            navigate('/DashBoard', { state: { user: name } });
         }
     }
 
@@ -61,7 +61,7 @@ export default function SignInInfo() {
                                 <Row>
                                     <Col>
                                         <h4 className='passwordInput'>Password</h4>
-                                        <input  onChange={({ target: { value } }) => setPassword(value)} className='inputField' type='password' placeholder='Enter your password' />
+                                        <input onChange={({ target: { value } }) => setPassword(value)} className='inputField' type='password' placeholder='Enter your password' />
                                     </Col>
                                 </Row>
                                 <Row>
@@ -71,7 +71,7 @@ export default function SignInInfo() {
                                 </Row>
                                 <Row>
                                     <Col className='d-flex justify-content-center'>
-                                        <Button onClick={()=>handleLogin(Username)} className='signInBtnTwo' variant=''>Sign In</Button>
+                                        <Button onClick={() => handleLogin(Username)} className='signInBtnTwo' variant=''>Sign In</Button>
                                     </Col>
                                 </Row>
                             </Row>

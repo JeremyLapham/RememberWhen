@@ -10,13 +10,14 @@ import AddFolder from './Components/AddFolderComponent/AddFolder';
 import ClickedFolder from './Components/ClickedFolder/ClickedFolder';
 import Logout from './Components/Logout/Logout';
 import ShownMemory from './Components/ShownMemory/ShownMemory';
-import {MyContext} from './Components/context';
+import { MyContext } from './Components/context';
 
 export default function App() {
   const [username, setUsername] = useState('');
   const [memoryItems, setMemory] = useState<[]>([]);
   const [usersId, setUserId] = useState(0);
   const [moreMemoryClicked, setClicked] = useState(false);
+  const [selectedMemory, setMemoryClick] = useState({});
 
   const setUser = (newUsername: string) => {
     setUsername(newUsername);
@@ -33,10 +34,13 @@ export default function App() {
   const setMoreMemoryClicked = (clicked: any) => {
     setClicked(clicked);
   };
+  const setSelectedMemory = (memory: any) => {
+    setMemoryClick(memory);
+  };
 
   return (
     <div className='body'>
-      <MyContext.Provider value={{ username, setUser, memoryItems, setMemoryItems, usersId, setUsersId, moreMemoryClicked, setMoreMemoryClicked }}>
+      <MyContext.Provider value={{ username, setUser, memoryItems, setMemoryItems, usersId, setUsersId, moreMemoryClicked, setMoreMemoryClicked, selectedMemory, setSelectedMemory }}>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<SignIn />} />

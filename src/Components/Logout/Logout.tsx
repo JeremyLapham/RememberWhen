@@ -13,8 +13,8 @@ export default function Logout() {
     const { setUsersId } = useContext(MyContext);
     const { setUser } = useContext(MyContext);
 
-    const LogOut =() => {
-        resetContext(setUser,setUsersId,setMemoryItems, setMoreMemoryClicked);
+    const LogOut = () => {
+        resetContext(setUser, setUsersId, setMemoryItems, setMoreMemoryClicked);
         navigate('/');
     }
     return (
@@ -32,7 +32,7 @@ export default function Logout() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center align-items-center'>
-                    <Button onClick={()=>LogOut()} className='logoutBtn' variant=''>Logout</Button>
+                    <Button onClick={() => LogOut()} className='logoutBtn' variant=''>Logout</Button>
                 </Col>
             </Row>
 

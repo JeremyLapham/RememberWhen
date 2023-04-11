@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './ShownMemory.css';
 import CustomNavbar from '../navComponent/NavbarComponent';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import elephantLogo from '../../assets/elephantLogo.svg';
 import memory from '../../assets/memory.jpg';
 import { useNavigate } from 'react-router-dom';
+import { MyContext } from '../context';
 
 export default function ShownMemory() {
     const [show, setShow] = useState(false);
     const [editDelete, setEditDelete] = useState('')
+    const  { selectedMemory } = useContext(MyContext);
+    console.log(selectedMemory);
 
     const editOrDelte = () => {
         console.log(editDelete)
@@ -66,27 +69,21 @@ export default function ShownMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <img className='memoryImg' src={memory} alt='the picture of the memory that was selected' />
+                    <img className='memoryImg' src={selectedMemory.image} alt='the picture of the memory that was selected' />
                 </Col>
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <div className='displayHashtags'>
-                        <h2 className='hashtags'>#Brunch #FavSpot #Yum #Food #Replay</h2>
+                        <h2 className='hashtags'>{selectedMemory.tags}</h2>
                     </div>
                 </Col>
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <div className='description'>
-                        <h2 className='memoryDesTxt text-center'>This will either be a very long or very short
-                            description on how the day went. It can
-                            also be a caption or anything the user wants
-                            it to be. This will either be a very long or very short
-                            description on how the day went. It can
-                            also be a caption or anything the user wants
-                            it to be.</h2>
-                        <h2 className='memoryDesDate text-center'>3/14/23</h2>
+                        <h2 className='memoryDesTxt text-center'>{selectedMemory.description}</h2>
+                        <h2 className='memoryDesDate text-center'>{selectedMemory.date}</h2>
                     </div>
                 </Col>
             </Row>

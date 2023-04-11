@@ -11,7 +11,6 @@ import { MyContext } from '../context';
 export default function CustomNavbar() {
     const [isActive, setIsActive] = useState(false);
 
-    const { moreMemoryClicked } = useContext(MyContext);
     const { setMoreMemoryClicked } = useContext(MyContext);
 
     const handleClick = () => {
@@ -19,7 +18,12 @@ export default function CustomNavbar() {
     };
 
     const handleMemoryClick = () => {
-        setMoreMemoryClicked(!moreMemoryClicked);
+        setMoreMemoryClicked(false);
+        setIsActive(!isActive);
+    }
+    const handleMoreMemoryClick = () => {
+        setMoreMemoryClicked(true);
+        setIsActive(!isActive);
     }
 
     return (
@@ -58,8 +62,8 @@ export default function CustomNavbar() {
                                 <h1 className='navWords d-inline'>Add Folder</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '22px' }}>
-                        <Nav.Link as={Link} to='/DashBoard' onClick={handleMemoryClick}><img src={memories} alt='home picture' />
-                        <h1 className='navWords d-inline'>Memories</h1></Nav.Link>
+                            <Nav.Link as={Link} to='/DashBoard' onClick={handleMoreMemoryClick}><img src={memories} alt='home picture' />
+                                <h1 className='navWords d-inline'>Memories</h1></Nav.Link>
                         </div>
                     </Offcanvas.Body>
                 </Offcanvas>
