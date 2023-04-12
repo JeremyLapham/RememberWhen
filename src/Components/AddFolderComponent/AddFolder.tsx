@@ -61,10 +61,10 @@ export default function AddFolder() {
             </Row>
             
             <Row>
-                <Col className='d-flex justify-content-center'>
+                <Col className='d-flex justify-content-center folderBtnCol'>
                     <Button onClick={() => setShow(true)} className='folderBtn' variant=''>Add</Button>
                 </Col>
-                <Col className='d-flex justify-content-center'>
+                <Col className='d-flex justify-content-center folderBtnCol'>
                     <Button onClick={handleBackToHome} className='folderBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
