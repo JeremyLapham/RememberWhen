@@ -97,3 +97,17 @@
     right: 0;
     z-index: 100;
 }
+
+@media screen and (min-width: 1024px) {
+    .addBtn {
+        width: 150px !important;
+        height: 48px !important;
+        font-size: 25px !important;
+    }
+
+    .addCancelBtn {
+        width: 150px !important;
+        height: 48px !important;
+        font-size: 25px !important;
+    }
+}
