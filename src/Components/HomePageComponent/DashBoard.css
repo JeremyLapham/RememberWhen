@@ -166,3 +166,75 @@
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (min-width: 1024px) {
+  .logoEle {
+    margin-top: -8px;
+  }
+  .helloTopTxt {
+    text-align: center;
+  }
+  .helloTxt {
+    font-size: 50px;
+  }
+  .txtOnImg {
+    font-size: 30px;
+  }
+  .dateOnImg {
+    font-size: 20px;
+  }
+  .welcomeTxt {
+    font-size: 28px;
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+  }
+  .memoryBox {
+    margin-bottom: 3rem;
+  }
+  .remmeberWhen {
+    font-size: 50px;
+  }
+  .addNewFolder {
+    display: none !important;
+  }
+  .addNew {
+    display: none !important;
+  }
+  .desktopAddBtn {
+    color: black !important;
+    width: 300px;
+    height: 45px;
+    background-color: #FFFFFF !important;
+    font-weight: bold !important;
+    font-size: 24px !important;
+    margin-top: 35px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+    border-style: none !important;
+  }
+  .moreMemories {
+    font-size: 24px !important;
+  }
+  .desktopAddBtn2 {
+    color: black !important;
+    width: 300px;
+    height: 45px;
+    background-color: #FFFFFF !important;
+    font-weight: bold !important;
+    font-size: 24px !important;
+    margin-top: 35px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+    border-style: none !important;
+  }
+  .desktopBtnRow {
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .desktopAddCol {
+    display: none !important;
+  }
+}
