@@ -22,6 +22,7 @@ export default function DashBoard() {
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
+    // Testing branches
 
     useEffect(() => {
         const GetLoggedInData = async () => {
