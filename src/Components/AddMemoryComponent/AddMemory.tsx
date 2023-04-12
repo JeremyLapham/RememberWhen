@@ -43,7 +43,7 @@ export default function AddMemory() {
                 </Col>
             </Row>
             <CustomNavbar />
-            <h1 className='addMemoryTitle'>add your memory...</h1>
+            <h1 className='addMemoryTitle'>add your <p style={{color:'#848383'}} className='d-inline'>memory...</p></h1>
             <Row>
                 <Col className='addImgCol'>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
@@ -105,7 +105,7 @@ export default function AddMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => setShow(true)} className='addCancelBtn' variant=''>Add</Button>
+                    <Button onClick={() => setShow(true)} className='addBtn' variant=''>Add</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={handleBackToHome} className='addCancelBtn' variant=''>Cancel</Button>

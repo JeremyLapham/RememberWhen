@@ -247,7 +247,7 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .desktopAddBtn {
+  .desktopAddCol {
     display: none !important;
   }
 }

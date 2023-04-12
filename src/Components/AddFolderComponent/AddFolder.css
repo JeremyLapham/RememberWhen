@@ -21,7 +21,14 @@
     height:40px;
 }
 
-.folderBtn {
+.addfolderBtn {
+    background-color: #A99282;
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom: 2rem;
+}
+
+.cancelfolderBtn {
     background-color: #857B74;
     font-size:15px;
     font-weight:bold;
@@ -30,7 +37,8 @@
 
 @media screen and (min-width: 1024px) {
     .addFolderTxt {
-        font-size: 50px;
+        font-size: 28px;
+        font-weight: bolder;
     }
 
     .folderIMG {
@@ -39,7 +47,7 @@
     }
 
     .inputTxt {
-        font-size: 30px;
+        font-size: 25px;
     }
 
     .inputFolder {
@@ -48,11 +56,18 @@
         border: solid 1px black !important;
     }
 
-    .folderBtn {
+    .addfolderBtn {
         width: 150px !important;
         height: 48px !important;
         font-size: 25px !important;
-        
+        margin-top: 2rem;
+    }
+
+    .cancelfolderBtn {
+        width: 150px !important;
+        height: 48px !important;
+        font-size: 25px !important;
+        margin-top: 2rem;
     }
 }
 

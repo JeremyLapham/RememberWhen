@@ -237,18 +237,17 @@ export default function DashBoard() {
         </Row>
       )}
 
-      {/* className="d-flex justify-content-center" in Col with original button */}
 
       <Row className="desktopBtnRow">
       <Col className="desktopAddCol">
           <Button onClick={() => navigate("/AddMemory")} className="desktopAddBtn">Add Memory +</Button>
         </Col>
-        <Col>
+        <Col className="d-flex justify-content-center">
           <Button onClick={handleClick} className="moreMemories" variant="">
             {moreMemoryClicked ? "Go Back" : "Click for all memories"}
           </Button>
         </Col>
-        <Col>
+        <Col className="desktopAddCol">
           <Button onClick={() => navigate("/AddFolder")} className="desktopAddBtn2">Add Folder +</Button>
         </Col>
       </Row>
