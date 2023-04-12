@@ -36,7 +36,7 @@ export async function login(loginUser: { Username: string; Password: string; }) 
     return data;
 }
 
-export async function GetLoggedInUserData(username: any) {
+export async function GetLoggedInUserData(username: string) {
     let res = await fetch(`https://rememberwhenwebsite.azurewebsites.net/User/userbyusername/${username}`);
     let data = await res.json();
     userData = data;
@@ -81,8 +81,8 @@ export async function addMemoryItem(memoryItem: object) {
     return data;
 }
 
-export async function getMemoryItemsByUserId(userId: number) {
-    let res = await fetch(`https://rememberwhenwebsite.azurewebsites.net/Memory/GetItemsByUserId/${userId}`);
+export async function getMemoryItemsByUserId(userid: number) {
+    let res = await fetch(`https://rememberwhenwebsite.azurewebsites.net/Memory/GetItemsByUserId/${userid}`);
     let data = await res.json();
     return data;
 }

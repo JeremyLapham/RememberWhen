@@ -122,7 +122,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Hashtags</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Hashtags' onChange={handleTags} value={memoryTags} />
+                        <Form.Control className='textInputs' type='text' placeholder='#Example, #Example' onChange={handleTags} value={memoryTags} />
                     </Form.Group>
                 </Col>
             </Row>
@@ -151,7 +151,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Date</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Date' onChange={handleDate} value={memoryDate} />
+                        <Form.Control className='textInputs' type='text' placeholder='MM/DD/YYYY or DD/MM/YYYY' onChange={handleDate} value={memoryDate} />
                     </Form.Group>
                 </Col>
             </Row>
@@ -159,7 +159,7 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription} />
+                        <textarea className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription} />
                     </Form.Group>
                 </Col>
             </Row>
