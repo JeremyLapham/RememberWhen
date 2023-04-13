@@ -69,5 +69,14 @@
         font-size: 25px !important;
         margin-top: 2rem;
     }
+
+    .mobileAddRow2 {
+        display: none !important;
+    }
 }
 
+@media screen and (max-width: 380px) {
+    .desktopAddRow2 {
+        display: none !important;
+    }
+}

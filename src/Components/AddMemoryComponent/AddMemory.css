@@ -1,125 +1,174 @@
 #custom-input {
-    background-color: #D3C0B2;
-    background-image: url(../../assets/addimage.png);
-    background-repeat: no-repeat;
-    background-position-x: center;
-    background-position-y: center;
-    border-radius: 20px;
-    border: 1px solid black;
-    height: 200px;
-    width: 200px;
-    padding: 0 !important;
+  background-color: #d3c0b2;
+  background-image: url(../../assets/addimage.png);
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  border-radius: 20px;
+  border: 1px solid black;
+  height: 200px;
+  width: 200px;
+  padding: 0 !important;
 }
 
 .input1 {
-    border-radius: 20px;
-    opacity: 0;
-    height: 200px;
-    width: 200px;
-    z-index: 1200;
+  border-radius: 20px;
+  opacity: 0;
+  height: 200px;
+  width: 200px;
+  z-index: 1200;
 }
 
 .selectedImg {
-    height: 200px;
-    width: 200px;
-    border-radius: 20px;
-    background-color: #D3C0B2;
-    border: 1px solid black;
-    position: absolute;
-    top: 0%;
-    left: 0%;
+  height: 200px;
+  width: 200px;
+  border-radius: 20px;
+  background-color: #d3c0b2;
+  border: 1px solid black;
+  position: absolute;
+  top: 0%;
+  left: 0%;
 }
 
 #custom-input2 {
-    background-color: #A99282;
-    background-image: url(../../assets/Microphone.png);
-    background-repeat: no-repeat;
-    background-position-y: center;
-    background-position-x: 8px;
-    border-radius: 10px;
-    border: 1px solid black;
-    height: 50px;
-    width: 200px;
-    padding: 0 !important;
+  background-color: #a99282;
+  background-image: url(../../assets/Microphone.png);
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: 8px;
+  border-radius: 10px;
+  border: 1px solid black;
+  height: 50px;
+  width: 200px;
+  padding: 0 !important;
 }
 
 .input2 {
-    border-radius: 10px;
-    opacity: 0;
-    height: 50px;
-    width: 200px;
-    z-index: 1200;
+  border-radius: 10px;
+  opacity: 0;
+  height: 50px;
+  width: 200px;
+  z-index: 1200;
 }
 
 .selectedImg2 {
-    height: 50px;
-    width: 196px;
-    padding-left: 1rem;
-    border-radius: 20px;
-    position: absolute;
-    top: 0%;
-    left: 0%;
+  height: 50px;
+  width: 196px;
+  padding-left: 1rem;
+  border-radius: 20px;
+  position: absolute;
+  top: 0%;
+  left: 0%;
 }
 
 .addCancelBtn {
-    background-color: #857B74 !important;
-    font-size: 15px !important;
-    font-weight: bold;
-    margin-bottom:3rem;
+  background-color: #857b74 !important;
+  font-size: 15px !important;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+.addBtn {
+  background-color: #a99282 !important;
+  font-size: 15px !important;
+  font-weight: bold;
+  margin-bottom: 3rem;
 }
 
 .textInputs {
-    width: 300px !important;
-    border: 1px solid black !important;
+  width: 300px !important;
+  border: 1px solid black !important;
 }
 
 .textInputsDescription {
-    width: 300px !important;
-    border: 1px solid black !important;
-    height: 7.8rem;
+  width: 300px !important;
+  border: 1px solid black !important;
+  height: 7.8rem;
 }
 
 .addToast {
-    position: absolute;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 100;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .addImgTxt {
-    margin-right: 7rem;
-    font-weight: bolder;
+  margin-right: 7rem;
+  font-weight: bolder;
 }
 
 .addAudioTxt {
-    margin-right: 7rem;
-    font-weight: bolder;
+  margin-right: 7rem;
+  font-weight: bolder;
 }
 
 .addFolderInputTxt {
-    margin-right: 15.5rem;
-    font-weight: bolder;
+  margin-right: 15.5rem;
+  font-weight: bolder;
 }
 
 .addMemoryTxt {
-    margin-right: 12.3rem;
-    font-weight: bolder;
+  margin-right: 12.3rem;
+  font-weight: bolder;
 }
 
 .addDateTxt {
-    margin-right: 16.6rem;
-    font-weight: bolder;
+  margin-right: 16.6rem;
+  font-weight: bolder;
 }
 
 .addDescriptionTxt {
-    margin-right: 13rem;
-    font-weight: bolder;
+  margin-right: 13rem;
+  font-weight: bolder;
 }
 
 .addMemoryTitle {
-    text-align: center;
-    font-size: 25px;
-    margin-top: 2rem;
-    margin-bottom: 3.5rem;
+  text-align: center;
+  font-size: 25px;
+  margin-top: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.addMemoryTitleDesktop {
+  text-align: center;
+  font-size: 25px;
+  margin-top: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .addBtn {
+    width: 150px !important;
+    height: 48px !important;
+    font-size: 25px !important;
+  }
+
+  .addCancelBtn {
+    width: 150px !important;
+    height: 48px !important;
+    font-size: 25px !important;
+  }
+
+  .mobileAddRow {
+    display: none !important;
+  }
+
+  .desktopAddRow {
+    margin-top: 2.5rem !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .desktopCenterRow {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 380px) {
+    .desktopAddRow {
+      display:none !important;
+    }
 }
