@@ -165,6 +165,15 @@
     display: flex;
     justify-content: center;
   }
+
+  .addImgBtn {
+    width: 250px !important;
+    height: 250px !important;
+  }
+
+  .addAudioBtn {
+    width: 250px !important;
+  }
 }
 
 @media screen and (max-width: 380px) {

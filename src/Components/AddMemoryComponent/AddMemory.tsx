@@ -65,7 +65,7 @@ export default function AddMemory() {
                 controlId="Image"
               >
                 <Form.Label className="addImgTxt">Add image</Form.Label>
-                <Button style={{ position: "relative" }} id="custom-input">
+                <Button className="addImgBtn" style={{ position: "relative" }} id="custom-input">
                   {selectedImage && (
                     <img
                       className="selectedImg"
@@ -88,7 +88,7 @@ export default function AddMemory() {
             <Col className="addAudioCol">
               <Form.Group className="mb-3 d-flex flex-column align-items-center">
                 <Form.Label className="addAudioTxt">Add audio</Form.Label>
-                <Button style={{ position: "relative" }} id="custom-input2">
+                <Button className="addAudioBtn" style={{ position: "relative" }} id="custom-input2">
                   {selectedAudio && (
                     <img
                       className="selectedImg2"
