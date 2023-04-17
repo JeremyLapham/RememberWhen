@@ -1,14 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Form, Toast } from 'react-bootstrap';
 import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
-import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem } from '../Services/DataService';
+import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem, getFolderByUserId } from '../Services/DataService';
 import { MyContext } from '../context';
 
 export default function AddMemory() {
-    const { setMemoryItems } = useContext(MyContext);
     const { usersId } = useContext(MyContext);
+    const { folderId } = useContext(MyContext);
+    const { setMemoryItems } = useContext(MyContext);
+    const { setFolderId } = useContext(MyContext);
 
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
@@ -18,18 +20,18 @@ export default function AddMemory() {
     const [memoryImage, setMemoryImage] = useState('');
     const [memoryTitle, setMemoryTitle] = useState('');
     const [memoryDescription, setMemoryDescription] = useState('');
-    const [memoryFolder, setMemoryFoler] = useState('');
     const [memoryTags, setMemoryTags] = useState('');
     const [memoryDate, setMemoryDate] = useState('');
     const [memoryId, setMemoryId] = useState(0);
     const [memoryPublisherName, setPublisherName] = useState('');
+    const [folders, setFolders] = useState([]);
 
     const [editBool, setEdit] = useState(false);
 
 
     const handleTitle = ({ target }) => setMemoryTitle(target.value);
     const handleDescription = ({ target }) => setMemoryDescription(target.value);
-    const handleFolder = ({ target: { value } }) => setMemoryFoler(value);
+    const handleFolder = ({ target: { value } }) => setFolderId(value);
     const handleTags = ({ target }) => setMemoryTags(target.value);
     const handleDate = ({ target }) => setMemoryDate(target.value);
 
@@ -51,13 +53,14 @@ export default function AddMemory() {
         const item = {
             Id: memoryId,
             Userid: usersId,
+            FolderId: folderId, //figure out how to make this change based on the folder that the user set
             PublishedName: memoryPublisherName,
             Title: memoryTitle,
             Image: memoryImage,
             Description: memoryDescription,
             Date: memoryDate,
             Tags: memoryTags,
-            Category: memoryFolder,
+            Category: '',
             isPublished: true,
             isDeleted: false
         }
@@ -67,15 +70,23 @@ export default function AddMemory() {
         } else {
             result = await addMemoryItem(item);
         }
-
+        
         if (result) {
             let userMemoryItems = await getMemoryItemsByUserId(usersId);
             setMemoryItems(userMemoryItems);
         } else {
             alert(`Blog Item was not ${editBool ? 'Updated' : 'Added'}`)
         }
-
     }
+    
+    useEffect(() => {
+        const GetFolders = async() => {
+            let displayFolder = await getFolderByUserId(usersId);
+            setFolders(displayFolder);
+            setFolderId(displayFolder.id);
+        }
+        GetFolders()
+    }, []);    
 
     return (
         <Container fluid>
@@ -130,11 +141,13 @@ export default function AddMemory() {
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Folder</Form.Label>
-                        <Form.Select className='textInputs' onChange={handleFolder} value={memoryFolder}>
+                        <Form.Select className='textInputs' onChange={handleFolder} value={folderId}>
                             <option hidden>Folder</option>
-                            <option value='Dates' >Dates</option>
-                            <option value='Trips' >Trips</option>
-                            <option value='Camping' >Camping</option>
+                            {folders.map((option: any, idx: number) => {
+                                return (
+                                    <option key={idx} value={option.id} >{option.name}</option>
+                                );
+                            })}
                         </Form.Select>
                     </Form.Group>
                 </Col>

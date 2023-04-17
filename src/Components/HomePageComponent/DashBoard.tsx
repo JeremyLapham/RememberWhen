@@ -1,21 +1,25 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import logo from '../../assets/elephantLogo.svg';
+import folderImg from '../../assets/folderpic.png'
 import './DashBoard.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import AddIcon from '@mui/icons-material/Add';
-import { checkToken, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
+import { checkToken, getFolderByUserId, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
 import { MyContext } from '../context';
 
 export default function DashBoard() {
     const { username } = useContext(MyContext);
     const { memoryItems } = useContext(MyContext);
+    const { moreMemoryClicked } = useContext(MyContext);
+    const { folders } = useContext(MyContext);
     const { setMemoryItems } = useContext(MyContext);
     const { setUsersId } = useContext(MyContext);
-    const { moreMemoryClicked } = useContext(MyContext);
+    const { setFolders } = useContext(MyContext);
     const { setMoreMemoryClicked } = useContext(MyContext);
-    const { setSelectedMemory } = useContext(MyContext);
+    const { setSelectedFolder } = useContext(MyContext);
+    const { setFolderName } = useContext(MyContext);
 
     const navigate = useNavigate();
 
@@ -23,6 +27,10 @@ export default function DashBoard() {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
     // Testing branches
+    // const memory: any = memoryItems;
+    // memory.map((cat) => {
+    //     console.log(cat.category)
+    // })
 
     useEffect(() => {
         const GetLoggedInData = async () => {
@@ -33,9 +41,11 @@ export default function DashBoard() {
             }
             setUsersId(LoggedIn.userId);
             let userMemoryItems = await getMemoryItemsByUserId(LoggedIn.userId);
+            let displayFolder = await getFolderByUserId(LoggedIn.userId);
             setMemoryItems(userMemoryItems);
-            console.log(userMemoryItems);
+            setFolders(displayFolder);
         }
+
         if (!checkToken()) {
             navigate('/SignInInfo');
         } else {
@@ -43,9 +53,10 @@ export default function DashBoard() {
         }
     }, []);
 
-    const handleFolderClick = (item:any) => {
-        setSelectedMemory(item);
-        navigate('/Memory');
+    const handleFolderClick = (folder: any, name: string) => {
+        setSelectedFolder(folder);
+        setFolderName(name)
+        navigate('/ClickedFolder');
     }
     return (
         <Container fluid>
@@ -101,12 +112,12 @@ export default function DashBoard() {
                     <Row>
                         <Col className='d-flex justify-content-center folderDisplay'>
                             <Row>
-                                {memoryItems.map((folder: any, idx: number) => {
+                                {folders.map((folder: any, idx: number) => {
                                     return (
                                         <Col key={idx} xs={4}>
-                                            <Button onClick={() => { handleFolderClick(folder) }} variant=''>
-                                                <img style={{ width: 65, height: 65, borderRadius:10 }} src={folder.image} />
-                                                <p className='folderFont'>{folder.title}</p>
+                                            <Button onClick={() => { handleFolderClick(folder.id, folder.name) }} variant=''>
+                                                <img src={folderImg} />
+                                                <p className='folderFont'>{folder.name}</p>
                                             </Button>
                                         </Col>
                                     )
@@ -121,7 +132,7 @@ export default function DashBoard() {
                         {memoryItems.map((cardInfo: any, idx: number) => {
                             return (
                                 <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
-                                    <img className='memoryCards' src={cardInfo.image} />
+                                    <img className='memoryCards' src={cardInfo.image} alt='Your memory image is here'/>
                                     <div className='txtOnImg'>{cardInfo.title}</div>
                                     <div className='dateOnImg'>{cardInfo.date}</div>
                                 </Button>
