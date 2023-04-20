@@ -29,7 +29,8 @@ export default function AddFolder() {
         const fold = {
             Id : folderId,
             userId : usersId,
-            name : folderName
+            name : folderName,
+            isDeleted: false
         }
         let result = false;
         if (editBool) {

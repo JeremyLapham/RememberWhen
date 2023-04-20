@@ -11,7 +11,6 @@ export default function ShownMemory() {
     const [show, setShow] = useState(false);
     const [editDelete, setEditDelete] = useState('')
     const  { selectedMemory } = useContext(MyContext);
-    console.log(selectedMemory);
 
     const editOrDelte = () => {
         console.log(editDelete)

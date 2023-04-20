@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, OverlayTrigger, Popover, Row, Toast } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { createAccount } from '../Services/DataService';
 
 export default function SignUpInfo() {
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handelSubmit = () => {
         let userData = {
@@ -16,19 +17,45 @@ export default function SignUpInfo() {
             Username,
             Password
         }
-        createAccount(userData)
-        navigate('/SignInInfo');
+        // createAccount(userData)
+        const GetLoggedInData = async () => {
+            let result = await createAccount(userData)
+
+            if (result) {
+                navigate('/SignInInfo');
+            } else {
+                toggleShowA()
+            }
+        }
+        GetLoggedInData()
     }
 
-    const navigate = useNavigate();
 
     const handleSignInClick = () => {
         navigate('/SignInInfo');
     };
 
 
+    const [showA, setShowA] = useState(false);
+
+    const toggleShowA = () => setShowA(!showA);
+    // .addToast {
+    //     position: absolute;
+    //     position: fixed;
+    //     top: 0;
+    //     right: 0;
+    //     z-index: 100;
+    // }
+
     return (
         <Container fluid>
+            <Row>
+                <Col md={6} className="mb-2">
+                    <Toast style={{position:'fixed', top:'30%',zIndex:100, backgroundColor:'#d7d2ce', color:'#C52E22', border: '2px solid black'}} show={showA} onClose={toggleShowA} delay={4000} autohide>
+                        <Toast.Body>The Username you entered is already taken.</Toast.Body>
+                    </Toast>
+                </Col>
+            </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <img className='logo mt-5' src={logo} alt='remember when logo, elephant holding balloon' />
