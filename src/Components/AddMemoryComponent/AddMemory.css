@@ -180,4 +180,13 @@
     .desktopAddRow {
       display:none !important;
     }
+
+    .addNew {
+      margin-top: 2rem;
+    }
+
+    .heart {
+      margin-left: 0.5rem;
+      margin-top: 2rem;
+    }
 }
