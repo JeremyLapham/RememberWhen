@@ -194,8 +194,8 @@ export default function DashBoard() {
       )}
 
       {moreMemoryClicked ? (
-        <Container>
-          <Row>
+        <Container className="folderBoxCont">
+          <Row className="folderBox">
             <Col className="d-flex justify-content-center folderDisplay">
               <Row>
                 {placerFolder.map((folder, idx) => {

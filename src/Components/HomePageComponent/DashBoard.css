@@ -246,7 +246,18 @@
   }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (min-width: 800px) {
+  .folderBox {
+    width: 50rem !important;
+  }
+
+  .folderBoxCont {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 380px) {
   .desktopAddCol {
     display: none !important;
   }
