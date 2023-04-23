@@ -47,8 +47,10 @@ export default function ClickedFolder() {
                                         <Button variant='' className='allFolderBtn'>
                                             <img className='folderImg' src={memory.displayedImg} alt='clickable image' />
                                         </Button>
+                                        <Row className='memoryDisplayText'>
                                         <p className='text-center memoryTitle'>{memory.memoryTitle}</p>
                                         <p className='text-center memoryDate'>{memory.memoryDate}</p>
+                                        </Row>
                                     </Col>
                                 );
                             })}

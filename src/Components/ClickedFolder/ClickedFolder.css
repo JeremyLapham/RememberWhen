@@ -49,6 +49,7 @@
     .displayMemory {
         width: 55rem;
         height: 37rem;
+        text-align: center;
     }
 
     .nameFolder {
@@ -67,5 +68,18 @@
 
     .heart {
         display: none;
+    }
+    
+    .nameFolder {
+        font-size: 28px;
+        margin-bottom: 2rem;
+    }
+
+    .memoryDate {
+        font-size: 15px !important;
+    }
+
+    .memoryTitle {
+        font-size: 15px !important;
     }
 }
