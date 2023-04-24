@@ -19,18 +19,24 @@ interface MyContextType {
   setFolderName: (folderName: string) => void;
   selectedFolder: any;
   setSelectedFolder: (selectedFolder: any) => void;
+  folderEdit: string;
+  setFolderEdit: (folderEdit: string) => void;
+  isEditFolder: boolean;
+  setIsEditFolder: (isEditFolder: boolean) => void;
 }
 
 export const MyContext = createContext<MyContextType>({
- username: '', setUser: () => { },
- memoryItems: [], setMemoryItems: () => { },
- usersId: 0, setUsersId: () => { },
- moreMemoryClicked: false, setMoreMemoryClicked: () => { },
- selectedMemory: {}, setSelectedMemory: () => {},
- folders: [], setFolders: () => {},
- folderId: 0, setFolderId: () => {},
- folderName: '', setFolderName: () => {},
- selectedFolder: {}, setSelectedFolder: () => {}
+  username: '', setUser: () => { },
+  memoryItems: [], setMemoryItems: () => { },
+  usersId: 0, setUsersId: () => { },
+  moreMemoryClicked: false, setMoreMemoryClicked: () => { },
+  selectedMemory: {}, setSelectedMemory: () => { },
+  folders: [], setFolders: () => { },
+  folderId: 0, setFolderId: () => { },
+  folderName: '', setFolderName: () => { },
+  selectedFolder: {}, setSelectedFolder: () => { },
+  folderEdit: '', setFolderEdit: () => { },
+  isEditFolder: false, setIsEditFolder: () => { }
 });
 
 export const resetContext = (

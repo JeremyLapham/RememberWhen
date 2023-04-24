@@ -13,47 +13,25 @@ import ShownMemory from './Components/ShownMemory/ShownMemory';
 import { MyContext } from './Components/context';
 
 export default function App() {
-  const [username, setUsername] = useState('');
+  const [username, setUser] = useState('');
   const [memoryItems, setMemory] = useState<[]>([]);
-  const [usersId, setUserId] = useState(0);
-  const [moreMemoryClicked, setClicked] = useState(false);
-  const [selectedMemory, setMemoryClick] = useState({});
-  const [folders, setFold] = useState([]);
-  const [folderId, setFoldId] = useState(0);
-  const [folderName, setFoldName] = useState('');
-  const [selectedFolder, setFolderSelect] = useState([]);
+  const [usersId, setUsersId] = useState(0);
+  const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
+  const [selectedMemory, setSelectedMemory] = useState({});
+  const [folders, setFolders] = useState([]);
+  const [folderId, setFolderId] = useState(0);
+  const [folderName, setFolderName] = useState('');
+  const [selectedFolder, setSelectedFolder] = useState([]);
+  const [folderEdit, setFolderEdit] = useState('');
+  const [isEditFolder, setIsEditFolder] = useState(false);
 
-  const setUser = (newUsername: string) => {
-    setUsername(newUsername);
-  };
   const setMemoryItems = (moreMemory: any) => {
     setMemory(moreMemory);
-  };
-  const setUsersId = (Id: number) => {
-    setUserId(Id);
-  };
-  const setMoreMemoryClicked = (clicked: any) => {
-    setClicked(clicked);
-  };
-  const setSelectedMemory = (memory: any) => {
-    setMemoryClick(memory);
-  };
-  const setFolders = (Fold: any) => {
-    setFold(Fold);
-  };
-  const setFolderId = (Fold: number) => {
-    setFoldId(Fold);
-  };
-  const setFolderName = (Fold: string) => {
-    setFoldName(Fold);
-  };
-  const setSelectedFolder = (Fold: []) => {
-    setFolderSelect(Fold);
   };
 
   return (
     <div className='body'>
-      <MyContext.Provider value={{ username, setUser, memoryItems, setMemoryItems, usersId, setUsersId, moreMemoryClicked, setMoreMemoryClicked, selectedMemory, setSelectedMemory, folders, setFolders, folderId, setFolderId, folderName, setFolderName,selectedFolder, setSelectedFolder}}>
+      <MyContext.Provider value={{ username, setUser, memoryItems, setMemoryItems, usersId, setUsersId, moreMemoryClicked, setMoreMemoryClicked, selectedMemory, setSelectedMemory, folders, setFolders, folderId, setFolderId, folderName, setFolderName,selectedFolder, setSelectedFolder, folderEdit, setFolderEdit,isEditFolder, setIsEditFolder}}>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<SignIn />} />

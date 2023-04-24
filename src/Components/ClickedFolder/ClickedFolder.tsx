@@ -12,6 +12,8 @@ export default function ClickedFolder() {
     const { folderName } = useContext(MyContext);
     const { selectedFolder } = useContext(MyContext);
     const { setSelectedMemory } = useContext(MyContext);
+    const { setFolderEdit } = useContext(MyContext);
+    const { setIsEditFolder } = useContext(MyContext);
 
     const [memoryItem, setMemoryItem] = useState([]);
     
@@ -28,6 +30,14 @@ export default function ClickedFolder() {
     const handleClickedMemory = (memory: any) => {
         setSelectedMemory(memory);
         navigate('/memory');
+    }
+
+    const handleEditFolder = () => {
+        setFolderEdit(folderName);
+        setIsEditFolder(true);
+        setTimeout(() => {
+            navigate('/addfolder');
+        }, 500);
     }
 
     return (
@@ -74,6 +84,11 @@ export default function ClickedFolder() {
                             })}
                         </Row>
                     </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col className='d-flex justify-content-center'>
+                    <Button onClick={handleEditFolder} className='' variant='warning'>Edit</Button>
                 </Col>
             </Row>
             <Row>

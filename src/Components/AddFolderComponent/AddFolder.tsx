@@ -11,7 +11,8 @@ import { Folder } from '../Services/DataService';
 export default function AddFolder() {
     const { usersId } = useContext(MyContext);
     const { folderId } = useContext(MyContext);
-    const { setFolderId } = useContext(MyContext);
+    const { isEditFolder } = useContext(MyContext);
+    const { folderEdit } = useContext(MyContext);
 
     const [show, setShow] = useState(false);
     const [folderName, setFolderName] = useState('');
@@ -89,7 +90,8 @@ export default function AddFolder() {
                                 placeholder="Folder Name"
                                 className='inputFolder'
                                 onChange={handleName}
-                            />
+                                value={isEditFolder ? folderEdit : ''}
+                                />
                         </Form.Group>
                     </Form>
                 </Col>
@@ -97,7 +99,7 @@ export default function AddFolder() {
             
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={handleFolder} className='folderBtn' variant=''>Add</Button>
+                    <Button onClick={handleFolder} className='folderBtn' variant=''>{isEditFolder ? 'Update' : 'Add'}</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={handleBackToHome} className='folderBtn' variant=''>Cancel</Button>
