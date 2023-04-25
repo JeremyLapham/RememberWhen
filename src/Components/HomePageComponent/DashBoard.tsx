@@ -20,6 +20,7 @@ export default function DashBoard() {
     const { setMoreMemoryClicked } = useContext(MyContext);
     const { setSelectedFolder } = useContext(MyContext);
     const { setFolderName } = useContext(MyContext);
+    const { setIsEditFolder } = useContext(MyContext);
 
     const navigate = useNavigate();
 
@@ -55,7 +56,7 @@ export default function DashBoard() {
 
     const handleFolderClick = (folder: any, name: string) => {
         setSelectedFolder(folder);
-        setFolderName(name)
+        setFolderName(name);
         navigate('/ClickedFolder');
     }
     return (
@@ -80,7 +81,7 @@ export default function DashBoard() {
                     </Row>
                     <Row>
                         <div className='d-flex justify-content-end'>
-                            <Button onClick={() => navigate('/AddFolder')} className='addNewFolder' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                            <Button onClick={() => {navigate('/AddFolder'); setIsEditFolder(false);}} className='addNewFolder' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                                 <Col xs={9}>
                                     <p className='addNewTxt'>Add Folder</p>
                                 </Col>

@@ -8,15 +8,17 @@ import { MyContext, resetContext } from '../context';
 
 export default function Logout() {
     const navigate = useNavigate();
-    
+
     const { setMoreMemoryClicked } = useContext(MyContext);
+    const { setIsEditFolder } = useContext(MyContext);
     const { setMemoryItems } = useContext(MyContext);
+    const { setFolderEdit } = useContext(MyContext);
     const { setUsersId } = useContext(MyContext);
     const { setFolders } = useContext(MyContext);
     const { setUser } = useContext(MyContext);
 
     const LogOut = () => {
-        resetContext(setUser, setUsersId, setMemoryItems, setMoreMemoryClicked, setFolders);
+        resetContext(setUser, setUsersId, setMemoryItems, setMoreMemoryClicked, setFolders, setIsEditFolder, setFolderEdit);
         navigate('/');
     }
     return (

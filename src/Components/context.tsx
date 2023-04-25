@@ -19,8 +19,8 @@ interface MyContextType {
   setFolderName: (folderName: string) => void;
   selectedFolder: any;
   setSelectedFolder: (selectedFolder: any) => void;
-  folderEdit: string;
-  setFolderEdit: (folderEdit: string) => void;
+  folderEdit: any;
+  setFolderEdit: (folderEdit: any) => void;
   isEditFolder: boolean;
   setIsEditFolder: (isEditFolder: boolean) => void;
 }
@@ -35,7 +35,7 @@ export const MyContext = createContext<MyContextType>({
   folderId: 0, setFolderId: () => { },
   folderName: '', setFolderName: () => { },
   selectedFolder: {}, setSelectedFolder: () => { },
-  folderEdit: '', setFolderEdit: () => { },
+  folderEdit: {}, setFolderEdit: () => { },
   isEditFolder: false, setIsEditFolder: () => { }
 });
 
@@ -44,10 +44,15 @@ export const resetContext = (
   setUsersId: { (usersId: number): void; (arg0: number): void; },
   setMemoryItems: { (memoryItems: object): void; (arg0: never[]): void; },
   setMoreMemoryClicked: { (moreMemoryClicked: boolean): void; (arg0: boolean): void; },
-  setFolders: (arg0: never[]) => void) => {
+  setFolders: (arg0: never[]) => void,
+  setIsEditFolder: (arg0: boolean) => void,
+  setFolderEdit: { (folderEdit: object): void; (arg0: string): void; }
+  ) => {
   setUser('');
   setMemoryItems([]);
   setUsersId(0);
   setMoreMemoryClicked(false);
-  setFolders([])
+  setFolders([]);
+  setFolderEdit('');
+  setIsEditFolder(false)
 }

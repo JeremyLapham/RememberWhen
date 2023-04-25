@@ -132,3 +132,24 @@ export async function updateMemoryItem(memoryItem: object) {
     console.log(data);
     return data;
 }
+
+
+
+
+
+export async function updateFolder(folder: object) {
+    const res = await fetch('https://rememberwhenapi.azurewebsites.net/Folder/UpdateFolder', {
+        method: "PUT",
+        headers: {
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify(folder)
+    });
+    if (!res.ok) {
+        const message = `An Error has Occured ${res.status}`;
+        throw new Error(message);
+    }
+    let data = await res.json();
+    console.log(data);
+    return data;
+}

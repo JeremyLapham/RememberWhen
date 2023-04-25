@@ -19,6 +19,7 @@ export default function ClickedFolder() {
     
     useEffect(() => {
         const GetMemories = async() => {
+            // console.log(selectedFolder);
             let memory = await getMemoryByFolderId(selectedFolder);
             setMemoryItem(memory);
         }
@@ -33,7 +34,10 @@ export default function ClickedFolder() {
     }
 
     const handleEditFolder = () => {
-        setFolderEdit(folderName);
+        setFolderEdit({
+            name: folderName,
+            id: selectedFolder
+        });
         setIsEditFolder(true);
         setTimeout(() => {
             navigate('/addfolder');
