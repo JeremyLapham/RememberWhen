@@ -11,7 +11,9 @@ export default function ShownMemory() {
     const [show, setShow] = useState(false);
     const [editDelete, setEditDelete] = useState('')
     const  { selectedMemory } = useContext(MyContext);
-
+    const  { setMemoryEdit } = useContext(MyContext);
+    const  { setIsMemoryEdit } = useContext(MyContext);
+    
     const editOrDelte = () => {
         console.log(editDelete)
     }
@@ -23,6 +25,23 @@ export default function ShownMemory() {
     const handleBackButtonClick = () => {
         navigate(-1);
     };
+
+    const handleEditMemory = () => {
+        setMemoryEdit({
+            title: selectedMemory.title,
+            id: selectedMemory.id,
+            image: selectedMemory.image,
+            tags: selectedMemory.tags,
+            description: selectedMemory.description,
+            date: selectedMemory.date
+
+        });
+        setIsMemoryEdit(true);
+        setTimeout(() => {
+            navigate('/addMemory');
+        }, 500);
+    }
+
 
     return (
         <Container fluid>
@@ -88,7 +107,7 @@ export default function ShownMemory() {
             </Row>
             <Row className='rowMargin'>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => navigate('/addmemory')} className='editBtn' variant=''>Edit</Button>
+                    <Button onClick={handleEditMemory } className='editBtn' variant=''>Edit</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={() => {setShow(true);}} className='deleteBtn' variant=''>Delete</Button>
