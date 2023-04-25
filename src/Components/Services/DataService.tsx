@@ -118,7 +118,7 @@ export async function getMemoryByFolderId(folderId: number) {
 
 export async function updateMemoryItem(memoryItem: object) {
     const res = await fetch('https://rememberwhenwebsite.azurewebsites.net/Memory/UpdateMemoryItem', {
-        method: "POST",
+        method: "PUT",
         headers: {
             'Content-Type': "application/json"
         },
@@ -133,13 +133,26 @@ export async function updateMemoryItem(memoryItem: object) {
     return data;
 }
 
-
-
-
-
 export async function updateFolder(folder: object) {
     const res = await fetch('https://rememberwhenapi.azurewebsites.net/Folder/UpdateFolder', {
         method: "PUT",
+        headers: {
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify(folder)
+    });
+    if (!res.ok) {
+        const message = `An Error has Occured ${res.status}`;
+        throw new Error(message);
+    }
+    let data = await res.json();
+    console.log(data);
+    return data;
+}
+
+export async function DeleteFolder(folder: object) {
+    const res = await fetch('https://rememberwhenapi.azurewebsites.net/Folder/DeleteFolder', {
+        method: "POST",
         headers: {
             'Content-Type': "application/json"
         },

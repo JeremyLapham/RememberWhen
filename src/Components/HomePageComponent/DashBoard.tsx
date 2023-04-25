@@ -81,7 +81,7 @@ export default function DashBoard() {
                     </Row>
                     <Row>
                         <div className='d-flex justify-content-end'>
-                            <Button onClick={() => {navigate('/AddFolder'); setIsEditFolder(false);}} className='addNewFolder' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                            <Button onClick={() => { navigate('/AddFolder'); setIsEditFolder(false); }} className='addNewFolder' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                                 <Col xs={9}>
                                     <p className='addNewTxt'>Add Folder</p>
                                 </Col>
@@ -113,10 +113,10 @@ export default function DashBoard() {
                     <Row>
                         <Col className='d-flex justify-content-center folderDisplay'>
                             <Row>
-                                {folders.map((folder: any, idx: number) => {
+                                {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((folder: any, idx: number) => {
                                     return (
                                         <Col key={idx} xs={4}>
-                                            <Button onClick={() => { handleFolderClick(folder.id, folder.name) }} variant=''>
+                                            <Button onClick={() => { handleFolderClick(folder, folder.name); }} variant=''>
                                                 <img src={folderImg} />
                                                 <p className='folderFont'>{folder.name}</p>
                                             </Button>
@@ -133,7 +133,7 @@ export default function DashBoard() {
                         {memoryItems.map((cardInfo: any, idx: number) => {
                             return (
                                 <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
-                                    <img className='memoryCards' src={cardInfo.image} alt='Your memory image is here'/>
+                                    <img className='memoryCards' src={cardInfo.image} alt='Your memory image is here' />
                                     <div className='txtOnImg'>{cardInfo.title}</div>
                                     <div className='dateOnImg'>{cardInfo.date}</div>
                                 </Button>
