@@ -106,7 +106,7 @@ export async function getMemoryItemsByUserId(userid: number) {
 }
 
 export async function getFolderByUserId(userid: number) {
-    let res = await fetch(`https://rememberwhenapi.azurewebsites.net/Folder/GetFoldersByUserId/${userid}?isDeleted=false`);
+    let res = await fetch(`https://rememberwhenapi.azurewebsites.net/Folder/GetFoldersByUserId/${userid}`);
     let data = await res.json();
     return data;
 }
