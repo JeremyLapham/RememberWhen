@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import './AddFolder.css';
 import { MyContext } from '../context';
 import { Folder, updateFolder } from '../Services/DataService';
-
+import swal from 'sweetalert';
 
 export default function AddFolder() {
     const { usersId } = useContext(MyContext);
@@ -27,22 +27,26 @@ export default function AddFolder() {
 
 
     const handleFolder = async () => {
-        let result = false;
-        if (isEditFolder) {
-            const fold = {
-                Id: folderEdit.id,
-                userId: usersId,
-                name: folderName,
-                isDeleted: false
-            }
-            result = await updateFolder(fold);
+        if (folderName === '') {
+            swal("Please enter a name for your folder");
         } else {
-            const fold = {
-                userId: usersId,
-                name: folderName,
-                isDeleted: false
+            let result = false;
+            if (isEditFolder) {
+                const fold = {
+                    Id: folderEdit.id,
+                    userId: usersId,
+                    name: folderName,
+                    isDeleted: false
+                }
+                result = await updateFolder(fold);
+            } else {
+                const fold = {
+                    userId: usersId,
+                    name: folderName,
+                    isDeleted: false
+                }
+                result = await Folder(fold);
             }
-            result = await Folder(fold);
         }
     }
     return (

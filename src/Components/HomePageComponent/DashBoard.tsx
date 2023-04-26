@@ -27,11 +27,6 @@ export default function DashBoard() {
     const handleClick = () => {
         setMoreMemoryClicked(!moreMemoryClicked);
     }
-    // Testing branches
-    // const memory: any = memoryItems;
-    // memory.map((cat) => {
-    //     console.log(cat.category)
-    // })
 
     useEffect(() => {
         const GetLoggedInData = async () => {
