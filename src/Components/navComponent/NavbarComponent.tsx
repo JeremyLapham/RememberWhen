@@ -12,6 +12,8 @@ export default function CustomNavbar() {
     const [isActive, setIsActive] = useState(false);
 
     const { setMoreMemoryClicked } = useContext(MyContext);
+    const { setIsEditFolder } = useContext(MyContext);
+    const { setIsMemoryEdit } = useContext(MyContext);
 
     const handleClick = () => {
         setIsActive(!isActive);
@@ -54,11 +56,11 @@ export default function CustomNavbar() {
                                 <h1 className='navWords d-inline'>Settings</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '21px' }}>
-                            <Nav.Link as={Link} to='/AddMemory'><img src={addnew} alt='addnew picture' />
+                            <Nav.Link as={Link} to='/AddMemory' onClick={() => setIsMemoryEdit(false)}><img src={addnew} alt='addnew picture' />
                                 <h1 className='navWords d-inline'>Add Memory</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '21px' }}>
-                            <Nav.Link as={Link} to='/AddFolder'><img src={addnew} alt='addnew picture' />
+                            <Nav.Link as={Link} to='/AddFolder' onClick={() => setIsEditFolder(false)}><img src={addnew} alt='addnew picture' />
                                 <h1 className='navWords d-inline'>Add Folder</h1></Nav.Link>
                         </div>
                         <div style={{ marginLeft: '22px' }}>

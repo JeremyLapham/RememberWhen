@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem, getFolderByUserId } from '../Services/DataService';
 import { MyContext } from '../context';
+import swal from 'sweetalert';
 
 export default function AddMemory() {
     const { usersId } = useContext(MyContext);
@@ -12,7 +13,7 @@ export default function AddMemory() {
     const { setMemoryItems } = useContext(MyContext);
     const { setFolderId } = useContext(MyContext);
     const { memoryEdit } = useContext(MyContext);
-    const {isEditMemory} = useContext(MyContext);
+    const { isEditMemory } = useContext(MyContext);
 
 
 
@@ -30,9 +31,6 @@ export default function AddMemory() {
     const [memoryPublisherName, setPublisherName] = useState('');
     const [folders, setFolders] = useState([]);
 
-    const [editBool, setEdit] = useState(false);
-
-
     const handleTitle = ({ target }) => setMemoryTitle(target.value);
     const handleDescription = ({ target }) => setMemoryDescription(target.value);
     const handleFolder = ({ target: { value } }) => setFolderId(value);
@@ -49,50 +47,54 @@ export default function AddMemory() {
         setSelectedImage(e.target.files[0]);
     }
 
-    
+
 
     // const handleAudio = () => {
     //     setSelectedAudio(sound)
     // };
 
     const handleSave = async () => {
-        const item = {
-            Id: memoryId,
-            Userid: usersId,
-            FolderId: folderId, //figure out how to make this change based on the folder that the user set
-            PublishedName: memoryPublisherName,
-            Title: memoryTitle,
-            Image: memoryImage,
-            Description: memoryDescription,
-            Date: memoryDate,
-            Tags: memoryTags,
-            Category: '',
-            isPublished: true,
-            isDeleted: false
-        }
-        let result = false;
-        if (isEditMemory) {
-            result = await updateMemoryItem(item);
+        if (memoryImage === '' || memoryDate === '' || memoryTitle === '' || memoryDescription === '') {
+            swal("Please make sure you enter in every field");
         } else {
-            result = await addMemoryItem(item);
-        }
-        
-        if (result) {
-            let userMemoryItems = await getMemoryItemsByUserId(usersId);
-            setMemoryItems(userMemoryItems);
-        } else {
-            alert(`Blog Item was not ${editBool ? 'Updated' : 'Added'}`)
+            const item = {
+                Id: memoryId,
+                Userid: usersId,
+                FolderId: folderId,
+                PublishedName: memoryPublisherName,
+                Title: memoryTitle,
+                Image: memoryImage,
+                Description: memoryDescription,
+                Date: memoryDate,
+                Tags: memoryTags,
+                Category: '',
+                isPublished: true,
+                isDeleted: false
+            }
+            let result = false;
+            if (isEditMemory) {
+                result = await updateMemoryItem(item);
+            } else {
+                result = await addMemoryItem(item);
+            }
+
+            if (result) {
+                let userMemoryItems = await getMemoryItemsByUserId(usersId);
+                setMemoryItems(userMemoryItems);
+            } else {
+                alert(`Blog Item was not ${isEditMemory ? 'Updated' : 'Added'}`)
+            }
         }
     }
-    
+
     useEffect(() => {
-        const GetFolders = async() => {
+        const GetFolders = async () => {
             let displayFolder = await getFolderByUserId(usersId);
             setFolders(displayFolder);
             setFolderId(displayFolder.id);
         }
         GetFolders()
-    }, []);    
+    }, []);
 
     return (
         <Container fluid>
