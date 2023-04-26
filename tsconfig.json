@@ -14,6 +14,7 @@
       "src/Components/SignUpComponent/SignUp.tsx",
       "src/Components/HomePageComponent/DashBoard.tsx",
       "src/Components/ClickedFolder/ClickedFolder.tsx",
+      "src/Components/ShownMemory/ShownMemory.tsx",
       "src/Components/Logout/Logout.tsx"
     ],
     "include": [

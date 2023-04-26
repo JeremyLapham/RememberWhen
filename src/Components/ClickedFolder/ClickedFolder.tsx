@@ -1,21 +1,85 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CustomNavbar from '../navComponent/NavbarComponent';
-import { Col, Container, Row, Button } from 'react-bootstrap';
+import { Col, Container, Row, Button, Modal } from 'react-bootstrap';
 import heart from '../../assets/folderpic.png';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './ClickedFolder.css';
 import AddIcon from '@mui/icons-material/Add';
+import { MyContext } from '../context';
+import { DeleteFolder, getMemoryByFolderId } from '../Services/DataService';
 
 export default function ClickedFolder() {
+    const { folderName } = useContext(MyContext);
+    const { selectedFolder } = useContext(MyContext);
+    const { setSelectedMemory } = useContext(MyContext);
+    const { setFolderEdit } = useContext(MyContext);
+    const { setIsEditFolder } = useContext(MyContext);
+
+    const [memoryItem, setMemoryItem] = useState([]);
+
+    useEffect(() => {
+        const GetMemories = async () => {
+            // console.log(selectedFolder);
+            let memory = await getMemoryByFolderId(selectedFolder.id);
+            setMemoryItem(memory);
+        }
+        GetMemories()
+    }, []);
+
     const navigate = useNavigate();
-    const location = useLocation();
+
+    const handleClickedMemory = (memory: any) => {
+        setSelectedMemory(memory);
+        navigate('/memory');
+    }
+
+    const handleEditFolder = () => {
+        setFolderEdit({
+            name: folderName,
+            id: selectedFolder.id
+        });
+        setIsEditFolder(true);
+        setTimeout(() => {
+            navigate('/addfolder');
+        }, 500);
+    }
+    const handleDeleteFolder = async () => {
+        await DeleteFolder(selectedFolder);
+        navigate('/dashboard');
+    }
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
 
     return (
         <Container fluid>
+            <Row>
+                <Modal className='modalBG' show={show} onHide={handleClose}>
+                    <Modal.Body className='modalBody'>
+                        <Row>
+                            <Col className='d-flex justify-content-center'>
+                                <p className='modalTxt'>Are you sure you want to delete this folder?</p>
+                            </Col>
+                        </Row>
+                        <Row>
+
+                            <Col className='d-flex justify-content-center'>
+                                <Button className='confirmDeleteBtn' variant="" onClick={handleDeleteFolder}>
+                                    Delete
+                                </Button>
+                            </Col>
+                            <Col className='d-flex justify-content-center'>
+                                <Button className='cancelDelete' variant="" onClick={handleClose}>
+                                    Cancel
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
+            </Row>
             <CustomNavbar />
             <Row>
                 <Col>
-                    <h1 className='nameFolder text-center'>{location.state.name}...</h1>
+                    <h1 className='nameFolder text-center'>{folderName}...</h1>
                 </Col>
             </Row>
             <Row className='d-flex align-items-center'>
@@ -41,16 +105,14 @@ export default function ClickedFolder() {
                 <Col className='d-flex justify-content-center'>
                     <div className='displayMemory'>
                         <Row>
-                            {location.state.folders.map((memory: any,idx: any) => {
+                            {memoryItem.map((memory: any, idx: any) => {
                                 return (
                                     <Col key={idx} xs={4} className='cardNoPad'>
-                                        <Button variant='' className='allFolderBtn'>
-                                            <img className='folderImg' src={memory.displayedImg} alt='clickable image' />
+                                        <Button onClick={() => handleClickedMemory(memory)} variant='' className='allFolderBtn'>
+                                            <img className='folderImg' src={memory.image} alt='clickable image' />
                                         </Button>
-                                        <Row className='memoryDisplayText'>
-                                        <p className='text-center memoryTitle'>{memory.memoryTitle}</p>
-                                        <p className='text-center memoryDate'>{memory.memoryDate}</p>
-                                        </Row>
+                                        <p className='text-center memoryTitle'>{memory.title}</p>
+                                        <p className='text-center memoryDate'>{memory.date}</p>
                                     </Col>
                                 );
                             })}
@@ -60,7 +122,15 @@ export default function ClickedFolder() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => navigate('/DashBoard')} className='moreMemories' variant=''>Go Back</Button>
+                    <Button onClick={handleEditFolder} className='' variant='warning'>Edit</Button>
+                </Col>
+                <Col className='d-flex justify-content-center'>
+                    <Button onClick={() => { setShow(true); }} className='' variant='danger'>Delete</Button>
+                </Col>
+            </Row>
+            <Row>
+                <Col className='d-flex justify-content-center'>
+                    <Button onClick={() => navigate(-1)} className='moreMemories' variant=''>Go Back</Button>
                 </Col>
             </Row>
         </Container>

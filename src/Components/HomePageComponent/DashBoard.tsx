@@ -1,256 +1,242 @@
-import React, { useEffect, useState } from "react";
-import {
-  Col,
-  Container,
-  Row,
-  Navbar,
-  Offcanvas,
-  Button,
-  Nav,
-} from "react-bootstrap";
-import logo from "../../assets/elephantLogo.svg";
-import placer from "../../assets/placer.png";
-import placerTwo from "../../assets/placerTwo.png";
-import folderPic from "../../assets/folderpic.png";
-import "./DashBoard.css";
-import { useNavigate } from "react-router-dom";
-import CustomNavbar from "../../Components/navComponent/NavbarComponent";
-import AddIcon from "@mui/icons-material/Add";
+import React, { useContext, useEffect, useState } from 'react';
+import { Col, Container, Row, Button } from 'react-bootstrap';
+import logo from '../../assets/elephantLogo.svg';
+import folderImg from '../../assets/folderpic.png'
+import './DashBoard.css';
+import { useNavigate } from 'react-router-dom';
+import CustomNavbar from '../../Components/navComponent/NavbarComponent';
+import AddIcon from '@mui/icons-material/Add';
+import { checkToken, getFolderByUserId, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
+import { MyContext } from '../context';
 
 export default function DashBoard() {
-  const [hello, setHello] = useState("Jeremy");
-  const [moreMemoryClicked, setMoreMemoryClicked] = useState(false);
+  const { username } = useContext(MyContext);
+  const { memoryItems } = useContext(MyContext);
+  const [placerFolder, setPlacerHolder] = useState([]);
+  const [placerCard, setPlacerCard] = useState([]);
+  const [hello, setHello] = useState("");
+  const { moreMemoryClicked } = useContext(MyContext);
+  const { folders } = useContext(MyContext);
+  const { setMemoryItems } = useContext(MyContext);
+  const { setUsersId } = useContext(MyContext);
+  const { setFolders } = useContext(MyContext);
+  const { setMoreMemoryClicked } = useContext(MyContext);
+  const { setSelectedFolder } = useContext(MyContext);
+  const { setFolderName } = useContext(MyContext);
+  const { setIsEditFolder } = useContext(MyContext);
+
   const navigate = useNavigate();
 
   const handleClick = () => {
     setMoreMemoryClicked(!moreMemoryClicked);
-  };
-
-  const [placerCard, setPlacerCard] = useState([
-    {
-      overImgTxt: "Our first date",
-      dateTxt: "2/14/23",
-      img: placer,
-    },
-    {
-      overImgTxt: "Bowling trip",
-      dateTxt: "5/26/23",
-      img: placerTwo,
-    },
-  ]);
-  interface Folder {
-    folderName: string;
-    displayedImg: any;
-    memoryTitle: string;
-    memoryDate: any;
-    passData: any;
   }
+  // const memory: any = memoryItems;
+  // memory.map((cat) => {
+  //     console.log(cat.category)
+  // })
 
-  const [folder1, setFolder1] = useState<Folder[]>([
-    {
-      folderName: "Dates",
-      displayedImg: placer,
-      memoryTitle: "First Date",
-      memoryDate: "2/14/23",
-      passData: "",
-    },
-    {
-      folderName: "Dates",
-      displayedImg: placer,
-      memoryTitle: "First Date",
-      memoryDate: "2/14/23",
-      passData: "",
-    },
-  ]);
-  const [folder2, setFolder2] = useState<Folder[]>([
-    {
-      folderName: "Trips",
-      displayedImg: placerTwo,
-      memoryTitle: "Bowling trip",
-      memoryDate: "5/26/23",
-      passData: "",
-    },
-    {
-      folderName: "Trips",
-      displayedImg: placerTwo,
-      memoryTitle: "Bowling trip",
-      memoryDate: "5/26/23",
-      passData: "",
-    },
-  ]);
-  const [folder3, setFolder3] = useState<Folder[]>([
-    {
-      folderName: "Camping",
-      displayedImg: "",
-      memoryTitle: "Camping",
-      memoryDate: "1/14/23",
-      passData: "",
-    },
-    {
-      folderName: "Camping",
-      displayedImg: "",
-      memoryTitle: "Camping",
-      memoryDate: "1/14/23",
-      passData: "",
-    },
-  ]);
+  useEffect(() => {
+    const GetLoggedInData = async () => {
+      const loggedIn: {} = loggedInData();
+      const LoggedIn = {
+        userId: loggedIn['userId'],
+        publisherName: loggedIn['publisherName']
+      }
+      setUsersId(LoggedIn.userId);
+      let userMemoryItems = await getMemoryItemsByUserId(LoggedIn.userId);
+      let displayFolder = await getFolderByUserId(LoggedIn.userId);
+      setMemoryItems(userMemoryItems);
+      setFolders(displayFolder);
+    }
 
-  const [placerFolder, setPlacerFolder] = useState<Folder[]>([
-    {
-      folderName: "Dates",
-      displayedImg: placer,
-      memoryTitle: "First Date",
-      memoryDate: "2/14/23",
-      passData: folder1,
-    },
-    {
-      folderName: "Trips",
-      displayedImg: placerTwo,
-      memoryTitle: "Bowling trip",
-      memoryDate: "5/26/23",
-      passData: folder2,
-    },
-    {
-      folderName: "Camping",
-      displayedImg: "",
-      memoryTitle: "Camping",
-      memoryDate: "1/14/23",
-      passData: folder3,
-    },
-  ]);
+    if (!checkToken()) {
+      navigate('/SignInInfo');
+    } else {
+      GetLoggedInData();
+    }
+  }, []);
 
-  const handleFolderClick = (folder1: any, fileName: string) => {
-    navigate("/ClickedMemory", { state: { folders: folder1, name: fileName } });
-  };
-
+  const handleFolderClick = (folder: any, name: string) => {
+    setSelectedFolder(folder);
+    setFolderName(name);
+    navigate('/ClickedFolder');
+  }
   return (
     <Container fluid>
       <CustomNavbar />
-      <Row className="d-flex align-items-center">
+      <Row className='d-flex align-items-center'>
         <Col xs={6}>
-          <img
-            className="logoEle"
-            src={logo}
-            alt="remember when logo, elephant holding balloon"
-          />
+          <img className='logoEle' src={logo} alt='remember when logo, elephant holding balloon' />
         </Col>
-        <Col xs={6} className="d-flex flex-column justify-content-end">
+        <Col xs={6} className='d-flex flex-column justify-content-end'>
           <Row>
-            <div className="d-flex justify-content-end">
-              <Button
-                onClick={() => navigate("/AddMemory")}
-                className="addNew"
-                variant=""
-                style={{ display: "flex", alignItems: "center" }}
-              >
+            <div className='d-flex justify-content-end'>
+              <Button onClick={() => navigate('/AddMemory')} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                 <Col xs={9}>
-                  <p className="addNewTxt">Add Memory</p>
+                  <p className='addNewTxt'>Add Memory</p>
                 </Col>
-                <Col xs={3} className="d-flex justify-content-center">
-                  <AddIcon style={{ fontSize: "28px" }} />
+                <Col xs={3} className='d-flex justify-content-center'>
+                  <AddIcon style={{ fontSize: '28px' }} />
                 </Col>
               </Button>
             </div>
           </Row>
           <Row>
-            <div className="d-flex justify-content-end">
-              <Button
-                onClick={() => navigate("/AddFolder")}
-                className="addNewFolder"
-                variant=""
-                style={{ display: "flex", alignItems: "center" }}
-              >
+            <div className='d-flex justify-content-end'>
+              <Button onClick={() => { navigate('/AddFolder'); setIsEditFolder(false); }} className='addNewFolder' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                 <Col xs={9}>
-                  <p className="addNewTxt">Add Folder</p>
+                  <p className='addNewTxt'>Add Folder</p>
                 </Col>
-                <Col xs={3} className="d-flex justify-content-center">
-                  <AddIcon style={{ fontSize: "28px" }} />
+                <Col xs={3} className='d-flex justify-content-center'>
+                  <AddIcon style={{ fontSize: '28px' }} />
                 </Col>
               </Button>
             </div>
           </Row>
         </Col>
       </Row>
-      {moreMemoryClicked ? (
+      {moreMemoryClicked ?
         <Row>
-          <Col className="rememberWhenTop">
-            <h1 className="remmeberWhen">lets remember your memories...</h1>
+          <Col className='rememberWhenTop'>
+            <h1 className='remmeberWhen'>Remember When...</h1>
           </Col>
         </Row>
-      ) : (
+        :
         <Row>
-          <Col className="helloTopTxt">
-            <h1 className="helloTxt">
-              Hello,{" "}
-              <p style={{ color: "black" }} className="d-inline">
-                {hello}
-              </p>
-            </h1>
-            <p className="welcomeTxt">
-              welcome to your memory album, remember when...
-            </p>
+          <Col className='helloTopTxt'>
+            <h1 className='helloTxt'>Hello, <p style={{ color: 'black' }} className='d-inline'>{username}</p></h1>
+            <p className='welcomeTxt'>Welcome to your memories, remember when...</p>
           </Col>
         </Row>
-      )}
+      }
 
-      {moreMemoryClicked ? (
-        <Container className="folderBoxCont">
-          <Row className="folderBox">
-            <Col className="d-flex justify-content-center folderDisplay">
+      {moreMemoryClicked ?
+        <Container>
+          <Row>
+            <Col className='d-flex justify-content-center folderDisplay'>
               <Row>
-                {placerFolder.map((folder, idx) => {
+                {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((folder: any, idx: number) => {
                   return (
                     <Col key={idx} xs={4}>
-                      <Button
-                        onClick={() => {
-                          handleFolderClick(folder.passData, folder.folderName);
-                        }}
-                        variant=""
-                      >
-                        <img src={folderPic} />
-                        <p className="folderFont">{folder.folderName}</p>
+                      <Button onClick={() => { handleFolderClick(folder, folder.name); }} variant=''>
+                        <img src={folderImg} />
+                        <p className='folderFont'>{folder.name}</p>
                       </Button>
                     </Col>
-                  );
+                  )
                 })}
               </Row>
             </Col>
           </Row>
         </Container>
-      ) : (
+        :
         <Row>
-          <Col className="memoryBox">
-            {placerCard.map((cardInfo, idx) => {
+          <Col className='memoryBox'>
+            {memoryItems.map((cardInfo: any, idx: number) => {
               return (
-                <Button
-                  key={idx}
-                  style={{ position: "relative", pointerEvents: "none" }}
-                  variant=""
-                >
-                  <img className="memoryCards" src={cardInfo.img} />
-                  <div className="txtOnImg">{cardInfo.overImgTxt}</div>
-                  <div className="dateOnImg">{cardInfo.dateTxt}</div>
+                <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
+                  <img className='memoryCards' src={cardInfo.image} alt='Your memory image is here' />
+                  <div className='txtOnImg'>{cardInfo.title}</div>
+                  <div className='dateOnImg'>{cardInfo.date}</div>
                 </Button>
               );
             })}
           </Col>
         </Row>
-      )}
+      }
 
+      <Row>
+        <Col className='d-flex justify-content-center'>
+          <Button onClick={handleClick} className='moreMemories' variant=''>{moreMemoryClicked ? 'Go Back' : 'Click for all memories'}</Button>
+        </Col>
+        <Col xs={3} className="d-flex justify-content-center">
+          <AddIcon style={{ fontSize: "28px" }} />
+        </Col>
+      </Row >
+  {
+    moreMemoryClicked?(
+        <Row>
+    <Col className="rememberWhenTop">
+      <h1 className="remmeberWhen">lets remember your memories...</h1>
+    </Col>
+        </Row >
+      ) : (
+    <Row>
+      <Col className="helloTopTxt">
+        <h1 className="helloTxt">
+          Hello,{" "}
+          <p style={{ color: "black" }} className="d-inline">
+            {hello}
+          </p>
+        </h1>
+        <p className="welcomeTxt">
+          welcome to your memory album, remember when...
+        </p>
+      </Col>
+    </Row>
+  )
+}
 
-      <Row className="desktopBtnRow">
-      <Col className="desktopAddCol">
-          <Button onClick={() => navigate("/AddMemory")} className="desktopAddBtn">Add Memory +</Button>
-        </Col>
-        <Col className="d-flex justify-content-center">
-          <Button onClick={handleClick} className="moreMemories" variant="">
-            {moreMemoryClicked ? "Go Back" : "Click for all memories"}
-          </Button>
-        </Col>
-        <Col className="desktopAddCol">
-          <Button onClick={() => navigate("/AddFolder")} className="desktopAddBtn2">Add Folder +</Button>
+{
+  moreMemoryClicked ? (
+    <Container className="folderBoxCont">
+      <Row className="folderBox">
+        <Col className="d-flex justify-content-center folderDisplay">
+          <Row>
+            {placerFolder.map((folder: any, idx) => {
+              return (
+                <Col key={idx} xs={4}>
+                  <Button
+                    onClick={() => {
+                      handleFolderClick(folder.passData, folder.folderName);
+                    }}
+                    variant=""
+                  >
+                    <img src={folder} />
+                    <p className="folderFont">{folder.folderName}</p>
+                  </Button>
+                </Col>
+              );
+            })}
+          </Row>
         </Col>
       </Row>
     </Container>
+  ) : (
+    <Row>
+      <Col className="memoryBox">
+        {placerCard.map((cardInfo: any, idx) => {
+          return (
+            <Button
+              key={idx}
+              style={{ position: "relative", pointerEvents: "none" }}
+              variant=""
+            >
+              <img className="memoryCards" src={cardInfo.img} />
+              <div className="txtOnImg">{cardInfo.overImgTxt}</div>
+              <div className="dateOnImg">{cardInfo.dateTxt}</div>
+            </Button>
+          );
+        })}
+      </Col>
+    </Row>
+  )
+}
+
+
+<Row className="desktopBtnRow">
+  <Col className="desktopAddCol">
+    <Button onClick={() => navigate("/AddMemory")} className="desktopAddBtn">Add Memory +</Button>
+  </Col>
+  <Col className="d-flex justify-content-center">
+    <Button onClick={handleClick} className="moreMemories" variant="">
+      {moreMemoryClicked ? "Go Back" : "Click for all memories"}
+    </Button>
+  </Col>
+  <Col className="desktopAddCol">
+    <Button onClick={() => navigate("/AddFolder")} className="desktopAddBtn2">Add Folder +</Button>
+  </Col>
+</Row>
+    </Container >
   );
 }

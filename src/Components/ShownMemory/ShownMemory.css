@@ -1,0 +1,144 @@
+.memoryRemember {
+    font-size:30px;
+    color: #848383;
+    font-weight:bold;
+    margin-top:23px;
+    margin-bottom: 34px;
+}
+
+.memoryName {
+    font-size:20px;
+    font-weight:light;
+    margin-bottom:25px;
+}
+
+.phantLogo {
+    width:160px;
+    margin-bottom:-1.5rem;
+}
+
+.memoryImg {
+    width:350px;
+    height:375px;
+    border-radius: 10px;
+    border:1px solid;
+    margin-bottom:23px;
+}
+
+.displayHashtags {
+    width:350px;
+    height:51px;
+    background-color:#B7D1DA;
+    border-radius: 15px;
+    border:1px solid;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:15px;
+}
+
+.hashtags {
+    font-size: 15px;
+    margin: 0 !important;
+}
+
+.description {
+    width:350px;
+    height:213px;
+    border-radius: 20px;
+    border: 1px solid;
+}
+
+.memoryDesTxt {
+    font-size:15px;
+    font-weight: light;
+    margin:19px 10px;
+    height:136px;
+    overflow-y: scroll;
+}
+
+.memoryDesDate  {
+    font-size:20px;
+    font-weight: light;
+}
+
+.editBtn {
+    width:90px;
+    height:31px;
+    background-color:#ccedc9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.deleteBtn {
+    width:90px;
+    height:31px;
+    background-color:#FF6161;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shareBtn {
+    width:90px;
+    height:31px;
+    background-color:#B7D1DA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.backBtn {
+    width:350px;
+    height:34px;
+    background-color:#857B74;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:27px;
+}
+.rowMargin {
+    margin-top:52px;
+    margin-bottom:23px;
+}
+
+.cancelDelete {
+    width:90px;
+    height:31px;
+    background-color: #857B74;
+    border-radius: 5px !important;
+    font-size: 15px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top:27px;
+}
+.confirmDeleteBtn {
+    width:90px;
+    height:31px;
+    background-color: #C52E22;
+    border-radius: 5px !important;
+    font-size: 15px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top:27px;
+}
+
+.modalTxt {
+    font-family: Comfortaa;
+    font-size:13px;
+    margin-top:20px;
+}
+
+.modalBG {
+    background-color:rgba(215, 210, 206,0.5);
+}
+
+.modalBody {
+    background-color:#d7d2ce;
+    border: 2px solid;
+    border-radius: 10px;
+    height:152px;
+}
