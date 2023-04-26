@@ -11,18 +11,22 @@ export default function AddMemory() {
     const { folderId } = useContext(MyContext);
     const { setMemoryItems } = useContext(MyContext);
     const { setFolderId } = useContext(MyContext);
+    const { memoryEdit } = useContext(MyContext);
+    const {isEditMemory} = useContext(MyContext);
+
+
 
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     // const [selectedAudio, setSelectedAudio] = useState('');
 
-    const [memoryImage, setMemoryImage] = useState('');
-    const [memoryTitle, setMemoryTitle] = useState('');
-    const [memoryDescription, setMemoryDescription] = useState('');
-    const [memoryTags, setMemoryTags] = useState('');
-    const [memoryDate, setMemoryDate] = useState('');
-    const [memoryId, setMemoryId] = useState(0);
+    const [memoryImage, setMemoryImage] = useState(isEditMemory ? memoryEdit.image : '');
+    const [memoryTitle, setMemoryTitle] = useState(isEditMemory ? memoryEdit.title : '');
+    const [memoryDescription, setMemoryDescription] = useState(isEditMemory ? memoryEdit.description : '');
+    const [memoryTags, setMemoryTags] = useState(isEditMemory ? memoryEdit.tags : '');
+    const [memoryDate, setMemoryDate] = useState(isEditMemory ? memoryEdit.date : '');
+    const [memoryId, setMemoryId] = useState(isEditMemory ? memoryEdit.id : 0);
     const [memoryPublisherName, setPublisherName] = useState('');
     const [folders, setFolders] = useState([]);
 
@@ -45,6 +49,8 @@ export default function AddMemory() {
         setSelectedImage(e.target.files[0]);
     }
 
+    
+
     // const handleAudio = () => {
     //     setSelectedAudio(sound)
     // };
@@ -65,7 +71,7 @@ export default function AddMemory() {
             isDeleted: false
         }
         let result = false;
-        if (editBool) {
+        if (isEditMemory) {
             result = await updateMemoryItem(item);
         } else {
             result = await addMemoryItem(item);
@@ -178,7 +184,7 @@ export default function AddMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => { setShow(true); handleSave(); navigate('/dashboard') }} className='addBtn' variant=''>Add</Button>
+                    <Button onClick={() => { setShow(true); handleSave(); navigate('/dashboard') }} className='addBtn' variant=''>{isEditMemory ? 'update' : 'add'}</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={() => navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>

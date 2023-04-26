@@ -117,7 +117,7 @@ export async function getMemoryByFolderId(folderId: number) {
 }
 
 export async function updateMemoryItem(memoryItem: object) {
-    const res = await fetch('https://rememberwhenwebsite.azurewebsites.net/Memory/UpdateMemoryItem', {
+    const res = await fetch('https://rememberwhenapi.azurewebsites.net/Memory/UpdateMemoryItem', {
         method: "PUT",
         headers: {
             'Content-Type': "application/json"
