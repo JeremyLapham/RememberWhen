@@ -110,7 +110,7 @@ export default function DashBoard() {
         </Row>
       }
 
-      {moreMemoryClicked ?
+      {/* {moreMemoryClicked ?
         <Container>
           <Row>
             <Col className='d-flex justify-content-center folderDisplay'>
@@ -143,17 +143,17 @@ export default function DashBoard() {
             })}
           </Col>
         </Row>
-      }
+      } */}
 
-      <Row>
+      {/* <Row>
         <Col className='d-flex justify-content-center'>
           <Button onClick={handleClick} className='moreMemories' variant=''>{moreMemoryClicked ? 'Go Back' : 'Click for all memories'}</Button>
         </Col>
         <Col xs={3} className="d-flex justify-content-center">
           <AddIcon style={{ fontSize: "28px" }} />
         </Col>
-      </Row >
-  {
+      </Row > */}
+  {/* {
     moreMemoryClicked?(
         <Row>
     <Col className="rememberWhenTop">
@@ -175,10 +175,9 @@ export default function DashBoard() {
       </Col>
     </Row>
   )
-}
+} */}
 
-{
-  moreMemoryClicked ? (
+{moreMemoryClicked ? (
     <Container className="folderBoxCont">
       <Row className="folderBox">
         <Col className="d-flex justify-content-center folderDisplay">

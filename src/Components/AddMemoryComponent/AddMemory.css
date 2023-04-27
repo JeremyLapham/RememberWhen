@@ -62,27 +62,28 @@
 }
 
 .addCancelBtn {
-    width:68px;
-    height:31px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #857B74 !important;
-    font-size: 15px !important;
-    font-weight: bold !important;
-    margin-bottom:3rem;
-    padding:0 !important;
+  width: 68px;
+  height: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #857B74 !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  margin-bottom: 3rem;
+  padding: 0 !important;
 }
+
 .addBtn {
-    width:68px;
-    height:31px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #A99282 !important;
-    font-size: 15px !important;
-    font-weight: bold !important;
-    margin-bottom:3rem;
+  width: 68px;
+  height: 31px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #A99282 !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  margin-bottom: 3rem;
 }
 
 .textInputs {
@@ -109,10 +110,15 @@
   font-weight: bolder;
 }
 
-.addAudioTxt {
-  margin-right: 7rem;
+.addHashtagTxt {
+  margin-right: 14rem;
   font-weight: bolder;
 }
+
+/* .addAudioTxt {
+  margin-right: 7rem;
+  font-weight: bolder;
+} */
 
 .addFolderInputTxt {
   margin-right: 15.5rem;
@@ -153,12 +159,14 @@
     width: 150px !important;
     height: 48px !important;
     font-size: 25px !important;
+    margin-left: 20rem !important;
   }
 
   .addCancelBtn {
     width: 150px !important;
     height: 48px !important;
     font-size: 25px !important;
+    margin-right: 20rem !important;
   }
 
   .mobileAddRow {
@@ -166,14 +174,8 @@
   }
 
   .desktopAddRow {
-    margin-top: 3.5rem !important;
-    display: flex;
-    justify-content: center;
-  }
-
-  .desktopCenterRow {
-    display: flex;
-    justify-content: center;
+    height: 7rem !important;
+    margin-top: 8rem !important;
   }
 
   .addImgBtn {
@@ -181,22 +183,26 @@
     height: 250px !important;
   }
 
-  .addAudioBtn {
-    width: 250px !important;
+  .firstInfoCol {
+    margin-top: 5rem !important;
+  }
+
+  .secondInfoCol {
+    margin-top: 5rem !important;
+  }
+
+  .desktopInfoRow {
+    margin-top: 2.5rem !important;
   }
 }
 
 @media screen and (max-width: 380px) {
-    .desktopAddRow {
-      display:none !important;
-    }
+  .addNew {
+    margin-top: 2rem;
+  }
 
-    .addNew {
-      margin-top: 2rem;
-    }
-
-    .heart {
-      margin-left: 0.5rem;
-      margin-top: 2rem;
-    }
+  .heart {
+    margin-left: 0.5rem;
+    margin-top: 2rem;
+  }
 }
