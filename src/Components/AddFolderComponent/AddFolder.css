@@ -39,6 +39,7 @@
     .addFolderTxt {
         font-size: 28px;
         font-weight: bolder;
+        margin-top: 3rem !important;
     }
 
     .folderIMG {
