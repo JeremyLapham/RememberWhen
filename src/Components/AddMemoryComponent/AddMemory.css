@@ -193,6 +193,13 @@
 
   .desktopInfoRow {
     margin-top: 2.5rem !important;
+    display: flex;
+    justify-content: center;
+  }
+
+  .selectedImgBtn {
+    width: 15rem !important;
+    height: 15rem !important;
   }
 }
 

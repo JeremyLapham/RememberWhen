@@ -108,12 +108,12 @@ export default function AddMemory() {
             </Row>
             <CustomNavbar />
             <Row className='desktopInfoRow'>
-                <Col className='firstInfoCol'>
+                <Col md={4} className='firstInfoCol'>
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
                                 <Form.Label className='addImgTxt'>Add image</Form.Label>
-                                <Button style={{ position: 'relative' }} id='custom-input'>
+                                <Button style={{ position: 'relative' }} id='custom-input' className='selectedImgBtn'>
                                     {selectedImage && <img className='selectedImg' src={URL.createObjectURL(selectedImage)} alt="Selected image" />}
                                     <Form.Control className='input1' onChange={handleImage} type="file" accept='image/png, image/jpg' placeholder="Enter an image" />
                                 </Button>
@@ -140,7 +140,7 @@ export default function AddMemory() {
                         </Col>
                     </Row>
                 </Col>
-                <Col className='secondInfoCol'>
+                <Col md={4} className='secondInfoCol'>
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center">
