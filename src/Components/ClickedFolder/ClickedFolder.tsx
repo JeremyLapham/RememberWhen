@@ -14,12 +14,12 @@ export default function ClickedFolder() {
     const { setSelectedMemory } = useContext(MyContext);
     const { setFolderEdit } = useContext(MyContext);
     const { setIsEditFolder } = useContext(MyContext);
+    const { setIsMemoryEdit } = useContext(MyContext);
 
     const [memoryItem, setMemoryItem] = useState([]);
 
     useEffect(() => {
         const GetMemories = async () => {
-            // console.log(selectedFolder);
             let memory = await getMemoryByFolderId(selectedFolder.id);
             setMemoryItem(memory);
         }
@@ -89,7 +89,7 @@ export default function ClickedFolder() {
                 <Col className='d-flex flex-column justify-content-end'>
                     <Row>
                         <div className='d-flex justify-content-end'>
-                            <Button onClick={() => navigate('/AddMemory')} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                            <Button onClick={() => {navigate('/AddMemory'); setIsMemoryEdit(false)}} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                                 <Col xs={9}>
                                     <p className='addNewTxt'>Add Memory</p>
                                 </Col>

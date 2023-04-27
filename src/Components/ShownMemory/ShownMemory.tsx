@@ -13,6 +13,8 @@ export default function ShownMemory() {
     const  { selectedMemory } = useContext(MyContext);
     const  { setMemoryEdit } = useContext(MyContext);
     const  { setIsMemoryEdit } = useContext(MyContext);
+
+    console.log(selectedMemory);
     
     const editOrDelte = () => {
         console.log(editDelete)
@@ -77,7 +79,7 @@ export default function ShownMemory() {
             </Row>
             <Row>
                 <Col className='text-center'>
-                    <h5 className='memoryName'>Brunch Date</h5>
+                    <h5 className='memoryName'>{selectedMemory.title}</h5>
                 </Col>
             </Row>
             <Row>

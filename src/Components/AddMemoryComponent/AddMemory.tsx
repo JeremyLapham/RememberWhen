@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Col, Container, Row, Button, Form, Toast } from 'react-bootstrap';
+import { Col, Container, Row, Button, Form, Toast, Modal } from 'react-bootstrap';
 import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
@@ -14,8 +14,7 @@ export default function AddMemory() {
     const { setFolderId } = useContext(MyContext);
     const { memoryEdit } = useContext(MyContext);
     const { isEditMemory } = useContext(MyContext);
-
-
+    const { setSelectedMemory } = useContext(MyContext);
 
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
@@ -47,26 +46,23 @@ export default function AddMemory() {
         setSelectedImage(e.target.files[0]);
     }
 
-
-
     // const handleAudio = () => {
     //     setSelectedAudio(sound)
     // };
-
     const handleSave = async () => {
-        if (memoryImage === '' || memoryDate === '' || memoryTitle === '' || memoryDescription === '') {
+        if (memoryImage === '' || memoryDate === '' || memoryTitle === '' || memoryDescription === '' || memoryTags === '' || folderId === null) {
             swal("Please make sure you enter in every field");
         } else {
-            const item = {
+            let item = {
                 Id: memoryId,
                 Userid: usersId,
                 FolderId: folderId,
                 PublishedName: memoryPublisherName,
-                Title: memoryTitle,
-                Image: memoryImage,
-                Description: memoryDescription,
-                Date: memoryDate,
-                Tags: memoryTags,
+                title: memoryTitle,
+                image: memoryImage,
+                description: memoryDescription,
+                date: memoryDate,
+                tags: memoryTags,
                 Category: '',
                 isPublished: true,
                 isDeleted: false
@@ -77,6 +73,7 @@ export default function AddMemory() {
             } else {
                 result = await addMemoryItem(item);
             }
+            setShow(true);
 
             if (result) {
                 let userMemoryItems = await getMemoryItemsByUserId(usersId);
@@ -84,6 +81,7 @@ export default function AddMemory() {
             } else {
                 alert(`Blog Item was not ${isEditMemory ? 'Updated' : 'Added'}`)
             }
+            return item;
         }
     }
 
@@ -95,24 +93,34 @@ export default function AddMemory() {
         }
         GetFolders()
     }, []);
+    const handleClose = () => setShow(false);
 
+    const handleViewMemory = async () => {
+        let item = await handleSave();
+        console.log(item);
+        // setSelectedMemory(item);
+        // navigate('/memory');
+    }
     return (
         <Container fluid>
             <Row>
-                <Col xs={6}>
-                    <Toast className='addToast' onClose={() => setShow(false)} show={show} delay={3000} autohide>
-                        <Toast.Header>
-                            <img
-                                src="holder.js/20x20?text=%20"
-                                className="rounded me-2"
-                                alt=""
-                            />
-                            <strong className="me-auto">Remember when</strong>
-                            <small>1s ago</small>
-                        </Toast.Header>
-                        <Toast.Body>Memory has been added</Toast.Body>
-                    </Toast>
-                </Col>
+                <Modal className='modalBG' show={show} onHide={handleClose}>
+                    <Modal.Body className='modalBody'>
+                        <Row>
+                            <Col className='d-flex justify-content-center'>
+                                <p className='modalTxt'>Your memory was added!</p>
+                            </Col>
+                        </Row>
+                        <Row>
+
+                            <Col className='d-flex justify-content-center'>
+                                <Button className='confirmDeleteBtn' variant="" onClick={handleViewMemory}>
+                                    View
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
             </Row>
             <CustomNavbar />
             <Row>
@@ -186,7 +194,7 @@ export default function AddMemory() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => { setShow(true); handleSave(); navigate('/dashboard') }} className='addBtn' variant=''>{isEditMemory ? 'update' : 'add'}</Button>
+                    <Button onClick={() => { handleSave(); }} className='addBtn' variant=''>{isEditMemory ? 'update' : 'add'}</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button onClick={() => navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>
