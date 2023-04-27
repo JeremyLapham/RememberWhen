@@ -163,7 +163,7 @@ export default function AddMemory() {
                                 <Form.Label className='addFolderInputTxt'>Folder</Form.Label>
                                 <Form.Select className='textInputs' onChange={handleFolder} value={folderId}>
                                     <option hidden>Folder</option>
-                                    {folders.map((option: any, idx: number) => {
+                                    {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((option: any, idx: number) => {
                                         return (
                                             <option key={idx} value={option.id} >{option.name}</option>
                                         );
