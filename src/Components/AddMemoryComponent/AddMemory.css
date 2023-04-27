@@ -1,5 +1,5 @@
 #custom-input {
-    background-color: #D3C0B2;
+    background-color: #d3c0b2;
     background-image: url(../../assets/addimage.png);
     background-repeat: no-repeat;
     background-position-x: center;
@@ -9,29 +9,29 @@
     height: 200px;
     width: 200px;
     padding: 0 !important;
-}
-
-.input1 {
+  }
+  
+  .input1 {
     border-radius: 20px;
     opacity: 0;
     height: 200px;
     width: 200px;
     z-index: 1200;
-}
-
-.selectedImg {
+  }
+  
+  .selectedImg {
     height: 200px;
     width: 200px;
     border-radius: 20px;
-    background-color: #D3C0B2;
+    background-color: #d3c0b2;
     border: 1px solid black;
     position: absolute;
     top: 0%;
     left: 0%;
-}
-
-#custom-input2 {
-    background-color: #A99282;
+  }
+  
+  #custom-input2 {
+    background-color: #a99282;
     background-image: url(../../assets/Microphone.png);
     background-repeat: no-repeat;
     background-position-y: center;
@@ -41,17 +41,17 @@
     height: 50px;
     width: 200px;
     padding: 0 !important;
-}
-
-.input2 {
+  }
+  
+  .input2 {
     border-radius: 10px;
     opacity: 0;
     height: 50px;
     width: 200px;
     z-index: 1200;
-}
-
-.selectedImg2 {
+  }
+  
+  .selectedImg2 {
     height: 50px;
     width: 196px;
     padding-left: 1rem;
@@ -59,41 +59,157 @@
     position: absolute;
     top: 0%;
     left: 0%;
-}
-
-.addCancelBtn {
-    width:68px;
-    height:31px;
+  }
+  
+  .addCancelBtn {
+    width: 68px;
+    height: 31px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #857B74 !important;
     font-size: 15px !important;
     font-weight: bold !important;
-    margin-bottom:3rem;
-    padding:0 !important;
-}
-.addBtn {
-    width:68px;
-    height:31px;
+    margin-bottom: 3rem;
+    padding: 0 !important;
+  }
+  
+  .addBtn {
+    width: 68px;
+    height: 31px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #A99282 !important;
     font-size: 15px !important;
     font-weight: bold !important;
-    margin-bottom:3rem;
-}
-
-.textInputs {
+    margin-bottom: 3rem;
+  }
+  
+  .textInputs {
     width: 300px !important;
     border: 1px solid black !important;
-}
-
-.addToast {
+  }
+  
+  .textInputsDescription {
+    width: 300px !important;
+    border: 1px solid black !important;
+    height: 7.8rem;
+  }
+  
+  .addToast {
     position: absolute;
     position: fixed;
     top: 0;
     right: 0;
     z-index: 100;
-}
+  }
+  
+  .addImgTxt {
+    margin-right: 7rem;
+    font-weight: bolder;
+  }
+  
+  .addHashtagTxt {
+    margin-right: 14rem;
+    font-weight: bolder;
+  }
+  
+  /* .addAudioTxt {
+    margin-right: 7rem;
+    font-weight: bolder;
+  } */
+  
+  .addFolderInputTxt {
+    margin-right: 15.5rem;
+    font-weight: bolder;
+  }
+  
+  .addMemoryTxt {
+    margin-right: 12.3rem;
+    font-weight: bolder;
+  }
+  
+  .addDateTxt {
+    margin-right: 16.6rem;
+    font-weight: bolder;
+  }
+  
+  .addDescriptionTxt {
+    margin-right: 13rem;
+    font-weight: bolder;
+  }
+  
+  .addMemoryTitle {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 2rem;
+    margin-bottom: 3.5rem;
+  }
+  
+  .addMemoryTitleDesktop {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 2rem;
+    margin-bottom: 3.5rem;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .addBtn {
+      width: 150px !important;
+      height: 48px !important;
+      font-size: 25px !important;
+      margin-left: 20rem !important;
+    }
+  
+    .addCancelBtn {
+      width: 150px !important;
+      height: 48px !important;
+      font-size: 25px !important;
+      margin-right: 20rem !important;
+    }
+  
+    .mobileAddRow {
+      display: none !important;
+    }
+  
+    .desktopAddRow {
+      height: 7rem !important;
+      margin-top: 8rem !important;
+    }
+  
+    .addImgBtn {
+      width: 250px !important;
+      height: 250px !important;
+    }
+  
+    .firstInfoCol {
+      margin-top: 5rem !important;
+    }
+  
+    .secondInfoCol {
+      margin-top: 5rem !important;
+    }
+  
+    .desktopInfoRow {
+      margin-top: 2.5rem !important;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .selectedImgBtn {
+      width: 15rem !important;
+      height: 15rem !important;
+    }
+  }
+  
+  @media screen and (max-width: 380px) {
+    .addNew {
+      margin-top: 2rem;
+    }
+  
+    .heart {
+      margin-left: 0.5rem;
+      margin-top: 2rem;
+    }
+  }

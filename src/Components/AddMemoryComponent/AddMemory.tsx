@@ -123,18 +123,20 @@ export default function AddMemory() {
                 </Modal>
             </Row>
             <CustomNavbar />
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
-                        <Form.Label>Add image</Form.Label>
-                        <Button style={{ position: 'relative' }} id='custom-input'>
-                            {selectedImage && <img className='selectedImg' src={URL.createObjectURL(selectedImage)} alt="Selected image" />}
-                            <Form.Control className='input1' onChange={handleImage} type="file" accept='image/png, image/jpg' placeholder="Enter an image" />
-                        </Button>
-                    </Form.Group>
-                </Col>
-            </Row>
-            {/* <Row>
+            <Row className='desktopInfoRow'>
+                <Col md={4} className='firstInfoCol'>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
+                                <Form.Label className='addImgTxt'>Add image</Form.Label>
+                                <Button style={{ position: 'relative' }} id='custom-input' className='selectedImgBtn'>
+                                    {selectedImage && <img className='selectedImg' src={URL.createObjectURL(selectedImage)} alt="Selected image" />}
+                                    <Form.Control className='input1' onChange={handleImage} type="file" accept='image/png, image/jpg' placeholder="Enter an image" />
+                                </Button>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    {/* <Row>
                 <Col>
                     <Form.Group className="mb-3 d-flex flex-column align-items-center">
                         <Form.Label>Add audio</Form.Label>
@@ -145,60 +147,65 @@ export default function AddMemory() {
                     </Form.Group>
                 </Col>
             </Row> */}
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Hashtags</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='#Example, #Example' onChange={handleTags} value={memoryTags} />
-                    </Form.Group>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3 d-flex flex-column align-items-center">
+                                <Form.Label className='addHashtagTxt'>Hashtags</Form.Label>
+                                <Form.Control className='textInputs' type='text' placeholder='#Example, #Example' onChange={handleTags} value={memoryTags} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
                 </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Folder</Form.Label>
-                        <Form.Select className='textInputs' onChange={handleFolder} value={folderId}>
-                            <option hidden>Folder</option>
-                            {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((option: any, idx: number) => {
-                                return (
-                                    <option key={idx} value={option.id} >{option.name}</option>
-                                );
-                            })}
-                        </Form.Select>
-                    </Form.Group>
+                <Col md={4} className='secondInfoCol'>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3 d-flex flex-column align-items-center">
+                                <Form.Label className='addFolderInputTxt'>Folder</Form.Label>
+                                <Form.Select className='textInputs' onChange={handleFolder} value={folderId}>
+                                    <option hidden>Folder</option>
+                                    {folders.map((option: any, idx: number) => {
+                                        return (
+                                            <option key={idx} value={option.id} >{option.name}</option>
+                                        );
+                                    })}
+                                </Form.Select>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3 d-flex flex-column align-items-center">
+                                <Form.Label className='addMemoryTxt'>Memory Title</Form.Label>
+                                <Form.Control className='textInputs' type='text' placeholder='Memory Title' onChange={handleTitle} value={memoryTitle} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3 d-flex flex-column align-items-center">
+                                <Form.Label className='addDateTxt'>Date</Form.Label>
+                                <Form.Control className='textInputs' type='text' placeholder='MM/DD/YYYY or DD/MM/YYYY' onChange={handleDate} value={memoryDate} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3 d-flex flex-column align-items-center">
+                                <Form.Label className='addDescriptionTxt'>Description</Form.Label>
+                                <textarea className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription} />
+                            </Form.Group>
+                        </Col>
+                    </Row>
                 </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Memory Title</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='Memory Title' onChange={handleTitle} value={memoryTitle} />
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Date</Form.Label>
-                        <Form.Control className='textInputs' type='text' placeholder='MM/DD/YYYY or DD/MM/YYYY' onChange={handleDate} value={memoryDate} />
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Description</Form.Label>
-                        <textarea className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription} />
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Row>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => { handleSave(); }} className='addBtn' variant=''>{isEditMemory ? 'update' : 'add'}</Button>
-                </Col>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>
-                </Col>
+                <Row className='desktopAddRow'>
+                    <Col className='d-flex justify-content-center'>
+                        <Button onClick={() => { handleSave(); }} className='addBtn' variant=''>{isEditMemory ? 'update' : 'add'}</Button>
+                    </Col>
+                    <Col className='d-flex justify-content-center'>
+                        <Button onClick={() => navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>
+                    </Col>
+                </Row>
             </Row>
         </Container>
     );

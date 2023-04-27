@@ -101,10 +101,10 @@ export default function AddFolder() {
 
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={handleFolder} className='folderBtn' variant=''>{isEditFolder ? 'Update' : 'Add'}</Button>
+                    <Button onClick={handleFolder} className='addfolderBtn' variant=''>{isEditFolder ? 'Update' : 'Add'}</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={handleBackToHome} className='folderBtn' variant=''>Cancel</Button>
+                    <Button onClick={handleBackToHome} className='cancelfolderBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
         </Container>

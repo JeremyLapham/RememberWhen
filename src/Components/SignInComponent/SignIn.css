@@ -80,7 +80,7 @@
 .forgotPass {
     font-size: 15px;
     font-weight: bold;
-    margin: 1rem 0 1rem 0;
+    margin: 2rem -0.5rem 1rem 0;
 }
 
 .dontHaveAccount {
@@ -89,4 +89,32 @@
     margin:0 !important;
     padding:0 !important;
     text-decoration: underline;
+}
+
+.showPassword {
+    margin: 2rem 0 1rem 0.5rem;
+    font-size: 15px;
+    font-weight: bolder !important;
+}
+@media screen and (min-width: 1024px) {
+    .inputField {
+        margin-left: 25rem;
+        width: 500px;
+    }
+
+    .userNameInput {
+        margin-left: 24.8rem;
+    }
+
+    .passwordInput {
+        margin-left: 24.8rem;
+    }
+
+    .forgotPass {
+        margin-right: 23.3rem;
+    }
+
+    .showPassword {
+        margin-left: 25rem;
+    }
 }

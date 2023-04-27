@@ -21,9 +21,63 @@
     height:40px;
 }
 
-.folderBtn {
+.addfolderBtn {
+    background-color: #A99282;
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom: 2rem;
+}
+
+.cancelfolderBtn {
     background-color: #857B74;
     font-size:15px;
     font-weight:bold;
-    margin-bottom:100%;
+    margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 1024px) {
+    .addFolderTxt {
+        font-size: 28px;
+        font-weight: bolder;
+        margin-top: 3rem !important;
+    }
+
+    .folderIMG {
+        width: 200px !important;
+        height: 280px !important;
+    }
+
+    .inputTxt {
+        font-size: 25px;
+    }
+
+    .inputFolder {
+        width: 400px !important;
+        height: 48px !important;
+        border: solid 1px black !important;
+    }
+
+    .addfolderBtn {
+        width: 150px !important;
+        height: 48px !important;
+        font-size: 25px !important;
+        margin-top: 2rem;
+    }
+
+    .cancelfolderBtn {
+        width: 150px !important;
+        height: 48px !important;
+        font-size: 25px !important;
+        margin-top: 2rem;
+    }
+
+    .mobileAddRow2 {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .desktopAddRow2 {
+        display: none !important;
+    }
 }
