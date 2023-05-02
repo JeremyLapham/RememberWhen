@@ -130,7 +130,7 @@ export default function ClickedFolder() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => navigate(-1)} className='moreMemories' variant=''>Go Back</Button>
+                    <Button onClick={() => navigate('/dashboard')} className='moreMemories' variant=''>Go Back</Button>
                 </Col>
             </Row>
         </Container>

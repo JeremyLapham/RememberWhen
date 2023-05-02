@@ -26,7 +26,7 @@ export default function ShownMemory() {
     const navigate = useNavigate();
 
     const handleBackButtonClick = () => {
-        navigate(-1);
+        navigate('/dashboard');
     };
 
     const handleEditMemory = () => {
