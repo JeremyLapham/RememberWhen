@@ -7,7 +7,7 @@
   background-color: #D7D2CE;
   font-family: Comfortaa;
   background-size: cover;
-  height:100vh;
+  min-height:100vh;
 }
 
 @media screen and (max-width:425px) and (min-width: 320px) {
