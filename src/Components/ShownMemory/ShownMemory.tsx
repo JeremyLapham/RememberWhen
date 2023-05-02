@@ -44,6 +44,11 @@ export default function ShownMemory() {
         }, 500);
     }
 
+   const handleDeleteMemory = () => {
+    
+
+    }
+
 
     return (
         <Container fluid>
