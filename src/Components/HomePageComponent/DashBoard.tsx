@@ -48,7 +48,7 @@ export default function DashBoard() {
                     publisherName: loggedIn['publisherName']
                 }
                 sessionStorage.setItem('UserId', JSON.stringify(LoggedIn.userId));
-                sessionStorage.setItem('Username',LoggedIn.publisherName);
+                sessionStorage.setItem('Username', LoggedIn.publisherName);
                 setUsersId(LoggedIn.userId);
                 const userMemoryItems = await getMemoryItemsByUserId(LoggedIn.userId);
                 const displayFolder = await getFolderByUserId(LoggedIn.userId);
@@ -155,7 +155,7 @@ export default function DashBoard() {
 
             <Row className="desktopBtnRow">
                 <Col className="desktopAddCol">
-                    <Button variant='' onClick={() => navigate("/AddMemory")} className="desktopAddBtn">Add Memory +</Button>
+                    <Button variant='' onClick={() => { navigate("/AddMemory"); setIsMemoryEdit(false); }} className="desktopAddBtn">Add Memory +</Button>
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <Button onClick={handleClick} className="moreMemories" variant="">
@@ -163,7 +163,7 @@ export default function DashBoard() {
                     </Button>
                 </Col>
                 <Col className="desktopAddCol">
-                    <Button variant='' onClick={() => navigate("/AddFolder")} className="desktopAddBtn2">Add Folder +</Button>
+                    <Button variant='' onClick={() => { navigate("/AddFolder"); setIsEditFolder(false); }} className="desktopAddBtn2">Add Folder +</Button>
                 </Col>
             </Row>
         </Container >
