@@ -166,3 +166,19 @@ export async function DeleteFolder(folder: object) {
     console.log(data);
     return data;
 }
+export async function DeleteMemory(folder: object) {
+    const res = await fetch('https://rememberwhenapi.azurewebsites.net/Memory/DeleteMemoryItem', {
+        method: "POST",
+        headers: {
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify(folder)
+    });
+    if (!res.ok) {
+        const message = `An Error has Occured ${res.status}`;
+        throw new Error(message);
+    }
+    let data = await res.json();
+    console.log(data);
+    return data;
+}
