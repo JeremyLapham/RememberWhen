@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem, getFolderByUserId } from '../Services/DataService';
 import { MyContext } from '../context';
-import swal from 'sweetalert';
+//import swal from 'sweetalert';
 
 export default function AddMemory() {
     const { usersId } = useContext(MyContext);
@@ -57,7 +57,7 @@ export default function AddMemory() {
     // };
     const handleSave = async () => {
         if (memoryImage === '' || memoryDate === '' || memoryTitle === '' || memoryDescription === '' || memoryTags === '' || folderId === null) {
-            swal("Please make sure you enter in every field");
+           // swal("Please make sure you enter in every field");
         } else {
             let item = {
                 Id: memoryId,
