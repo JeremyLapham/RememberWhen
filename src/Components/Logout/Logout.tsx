@@ -19,6 +19,7 @@ export default function Logout() {
 
     const LogOut = () => {
         resetContext(setUser, setUsersId, setMemoryItems, setMoreMemoryClicked, setFolders, setIsEditFolder, setFolderEdit);
+        sessionStorage.clear();
         navigate('/');
     }
     return (

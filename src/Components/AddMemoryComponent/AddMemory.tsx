@@ -15,6 +15,12 @@ export default function AddMemory() {
     const { memoryEdit } = useContext(MyContext);
     const { isEditMemory } = useContext(MyContext);
     const { setSelectedMemory } = useContext(MyContext);
+    const audioContext = new AudioContext();
+
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+
 
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
@@ -67,6 +73,7 @@ export default function AddMemory() {
                 isPublished: true,
                 isDeleted: false
             }
+            setSelectedMemory(item);
             let result = false;
             if (isEditMemory) {
                 result = await updateMemoryItem(item);
@@ -81,7 +88,6 @@ export default function AddMemory() {
             } else {
                 alert(`Blog Item was not ${isEditMemory ? 'Updated' : 'Added'}`)
             }
-            return item;
         }
     }
 
@@ -93,13 +99,11 @@ export default function AddMemory() {
         }
         GetFolders()
     }, []);
+
     const handleClose = () => setShow(false);
 
     const handleViewMemory = async () => {
-        let item = await handleSave();
-        console.log(item);
-        // setSelectedMemory(item);
-        // navigate('/memory');
+        navigate('/memory');
     }
     return (
         <Container fluid>

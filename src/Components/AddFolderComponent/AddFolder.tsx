@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import CustomNavbar from '../navComponent/NavbarComponent';
-import { Container, Row, Col, Form, Button, Toast } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Toast, Modal } from 'react-bootstrap';
 import heart from '../../assets/folderpic.png';
 import { useNavigate } from 'react-router-dom';
 import './AddFolder.css';
@@ -13,8 +13,10 @@ export default function AddFolder() {
     const { folderId } = useContext(MyContext);
     const { isEditFolder } = useContext(MyContext);
     const { folderEdit } = useContext(MyContext);
+    const { setSelectedFolder } = useContext(MyContext);
 
     const [show, setShow] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [folderName, setFolderName] = useState(isEditFolder ? folderEdit.name : '');
 
     const navigate = useNavigate();
@@ -38,6 +40,7 @@ export default function AddFolder() {
                     name: folderName,
                     isDeleted: false
                 }
+                setSelectedFolder(fold);
                 result = await updateFolder(fold);
             } else {
                 const fold = {
@@ -45,12 +48,39 @@ export default function AddFolder() {
                     name: folderName,
                     isDeleted: false
                 }
+                setSelectedFolder(fold);
                 result = await Folder(fold);
             }
+            setShowModal(true);
         }
+    }
+
+    const handleClose = () => setShowModal(false);
+
+    const handleViewFolder = async () => {
+        navigate('/ClickedFolder');
     }
     return (
         <Container fluid>
+            <Row>
+                <Modal className='modalBG' show={showModal} onHide={handleClose}>
+                    <Modal.Body className='modalBody'>
+                        <Row>
+                            <Col className='d-flex justify-content-center'>
+                                <p className='modalTxt'>Your folder was added!</p>
+                            </Col>
+                        </Row>
+                        <Row>
+
+                            <Col className='d-flex justify-content-center'>
+                                <Button className='confirmDeleteBtn' variant="" onClick={handleViewFolder}>
+                                    View
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
+            </Row>
             <Row>
                 <Col xs={6}>
                     <Toast className='addToast' onClose={() => setShow(false)} show={show} delay={3000} autohide>

@@ -24,6 +24,8 @@ export default function SignInInfo() {
             Username,
             Password
         }
+        sessionStorage.setItem('Usersname', Username)
+        const user = sessionStorage.getItem('Usersname')
         setUser(Username);
         try {
             let token = await login(userData);

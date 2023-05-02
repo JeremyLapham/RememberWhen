@@ -31,16 +31,27 @@ export default function DashBoard() {
 
     useEffect(() => {
         const GetLoggedInData = async () => {
-            const loggedIn: {} = loggedInData();
-            const LoggedIn = {
-                userId: loggedIn['userId'],
-                publisherName: loggedIn['publisherName']
+            const userId = sessionStorage.getItem('UserId');
+            if (userId) {
+                setUsersId(parseInt(userId));
+                const userMemoryItems = await getMemoryItemsByUserId(parseInt(userId));
+                const displayFolder = await getFolderByUserId(parseInt(userId));
+                setMemoryItems(userMemoryItems);
+                setFolders(displayFolder);
+            } else {
+                const loggedIn = loggedInData();
+                const LoggedIn = {
+                    userId: loggedIn['userId'],
+                    publisherName: loggedIn['publisherName']
+                }
+                sessionStorage.setItem('UserId', JSON.stringify(LoggedIn.userId));
+                sessionStorage.setItem('Username', JSON.stringify(LoggedIn.publisherName));
+                setUsersId(LoggedIn.userId);
+                const userMemoryItems = await getMemoryItemsByUserId(LoggedIn.userId);
+                const displayFolder = await getFolderByUserId(LoggedIn.userId);
+                setMemoryItems(userMemoryItems);
+                setFolders(displayFolder);
             }
-            setUsersId(LoggedIn.userId);
-            let userMemoryItems = await getMemoryItemsByUserId(LoggedIn.userId);
-            let displayFolder = await getFolderByUserId(LoggedIn.userId);
-            setMemoryItems(userMemoryItems);
-            setFolders(displayFolder);
         }
 
         if (!checkToken()) {
@@ -141,7 +152,7 @@ export default function DashBoard() {
 
             <Row className="desktopBtnRow">
                 <Col className="desktopAddCol">
-                    <Button onClick={() => navigate("/AddMemory")} className="desktopAddBtn">Add Memory +</Button>
+                    <Button variant='' onClick={() => navigate("/AddMemory")} className="desktopAddBtn">Add Memory +</Button>
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <Button onClick={handleClick} className="moreMemories" variant="">
@@ -149,7 +160,7 @@ export default function DashBoard() {
                     </Button>
                 </Col>
                 <Col className="desktopAddCol">
-                    <Button onClick={() => navigate("/AddFolder")} className="desktopAddBtn2">Add Folder +</Button>
+                    <Button variant='' onClick={() => navigate("/AddFolder")} className="desktopAddBtn2">Add Folder +</Button>
                 </Col>
             </Row>
         </Container >
