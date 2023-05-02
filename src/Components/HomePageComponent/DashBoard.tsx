@@ -22,6 +22,7 @@ export default function DashBoard() {
     const { setFolderName } = useContext(MyContext);
     const { setIsEditFolder } = useContext(MyContext);
     const { setIsMemoryEdit } = useContext(MyContext);
+    const { setUser } = useContext(MyContext);
 
     const navigate = useNavigate();
 
@@ -32,8 +33,10 @@ export default function DashBoard() {
     useEffect(() => {
         const GetLoggedInData = async () => {
             const userId = sessionStorage.getItem('UserId');
-            if (userId) {
+            const userName = sessionStorage.getItem('Username');
+            if (userId && userName) {
                 setUsersId(parseInt(userId));
+                setUser(userName);
                 const userMemoryItems = await getMemoryItemsByUserId(parseInt(userId));
                 const displayFolder = await getFolderByUserId(parseInt(userId));
                 setMemoryItems(userMemoryItems);
@@ -45,7 +48,7 @@ export default function DashBoard() {
                     publisherName: loggedIn['publisherName']
                 }
                 sessionStorage.setItem('UserId', JSON.stringify(LoggedIn.userId));
-                sessionStorage.setItem('Username', JSON.stringify(LoggedIn.publisherName));
+                sessionStorage.setItem('Username',LoggedIn.publisherName);
                 setUsersId(LoggedIn.userId);
                 const userMemoryItems = await getMemoryItemsByUserId(LoggedIn.userId);
                 const displayFolder = await getFolderByUserId(LoggedIn.userId);
