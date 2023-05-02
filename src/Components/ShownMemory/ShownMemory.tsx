@@ -6,6 +6,7 @@ import elephantLogo from '../../assets/elephantLogo.svg';
 import memory from '../../assets/memory.jpg';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../context';
+import { DeleteMemory } from '../Services/DataService';
 
 export default function ShownMemory() {
     const [show, setShow] = useState(false);
@@ -44,8 +45,10 @@ export default function ShownMemory() {
         }, 500);
     }
 
-   const handleDeleteMemory = () => {
-    
+   const handleDeleteMemory = async () => {
+    await DeleteMemory (selectedMemory);
+    navigate("/Dashboard");
+
 
     }
 
@@ -63,7 +66,7 @@ export default function ShownMemory() {
                         <Row>
 
                         <Col className='d-flex justify-content-center'>
-                            <Button className='confirmDeleteBtn' variant="" onClick={handleClose}>
+                            <Button className='confirmDeleteBtn' variant="" onClick={handleDeleteMemory}>
                                 Delete
                             </Button>
                         </Col>

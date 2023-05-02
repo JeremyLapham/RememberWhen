@@ -105,7 +105,7 @@ export default function ClickedFolder() {
                 <Col className='d-flex justify-content-center'>
                     <div className='displayMemory'>
                         <Row>
-                            {memoryItem.map((memory: any, idx: any) => {
+                            {memoryItem.filter((item: { isDeleted: any; }) => !item.isDeleted).map((memory: any, idx: any) => {
                                 return (
                                     <Col key={idx} xs={4} className='cardNoPad'>
                                         <Button onClick={() => handleClickedMemory(memory)} variant='' className='allFolderBtn'>

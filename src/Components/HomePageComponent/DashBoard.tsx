@@ -140,7 +140,7 @@ export default function DashBoard() {
                 :
                 <Row>
                     <Col className='memoryBox'>
-                        {memoryItems.map((cardInfo: any, idx: number) => {
+                        {memoryItems.filter((item: { isDeleted: any; }) => !item.isDeleted).map((cardInfo: any, idx: number) => {
                             return (
                                 <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
                                     <img className='memoryCards' src={cardInfo.image} alt='Your memory image is here' />
