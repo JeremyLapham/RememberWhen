@@ -1,0 +1,33 @@
+.logo {
+    width: 150px !important;
+    margin-left: 8px;
+    margin-top: 1rem;
+}
+
+.navTitle {
+    margin-top: 2rem;
+    font-size: 30px;
+    margin-left: 0.5rem;
+}
+
+.navRow {
+    margin-left: 20rem !important;
+    margin-top: 2rem !important;
+}
+
+.navBtn {
+    font-size: 17px !important;
+    background-color: #D7D2CE !important;
+    color: black !important;
+    border-style: none !important;
+}
+
+@media screen and (max-width: 380px) {
+    .logo {
+        display: none !important;
+    }
+
+    .navTitle {
+        display: none !important;
+    }
+}

@@ -7,6 +7,7 @@ import './ClickedFolder.css';
 import AddIcon from '@mui/icons-material/Add';
 import { MyContext } from '../context';
 import { DeleteFolder, getMemoryByFolderId } from '../Services/DataService';
+import DesktopNav from '../../Components/DesktopNavComponent/DesktopNav';
 
 export default function ClickedFolder() {
     const { folderName } = useContext(MyContext);
@@ -52,6 +53,7 @@ export default function ClickedFolder() {
 
     return (
         <Container fluid>
+            <DesktopNav/>
             <Row>
                 <Modal className='modalBG' show={show} onHide={handleClose}>
                     <Modal.Body className='modalBody'>

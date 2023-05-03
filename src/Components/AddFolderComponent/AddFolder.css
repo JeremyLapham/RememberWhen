@@ -80,4 +80,8 @@
     .desktopAddRow2 {
         display: none !important;
     }
+
+    .desktopNavbar {
+        display: none !important;
+    }
 }

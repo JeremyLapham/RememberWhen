@@ -244,6 +244,10 @@
   .desktopBtnRow {
     text-align: center;
   }
+
+  .logoEle {
+    display: none !important;
+  }
 }
 
 @media only screen and (min-width: 800px) {
@@ -259,6 +263,10 @@
 
 @media only screen and (max-width: 380px) {
   .desktopAddCol {
+    display: none !important;
+  }
+
+  .desktopNavbar {
     display: none !important;
   }
 }

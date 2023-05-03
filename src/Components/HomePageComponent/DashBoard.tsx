@@ -5,6 +5,7 @@ import folderImg from '../../assets/folderpic.png'
 import './DashBoard.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
+import DesktopNav from '../../Components/DesktopNavComponent/DesktopNav';
 import AddIcon from '@mui/icons-material/Add';
 import { checkToken, getFolderByUserId, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
 import { MyContext } from '../context';
@@ -63,6 +64,7 @@ export default function DashBoard() {
   }
   return (
     <Container fluid>
+      <DesktopNav/>
       <CustomNavbar />
       <Row className='d-flex align-items-center'>
         <Col xs={6}>

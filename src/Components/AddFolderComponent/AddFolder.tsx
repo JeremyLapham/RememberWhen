@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import './AddFolder.css';
 import { MyContext } from '../context';
 import { Folder, updateFolder } from '../Services/DataService';
+import DesktopNav from '../../Components/DesktopNavComponent/DesktopNav';
 
 
 export default function AddFolder() {
@@ -47,6 +48,7 @@ export default function AddFolder() {
     }
     return (
         <Container fluid>
+            <DesktopNav/>
             <Row>
                 <Col xs={6}>
                     <Toast className='addToast' onClose={() => setShow(false)} show={show} delay={3000} autohide>

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem, getFolderByUserId } from '../Services/DataService';
 import { MyContext } from '../context';
+import DesktopNav from '../../Components/DesktopNavComponent/DesktopNav';
 
 export default function AddMemory() {
     const { usersId } = useContext(MyContext);
@@ -90,6 +91,7 @@ export default function AddMemory() {
 
     return (
         <Container fluid>
+            <DesktopNav/>
             <Row>
                 <Col xs={6}>
                     <Toast className='addToast' onClose={() => setShow(false)} show={show} delay={3000} autohide>
