@@ -1,4 +1,4 @@
-.logo {
+.navLogo {
     width: 150px !important;
     margin-left: 8px;
     margin-top: 1rem;
@@ -11,15 +11,21 @@
 }
 
 .navRow {
-    margin-left: 20rem !important;
+    margin-left: 17rem !important;
     margin-top: 2rem !important;
 }
 
 .navBtn {
-    font-size: 17px !important;
+    font-size: 18px !important;
     background-color: #D7D2CE !important;
     color: black !important;
     border-style: none !important;
+    border-radius: 0% !important;
+}
+
+.borderCol {
+    border-left: 2px solid black !important;
+    border-right: 2px solid black !important;
 }
 
 @media screen and (max-width: 380px) {
