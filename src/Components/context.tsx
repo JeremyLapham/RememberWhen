@@ -27,6 +27,8 @@ interface MyContextType {
   setMemoryEdit: (memoryEdit: any) => void;
   isEditMemory: boolean;
   setIsMemoryEdit: (isEditMemory: boolean) => void;
+  fromAddFolder: boolean;
+  setFromAddFolder: (fromAddFolder: boolean) => void;
 }
 
 export const MyContext = createContext<MyContextType>({
@@ -42,7 +44,8 @@ export const MyContext = createContext<MyContextType>({
   folderEdit: {}, setFolderEdit: () => { },
   isEditFolder: false, setIsEditFolder: () => { },
   memoryEdit: {}, setMemoryEdit: () => {},
-  isEditMemory: false, setIsMemoryEdit: () => {}
+  isEditMemory: false, setIsMemoryEdit: () => {},
+  fromAddFolder: false, setFromAddFolder: () => {}
 });
 
 export const resetContext = (

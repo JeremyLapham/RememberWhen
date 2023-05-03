@@ -14,6 +14,7 @@ export default function AddFolder() {
     const { isEditFolder } = useContext(MyContext);
     const { folderEdit } = useContext(MyContext);
     const { setSelectedFolder } = useContext(MyContext);
+    const { setFromAddFolder } = useContext(MyContext);
 
     const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -44,14 +45,20 @@ export default function AddFolder() {
                 result = await updateFolder(fold);
             } else {
                 const fold = {
+                    id: 0,
                     userId: usersId,
                     name: folderName,
                     isDeleted: false
                 }
                 setSelectedFolder(fold);
+                setFromAddFolder(true);
                 result = await Folder(fold);
             }
-            setShowModal(true);
+            if (result) {
+                setShowModal(true);
+            } else {
+                alert('Something went wrong and your folder wasn\'t made');
+            }
         }
     }
 

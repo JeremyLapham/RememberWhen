@@ -15,6 +15,8 @@ export default function ClickedFolder() {
     const { setFolderEdit } = useContext(MyContext);
     const { setIsEditFolder } = useContext(MyContext);
     const { setIsMemoryEdit } = useContext(MyContext);
+    const { setFromAddFolder } = useContext(MyContext);
+    const { fromAddFolder } = useContext(MyContext);
 
     const [memoryItem, setMemoryItem] = useState([]);
 
@@ -79,7 +81,7 @@ export default function ClickedFolder() {
             <CustomNavbar />
             <Row>
                 <Col>
-                    <h1 className='nameFolder text-center'>{folderName}...</h1>
+                    <h1 className='nameFolder text-center'>{fromAddFolder ? selectedFolder.name : folderName}...</h1>
                 </Col>
             </Row>
             <Row className='d-flex align-items-center'>
@@ -105,17 +107,19 @@ export default function ClickedFolder() {
                 <Col className='d-flex justify-content-center'>
                     <div className='displayMemory'>
                         <Row>
-                            {memoryItem.filter((item: { isDeleted: any; }) => !item.isDeleted).map((memory: any, idx: any) => {
-                                return (
-                                    <Col key={idx} xs={4} className='cardNoPad'>
-                                        <Button onClick={() => handleClickedMemory(memory)} variant='' className='allFolderBtn'>
-                                            <img className='folderImg' src={memory.image} alt='clickable image' />
-                                        </Button>
-                                        <p className='text-center memoryTitle'>{memory.title}</p>
-                                        <p className='text-center memoryDate'>{memory.date}</p>
-                                    </Col>
-                                );
-                            })}
+                            {memoryItem.length === 0 ? <h2>No current memories</h2> :
+                                memoryItem.filter((item: { isDeleted: any; }) => !item.isDeleted).map((memory: any, idx: any) => {
+                                    return (
+                                        <Col key={idx} xs={4} className='cardNoPad'>
+                                            <Button onClick={() => handleClickedMemory(memory)} variant='' className='allFolderBtn'>
+                                                <img className='folderImg' src={memory.image} alt='clickable image' />
+                                            </Button>
+                                            <p className='text-center memoryTitle'>{memory.title}</p>
+                                            <p className='text-center memoryDate'>{memory.date}</p>
+                                        </Col>
+                                    );
+                                })
+                            }
                         </Row>
                     </div>
                 </Col>
@@ -130,7 +134,7 @@ export default function ClickedFolder() {
             </Row>
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => navigate('/dashboard')} className='moreMemories' variant=''>Go Back</Button>
+                    <Button onClick={() => { navigate('/dashboard'); setFromAddFolder(false); }} className='moreMemories' variant=''>Go Back</Button>
                 </Col>
             </Row>
         </Container>
