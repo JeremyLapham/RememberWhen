@@ -127,9 +127,9 @@ export default function ClickedFolder() {
                 </Col>
             </Row>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button onClick={handleEditFolder} className='' variant='warning' style={{ marginRight: '1rem' }}>Edit</Button>
-                <Button onClick={() => { setShow(true); }} className='' variant='danger' style={{ marginRight: '1rem' }}>Delete</Button>
-                <Button onClick={() => { setShow(true); }} className='' variant='info'>Share</Button>
+                <Button onClick={handleEditFolder} className='editBtnFold' variant='' >Edit</Button>
+                <Button onClick={() => { setShow(true); }} className='deleteBtnFold' variant='' >Delete</Button>
+                <Button className='shareBtnFold' variant=''>Share</Button>
             </div>
             <Row className="desktopBtnRow">
                 <Col className="desktopAddCol">
@@ -137,7 +137,7 @@ export default function ClickedFolder() {
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <Button onClick={() => navigate('/dashboard')} className="moreMemories" variant="">
-                        Go Back
+                        Back
                     </Button>
                 </Col>
                 <Col className="desktopAddCol">

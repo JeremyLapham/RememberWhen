@@ -100,18 +100,34 @@ export default function AddMemory() {
         <Container fluid>
             <Row>
                 <Modal className='modalBG' show={show} onHide={handleClose}>
-                    <Modal.Body className='modalBody'>
+                    <Modal.Body className={isEditMemory ? 'modalBodyUpdate' : `modalBody`}>
                         <Row>
                             <Col className='d-flex justify-content-center'>
-                                <p className='modalTxt'>Your memory was added!</p>
+                                {isEditMemory ?
+                                    <p className='modalTxt'>Do you wish to save the changes to your memory?</p>
+                                    :
+                                    <p className='modalTxt'>Your memory was added!</p>
+                                }
                             </Col>
                         </Row>
                         <Row>
-
                             <Col className='d-flex justify-content-center'>
-                                <Button className='confirmDeleteBtn' variant="" onClick={handleViewMemory}>
-                                    View
-                                </Button>
+                                {isEditMemory ?
+                                    <Row className='d-flex justify-content-center'>
+                                        <Col>
+                                            <Button onClick={() => {
+                                                handleSave(); setTimeout(() => {
+                                                    navigate('/dashboard')
+                                                }, 1000);
+                                            }} className='changeBtn' variant=''>Change</Button>
+                                        </Col>
+                                        <Col>
+                                            <Button onClick={() => { setShow(false); }} className='cancelBtn' variant=''>Cancel</Button>
+                                        </Col>
+                                    </Row>
+                                    :
+                                    <Button className='viewBtn' variant="" onClick={handleViewMemory}>View</Button>
+                                }
                             </Col>
                         </Row>
                     </Modal.Body>
@@ -121,7 +137,7 @@ export default function AddMemory() {
             <DesktopNav />
             <Row>
                 <Col className='d-flex justify-content-center'>
-                    <h2 style={{margin:'1rem 0'}}>add your <span style={{color:'#848383'}}>memory...</span></h2>
+                    <h2 style={{ margin: '1rem 0' }}>add your <span style={{ color: '#848383' }}>memory...</span></h2>
                 </Col>
             </Row>
             <Row className='desktopInfoRow'>
@@ -183,14 +199,18 @@ export default function AddMemory() {
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center">
                                 <Form.Label className='addDescriptionTxt'>Memory Description</Form.Label>
-                                <textarea style={{minHeight:'130px'}} className='textInputs' placeholder='Memory Description' onChange={handleDescription} value={memoryDescription} />
+                                <textarea style={{ minHeight: '130px' }} className='textInputs' placeholder='Memory Description' onChange={handleDescription} value={memoryDescription} />
                             </Form.Group>
                         </Col>
                     </Row>
                 </Col>
                 <Row className='desktopAddRow'>
                     <Col className='d-flex justify-content-end'>
-                        <Button onClick={() => { handleSave(); }} className='addBtn' variant=''>{isEditMemory ? 'update' : 'add'}</Button>
+                        {isEditMemory ?
+                            <Button onClick={() => { setShow(true); }} className='addBtn' variant=''>Update</Button>
+                            :
+                            <Button onClick={() => { handleSave(); }} className='addBtn' variant=''>Add</Button>
+                        }
                     </Col>
                     <Col className='d-flex justify-content-start'>
                         <Button onClick={() => navigate('/dashboard')} className='addCancelBtn' variant=''>Cancel</Button>
