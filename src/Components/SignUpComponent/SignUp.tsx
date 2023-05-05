@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
-import { Button, Col, Container, OverlayTrigger, Popover, Row, Toast } from 'react-bootstrap';
+import { Button, Col, Container, Row, Toast } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { createAccount } from '../Services/DataService';
 
@@ -17,7 +17,6 @@ export default function SignUpInfo() {
             Username,
             Password
         }
-        // createAccount(userData)
         const GetLoggedInData = async () => {
             let result = await createAccount(userData)
 
@@ -39,13 +38,6 @@ export default function SignUpInfo() {
     const [showA, setShowA] = useState(false);
 
     const toggleShowA = () => setShowA(!showA);
-    // .addToast {
-    //     position: absolute;
-    //     position: fixed;
-    //     top: 0;
-    //     right: 0;
-    //     z-index: 100;
-    // }
 
     return (
         <Container fluid>

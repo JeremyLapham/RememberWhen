@@ -7,6 +7,7 @@ import './AddFolder.css';
 import { MyContext } from '../context';
 import { Folder, updateFolder } from '../Services/DataService';
 import swal from 'sweetalert';
+import DesktopNav from '../DesktopNavComponent/DesktopNav';
 
 export default function AddFolder() {
     const { usersId } = useContext(MyContext);
@@ -107,6 +108,7 @@ export default function AddFolder() {
             <Row>
                 <Col>
                     <CustomNavbar />
+                    <DesktopNav />
                 </Col>
             </Row>
             <Row>
@@ -137,10 +139,10 @@ export default function AddFolder() {
             </Row>
 
             <Row>
-                <Col className='d-flex justify-content-center'>
+                <Col className='d-flex justify-content-end'>
                     <Button onClick={handleFolder} className='addfolderBtn' variant=''>{isEditFolder ? 'Update' : 'Add'}</Button>
                 </Col>
-                <Col className='d-flex justify-content-center'>
+                <Col className='d-flex justify-content-start'>
                     <Button onClick={handleBackToHome} className='cancelfolderBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>

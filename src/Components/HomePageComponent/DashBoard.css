@@ -1,265 +1,297 @@
 @font-face {
-    font-family: Comfortaa;
-    src: url(../../assets/Comfortaa-VariableFont_wght.ttf);
-  }
-  
-  .offCanvas {
-    height: 302px;
-    width: 205px;
-    border-radius: 0 50px 50px 0;
-  }
-  
-  .offCanvasBody {
-    border-radius: 0 50px 50px 0;
-    background-color: #857b74;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  
+  font-family: Comfortaa;
+  src: url(../../assets/Comfortaa-VariableFont_wght.ttf);
+}
+
+.offCanvas {
+  height: 302px;
+  width: 205px;
+  border-radius: 0 50px 50px 0;
+}
+
+.offCanvasBody {
+  border-radius: 0 50px 50px 0;
+  background-color: #857b74;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.logoEle {
+  width: 150px;
+  margin-left: 8px;
+  margin-top: 32px;
+}
+
+.addNew {
+  background-color: #f4f2f0 !important;
+  padding: 0 !important;
+  height: 51px;
+  width: 195px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.addNewFolder {
+  background-color: #f4f2f0 !important;
+  height: 51px;
+  width: 195px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+}
+
+.addNewTxt {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0 !important;
+  display: flex;
+  justify-content: center;
+}
+
+.addNewFolderTxt {
+  font-size: 15px;
+  margin-bottom: -1px;
+  padding-right: 5px !important;
+  font-weight: bold;
+  display: flex;
+  justify-content: end;
+}
+
+.addNewBtn {
+  height: 45px;
+  width: 45px;
+  padding: 0px !important;
+  margin: 3px 0 0 2px;
+  border-radius: 100px !important;
+}
+
+.helloTopTxt {
+  padding-top: 39px;
+  margin-left: 2.5rem;
+}
+
+.helloTxt {
+  color: #5c5a5a;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.welcomeTxt {
+  font-size: 10px;
+  color: #5c5a5a;
+  font-weight: bold;
+}
+
+.memoryBox {
+  width: 100%;
+  height: 370px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.memoryCards {
+  height: 355px;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  background-color: rgba(163, 163, 163, 0.6);
+}
+
+.txtOnImg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  font-weight: bold;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.dateOnImg {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  font-weight: bold;
+  width: 100%;
+  padding: 0 2rem;
+}
+
+.moreMemories {
+  width: 300px;
+  height: 45px;
+  background-color: #857b74 !important;
+  font-weight: bold !important;
+  font-size: 18px;
+  margin-top: 35px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 2rem;
+}
+
+.folderDisplay {
+  background-color: #d3c0b2;
+  width: 350px;
+  height: 370px;
+  border-radius: 20px;
+  border: 1px solid black;
+  margin: 0 12px 0 12px;
+  overflow: scroll;
+}
+
+.folderFont {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.remmeberWhen {
+  font-size: 20px;
+  color: #848383;
+}
+
+.rememberWhenTop {
+  height: 114px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spaceFolders {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 1024px) {
   .logoEle {
-    width: 150px;
-    margin-left: 8px;
-    margin-top: 32px;
+    margin-top: -8px;
+    display: none !important;
   }
-  
-  .addNew {
-    background-color: #f4f2f0 !important;
-    padding: 0 !important;
-    height: 51px;
-    width: 195px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    align-items: center;
-    margin-bottom: 50px;
+
+  .helloTopTxt {
+    text-align: center;
   }
-  
-  .addNewFolder {
-    background-color: #f4f2f0 !important;
-    height: 51px;
-    width: 195px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    align-items: center;
+
+  .helloTxt {
+    font-size: 50px;
   }
-  
-  .addNewTxt {
-    font-size: 15px;
-    font-weight: bold;
-    margin: 0 !important;
+
+  .txtOnImg {
+    font-size: 30px;
+  }
+
+  .dateOnImg {
+    font-size: 20px;
+  }
+
+  .welcomeTxt {
+    font-size: 28px;
+    margin-bottom: 5rem;
+    margin-top: 1rem;
+  }
+
+  .memoryBox {
+    margin-bottom: 3rem;
     display: flex;
     justify-content: center;
   }
-  .addNewFolderTxt {
-    font-size: 15px;
-    margin-bottom: -1px;
-    padding-right: 5px !important;
-    font-weight: bold;
-    display: flex;
-    justify-content: end;
+
+  .remmeberWhen {
+    font-size: 50px;
   }
-  
-  .addNewBtn {
-    height: 45px;
-    width: 45px;
-    padding: 0px !important;
-    margin: 3px 0 0 2px;
-    border-radius: 100px !important;
+
+  .addNewFolder {
+    display: none !important;
   }
-  
-  .helloTopTxt {
-    padding-top: 39px;
-    margin-left: 2.5rem;
+
+  .addNew {
+    display: none !important;
   }
-  
-  .helloTxt {
-    color: #5c5a5a;
-    font-size: 30px;
-    font-weight: bold;
-  }
-  
-  .welcomeTxt {
-    font-size: 10px;
-    color: #5c5a5a;
-    font-weight: bold;
-  }
-  
-  .memoryBox {
-    width: 100%;
-    height: 370px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    display: flex;
-    flex-wrap: nowrap;
-    position: relative;
-    scroll-behavior: smooth;
-  }
-  
-  .memoryCards {
-    height: 355px;
-    width: 300px;
-    object-fit: cover;
-    border-radius: 20px;
-    background-color: rgba(163, 163, 163, 0.6);
-  }
-  
-  .txtOnImg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgb(0, 0, 0);
-    font-size: 25px;
-    font-weight: bold;
-    width: 100%;
-    padding: 0 2rem;
-  }
-  
-  .dateOnImg {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgb(0, 0, 0);
-    font-size: 15px;
-    font-weight: bold;
-    width: 100%;
-    padding: 0 2rem;
-  }
-  
-  .moreMemories {
+
+  .desktopAddBtn {
+    color: black !important;
     width: 300px;
     height: 45px;
-    background-color: #857b74 !important;
+    background-color: #ffffff !important;
     font-weight: bold !important;
-    font-size: 18px;
+    font-size: 24px !important;
     margin-top: 35px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 2rem;
+    border-style: none !important;
   }
-  
+
+  .moreMemories {
+    font-size: 24px !important;
+  }
+
+  .desktopAddBtn2 {
+    color: black !important;
+    width: 300px;
+    height: 45px;
+    background-color: #ffffff !important;
+    font-weight: bold !important;
+    font-size: 24px !important;
+    margin-top: 35px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+    border-style: none !important;
+  }
+
+  .desktopBtnRow {
+    text-align: center;
+  }
+
   .folderDisplay {
-    background-color: #d3c0b2;
-    width: 350px;
-    height: 370px;
-    border-radius: 20px;
-    border: 1px solid black;
+    width: 885px;
+    height: 550px;
     margin: 0 12px 0 12px;
     overflow: scroll;
+    overflow-x: hidden;
   }
-  
+
+  .spaceFolders {
+    margin: 0 2rem;
+  }
+
+  .folderSize {
+    width: 101px;
+    height: 131px;
+    object-fit: cover;
+  }
+
   .folderFont {
-    font-size: 15px;
-    font-weight: bold;
-  }
-  
-  .remmeberWhen {
     font-size: 20px;
-    color: #848383;
   }
-  .rememberWhenTop {
-    height: 114px;
+}
+
+@media only screen and (min-width: 800px) {
+  .folderBox {
+    width: 50rem !important;
+  }
+
+  .folderBoxCont {
     display: flex;
     justify-content: center;
-    align-items: center;
   }
-  
-  @media screen and (min-width: 1024px) {
-    .logoEle {
-      margin-top: -8px;
-    }
-  
-    .helloTopTxt {
-      text-align: center;
-    }
-  
-    .helloTxt {
-      font-size: 50px;
-    }
-  
-    .txtOnImg {
-      font-size: 30px;
-    }
-  
-    .dateOnImg {
-      font-size: 20px;
-    }
-  
-    .welcomeTxt {
-      font-size: 28px;
-      margin-bottom: 5rem;
-      margin-top: 1rem;
-    }
-  
-    .memoryBox {
-      margin-bottom: 3rem;
-    }
-  
-    .remmeberWhen {
-      font-size: 50px;
-    }
-  
-    .addNewFolder {
-      display: none !important;
-    }
-  
-    .addNew {
-      display: none !important;
-    }
-  
-    .desktopAddBtn {
-      color: black !important;
-      width: 300px;
-      height: 45px;
-      background-color: #ffffff !important;
-      font-weight: bold !important;
-      font-size: 24px !important;
-      margin-top: 35px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      margin-bottom: 2rem;
-      border-style: none !important;
-    }
-  
-    .moreMemories {
-      font-size: 24px !important;
-    }
-  
-    .desktopAddBtn2 {
-      color: black !important;
-      width: 300px;
-      height: 45px;
-      background-color: #ffffff !important;
-      font-weight: bold !important;
-      font-size: 24px !important;
-      margin-top: 35px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      margin-bottom: 2rem;
-      border-style: none !important;
-    }
-  
-    .desktopBtnRow {
-      text-align: center;
-    }
+}
+
+@media only screen and (max-width: 425px) {
+  .desktopAddCol {
+    display: none !important;
   }
-  
-  @media only screen and (min-width: 800px) {
-    .folderBox {
-      width: 50rem !important;
-    }
-  
-    .folderBoxCont {
-      display: flex;
-      justify-content: center;
-    }
-  }
-  
-  @media only screen and (max-width: 425px) {
-    .desktopAddCol {
-      display: none !important;
-    }
-  }
+}

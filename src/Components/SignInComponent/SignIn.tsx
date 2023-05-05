@@ -17,7 +17,7 @@ export default function SignIn() {
     };
 
     return (
-        <Container className='signInPlacing'>
+        <Container fluid className='signInPlacing'>
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <img className='logo' src={logo} alt='remember when logo, elephant holding balloon' />

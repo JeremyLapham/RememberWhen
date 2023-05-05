@@ -199,16 +199,31 @@
     }
   
     .selectedImgBtn {
-      width: 15rem !important;
-      height: 15rem !important;
+      width: 400px !important;
+      height: 400px !important;
     }
 
     .selectedImg {
-      height: 15rem;
-      width: 15rem;
+      height: 400px;
+      width: 400px;
       top: 0%;
       left: 0%;
       object-fit: cover;
+    }
+
+    #custom-input {
+      height: 400px;
+      width: 400px;
+    }
+
+    .input1 {
+      height: 400px;
+      width: 400px;
+    }
+
+    .textInputs {
+      width:400px !important;
+      height: 65px !important;
     }
   }
   

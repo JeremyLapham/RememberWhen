@@ -86,7 +86,7 @@ export default function SignInInfo() {
                                 <Row className='d-flex align-items-center'>
                                     <Col className='d-flex justify-content-start'>
                                         <label>
-                                            <input type="checkbox" checked={isChecked} onChange={handleShowPassword}/>
+                                            <input className='showPassword' type="checkbox" checked={isChecked} onChange={handleShowPassword}/>
                                             Show password
                                         </label>
                                     </Col>

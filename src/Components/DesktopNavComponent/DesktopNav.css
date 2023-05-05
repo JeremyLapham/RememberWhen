@@ -1,0 +1,47 @@
+.navLogo {
+    width: 150px !important;
+    margin-left: 8px;
+    margin-top: 1rem;
+}
+
+.navTitle {
+    margin-top: 2rem;
+    font-size: 30px;
+    margin-left: 0.5rem;
+}
+
+.navRow {
+    margin-left: 17rem !important;
+    margin-top: 2rem !important;
+}
+
+.navBtn {
+    font-size: 18px !important;
+    background-color: #D7D2CE !important;
+    color: black !important;
+    border-style: none !important;
+    border-radius: 0% !important;
+}
+
+.borderCol {
+    border-left: 2px solid black !important;
+    border-right: 2px solid black !important;
+}
+
+@media screen and (max-width: 425px) {
+    .logo {
+        display: none !important;
+    }
+
+    .navRow {
+        display: none !important;
+    }
+
+    .navTitle {
+        display: none !important;
+    }
+
+    .navLogo {
+        display: none !important;
+    }
+}

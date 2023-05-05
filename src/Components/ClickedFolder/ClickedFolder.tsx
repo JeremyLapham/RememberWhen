@@ -7,6 +7,7 @@ import './ClickedFolder.css';
 import AddIcon from '@mui/icons-material/Add';
 import { MyContext } from '../context';
 import { DeleteFolder, getMemoryByFolderId } from '../Services/DataService';
+import DesktopNav from '../DesktopNavComponent/DesktopNav';
 
 export default function ClickedFolder() {
     const { folderName } = useContext(MyContext);
@@ -79,6 +80,7 @@ export default function ClickedFolder() {
                 </Modal>
             </Row>
             <CustomNavbar />
+            <DesktopNav />
             <Row>
                 <Col>
                     <h1 className='nameFolder text-center'>{fromAddFolder ? selectedFolder.name : folderName}...</h1>
@@ -110,7 +112,7 @@ export default function ClickedFolder() {
                             {memoryItem.length === 0 ? <h2>No current memories</h2> :
                                 memoryItem.filter((item: { isDeleted: any; }) => !item.isDeleted).map((memory: any, idx: any) => {
                                     return (
-                                        <Col key={idx} xs={4} className='cardNoPad'>
+                                        <Col key={idx} xs={4} md={3} lg={3} className='cardNoPad'>
                                             <Button onClick={() => handleClickedMemory(memory)} variant='' className='allFolderBtn'>
                                                 <img className='folderImg' src={memory.image} alt='clickable image' />
                                             </Button>
@@ -124,17 +126,22 @@ export default function ClickedFolder() {
                     </div>
                 </Col>
             </Row>
-            <Row>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={handleEditFolder} className='' variant='warning'>Edit</Button>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button onClick={handleEditFolder} className='' variant='warning' style={{ marginRight: '1rem' }}>Edit</Button>
+                <Button onClick={() => { setShow(true); }} className='' variant='danger' style={{ marginRight: '1rem' }}>Delete</Button>
+                <Button onClick={() => { setShow(true); }} className='' variant='info'>Share</Button>
+            </div>
+            <Row className="desktopBtnRow">
+                <Col className="desktopAddCol">
+                    <Button variant='' onClick={() => { navigate("/AddMemory"); setIsMemoryEdit(false); }} className="desktopAddBtn">Add Memory +</Button>
                 </Col>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => { setShow(true); }} className='' variant='danger'>Delete</Button>
+                <Col className="d-flex justify-content-center">
+                    <Button onClick={() => navigate('/dashboard')} className="moreMemories" variant="">
+                        Go Back
+                    </Button>
                 </Col>
-            </Row>
-            <Row>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => { navigate('/dashboard'); setFromAddFolder(false); }} className='moreMemories' variant=''>Go Back</Button>
+                <Col className="desktopAddCol">
+                    <Button variant='' onClick={() => { navigate("/AddFolder"); setIsEditFolder(false); }} className="desktopAddBtn2">Add Folder +</Button>
                 </Col>
             </Row>
         </Container>

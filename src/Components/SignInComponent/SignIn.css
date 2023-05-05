@@ -51,10 +51,10 @@
     bottom: 0;
     background-color: #857B74;
     height: 100%;
-    margin-left: -12px;
-    margin-top: 47px;
-    width: 100vw;
+    margin: 47px 0 0 -12px;
+    min-width: 100vw;
     border-radius: 50px 50px 0 0;
+    box-sizing: border-box;
 }
 
 .inputField {
@@ -103,11 +103,16 @@
         width: 520px;
     }
 
-
     .signInBtn {
         width: 470px;
         height: 70px;
         font-size: 25px;
+    }
+
+    .signInBtnTwo {
+        width: 500px;
+        height: 70px;
+        font-size: 30px;
     }
 
     .inputField {

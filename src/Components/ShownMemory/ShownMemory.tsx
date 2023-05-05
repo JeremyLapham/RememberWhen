@@ -3,23 +3,15 @@ import './ShownMemory.css';
 import CustomNavbar from '../navComponent/NavbarComponent';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import elephantLogo from '../../assets/elephantLogo.svg';
-import memory from '../../assets/memory.jpg';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../context';
 import { DeleteMemory } from '../Services/DataService';
 
 export default function ShownMemory() {
     const [show, setShow] = useState(false);
-    const [editDelete, setEditDelete] = useState('')
-    const  { selectedMemory } = useContext(MyContext);
-    const  { setMemoryEdit } = useContext(MyContext);
-    const  { setIsMemoryEdit } = useContext(MyContext);
-
-    console.log(selectedMemory);
-    
-    const editOrDelte = () => {
-        console.log(editDelete)
-    }
+    const { selectedMemory } = useContext(MyContext);
+    const { setMemoryEdit } = useContext(MyContext);
+    const { setIsMemoryEdit } = useContext(MyContext);
 
     const handleClose = () => setShow(false);
 
@@ -45,13 +37,10 @@ export default function ShownMemory() {
         }, 500);
     }
 
-   const handleDeleteMemory = async () => {
-    await DeleteMemory (selectedMemory);
-    navigate("/Dashboard");
-
-
+    const handleDeleteMemory = async () => {
+        await DeleteMemory(selectedMemory);
+        navigate("/Dashboard");
     }
-
 
     return (
         <Container fluid>
@@ -60,21 +49,21 @@ export default function ShownMemory() {
                     <Modal.Body className='modalBody'>
                         <Row>
                             <Col className='d-flex justify-content-center'>
-                        <p className='modalTxt'>Are you sure you want to delete this memory?</p>
+                                <p className='modalTxt'>Are you sure you want to delete this memory?</p>
                             </Col>
                         </Row>
                         <Row>
 
-                        <Col className='d-flex justify-content-center'>
-                            <Button className='confirmDeleteBtn' variant="" onClick={handleDeleteMemory}>
-                                Delete
-                            </Button>
-                        </Col>
-                        <Col className='d-flex justify-content-center'>
-                            <Button className='cancelDelete' variant="" onClick={handleClose}>
-                                Cancel
-                            </Button>
-                        </Col>
+                            <Col className='d-flex justify-content-center'>
+                                <Button className='confirmDeleteBtn' variant="" onClick={handleDeleteMemory}>
+                                    Delete
+                                </Button>
+                            </Col>
+                            <Col className='d-flex justify-content-center'>
+                                <Button className='cancelDelete' variant="" onClick={handleClose}>
+                                    Cancel
+                                </Button>
+                            </Col>
                         </Row>
                     </Modal.Body>
                 </Modal>
@@ -117,10 +106,10 @@ export default function ShownMemory() {
             </Row>
             <Row className='rowMargin'>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={handleEditMemory } className='editBtn' variant=''>Edit</Button>
+                    <Button onClick={handleEditMemory} className='editBtn' variant=''>Edit</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => {setShow(true);}} className='deleteBtn' variant=''>Delete</Button>
+                    <Button onClick={() => { setShow(true); }} className='deleteBtn' variant=''>Delete</Button>
                 </Col>
                 <Col className='d-flex justify-content-center'>
                     <Button className='shareBtn' variant=''>Share</Button>

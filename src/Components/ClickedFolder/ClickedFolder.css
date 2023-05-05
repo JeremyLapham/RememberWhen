@@ -13,35 +13,83 @@
 .nameFolder {
     margin-top: 30px;
     font-size: 25px;
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .allFolderBtn {
-    width:90px;
+    width: 90px;
     height: 90px;
-    border:1px solid !important;
+    border: 1px solid !important;
     border-radius: 10px !important;
     padding: 0 !important;
-    margin:1rem 0 0 1rem
+    margin: 1rem 0 0 1rem
 }
 
 .folderImg {
-    width:90px;
-    height:90px;
+    width: 90px;
+    height: 90px;
     border-radius: 10px;
     object-fit: cover;
 }
 
 .cardNoPad {
     padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .memoryTitle {
-    font-size:10px;
-    margin:0 !important;
+    font-size: 10px;
+    margin: 0 !important;
 }
 
 .memoryDate {
-    font-size:8px;
-    padding:0 !important;
+    font-size: 8px;
+    padding: 0 !important;
+}
+
+@media screen and (min-width: 1024px) {
+    .displayMemory {
+        width: 55rem;
+        height: 37rem;
+        text-align: center;
+    }
+
+    .nameFolder {
+        font-size: 50px;
+    }
+
+    .allFolderBtn {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .folderImg {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .heart {
+        display: none;
+    }
+
+    .nameFolder {
+        font-size: 28px;
+        margin-bottom: 2rem;
+    }
+
+    .memoryDate {
+        font-size: 15px !important;
+    }
+
+    .memoryTitle {
+        font-size: 15px !important;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .desktopNavbar {
+        display: none !important;
+    }
 }
