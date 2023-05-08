@@ -9,12 +9,14 @@ import { createAccount } from '../Services/DataService';
 export default function SignUpInfo() {
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
+    const [Email, setEmail] = useState('');
     const navigate = useNavigate();
 
     const handelSubmit = () => {
         let userData = {
             Id: 0,
             Username,
+            Email,
             Password
         }
         const GetLoggedInData = async () => {
@@ -73,7 +75,7 @@ export default function SignUpInfo() {
                                 <Row>
                                     <Col>
                                         <h4 className='signUpInput'>Email</h4>
-                                        <input className='inputField' type='email' placeholder='Enter your email' />
+                                        <input onChange={({ target: { value } }) => setEmail(value)} className='inputField' type='email' placeholder='Enter your email' />
                                     </Col>
                                 </Row>
                                 <Row>
