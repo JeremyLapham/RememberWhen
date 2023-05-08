@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem, getFolderByUserId } from '../Services/DataService';
 import { MyContext } from '../context';
-//import swal from 'sweetalert';
+import swal from 'sweetalert';
 
 export default function AddMemory() {
     const { usersId } = useContext(MyContext);
@@ -15,17 +15,10 @@ export default function AddMemory() {
     const { memoryEdit } = useContext(MyContext);
     const { isEditMemory } = useContext(MyContext);
     const { setSelectedMemory } = useContext(MyContext);
-    const audioContext = new AudioContext();
-
-    const oscillator = audioContext.createOscillator();
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
-
 
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
-    // const [selectedAudio, setSelectedAudio] = useState('');
 
     const [memoryImage, setMemoryImage] = useState(isEditMemory ? memoryEdit.image : '');
     const [memoryTitle, setMemoryTitle] = useState(isEditMemory ? memoryEdit.title : '');
@@ -52,9 +45,6 @@ export default function AddMemory() {
         setSelectedImage(e.target.files[0]);
     }
 
-    // const handleAudio = () => {
-    //     setSelectedAudio(sound)
-    // };
     const handleSave = async () => {
         if (memoryImage === '' || memoryDate === '' || memoryTitle === '' || memoryDescription === '' || memoryTags === '' || folderId === null) {
            // swal("Please make sure you enter in every field");
@@ -109,26 +99,48 @@ export default function AddMemory() {
         <Container fluid>
             <Row>
                 <Modal className='modalBG' show={show} onHide={handleClose}>
-                    <Modal.Body className='modalBody'>
+                    <Modal.Body className={isEditMemory ? 'modalBodyUpdate' : `modalBody`}>
                         <Row>
                             <Col className='d-flex justify-content-center'>
-                                <p className='modalTxt'>Your memory was added!</p>
+                                {isEditMemory ?
+                                    <p className='modalTxt'>Do you wish to save the changes to your memory?</p>
+                                    :
+                                    <p className='modalTxt'>Your memory was added!</p>
+                                }
                             </Col>
                         </Row>
                         <Row>
-
                             <Col className='d-flex justify-content-center'>
-                                <Button className='confirmDeleteBtn' variant="" onClick={handleViewMemory}>
-                                    View
-                                </Button>
+                                {isEditMemory ?
+                                    <Row className='d-flex justify-content-center'>
+                                        <Col>
+                                            <Button onClick={() => {
+                                                handleSave(); setTimeout(() => {
+                                                    navigate('/dashboard')
+                                                }, 1000);
+                                            }} className='changeBtn' variant=''>Change</Button>
+                                        </Col>
+                                        <Col>
+                                            <Button onClick={() => { setShow(false); }} className='cancelBtn' variant=''>Cancel</Button>
+                                        </Col>
+                                    </Row>
+                                    :
+                                    <Button className='viewBtn' variant="" onClick={handleViewMemory}>View</Button>
+                                }
                             </Col>
                         </Row>
                     </Modal.Body>
                 </Modal>
             </Row>
             <CustomNavbar />
+            <DesktopNav />
+            <Row>
+                <Col className='d-flex justify-content-center'>
+                    <h2 style={{ margin: '1rem 0' }}>add your <span style={{ color: '#848383' }}>memory...</span></h2>
+                </Col>
+            </Row>
             <Row className='desktopInfoRow'>
-                <Col md={4} className='firstInfoCol'>
+                <Col md={4} lg={4} className='firstInfoCol'>
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
@@ -140,17 +152,6 @@ export default function AddMemory() {
                             </Form.Group>
                         </Col>
                     </Row>
-                    {/* <Row>
-                <Col>
-                    <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Add audio</Form.Label>
-                        <Button style={{ position: 'relative' }} id='custom-input2'>
-                            {selectedAudio && <img className='selectedImg2' src={selectedAudio} alt="Selected image" />}
-                            <Form.Control className='input2' onChange={handleAudio} type='file' accept='audio/mp3' />
-                        </Button>
-                    </Form.Group>
-                </Col>
-            </Row> */}
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center">
@@ -160,7 +161,7 @@ export default function AddMemory() {
                         </Col>
                     </Row>
                 </Col>
-                <Col md={4} className='secondInfoCol'>
+                <Col md={4} lg={4} className='secondInfoCol'>
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center">
@@ -196,17 +197,21 @@ export default function AddMemory() {
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                                <Form.Label className='addDescriptionTxt'>Description</Form.Label>
-                                <textarea className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription} />
+                                <Form.Label className='addDescriptionTxt'>Memory Description</Form.Label>
+                                <textarea style={{ minHeight: '130px' }} className='textInputs' placeholder='Memory Description' onChange={handleDescription} value={memoryDescription} />
                             </Form.Group>
                         </Col>
                     </Row>
                 </Col>
                 <Row className='desktopAddRow'>
-                    <Col className='d-flex justify-content-center'>
-                        <Button onClick={() => { handleSave(); }} className='addBtn' variant=''>{isEditMemory ? 'update' : 'add'}</Button>
+                    <Col className='d-flex justify-content-end'>
+                        {isEditMemory ?
+                            <Button onClick={() => { setShow(true); }} className='addBtn' variant=''>Update</Button>
+                            :
+                            <Button onClick={() => { handleSave(); }} className='addBtn' variant=''>Add</Button>
+                        }
                     </Col>
-                    <Col className='d-flex justify-content-center'>
+                    <Col className='d-flex justify-content-start'>
                         <Button onClick={() => navigate('/dashboard')} className='addCancelBtn' variant=''>Cancel</Button>
                     </Col>
                 </Row>

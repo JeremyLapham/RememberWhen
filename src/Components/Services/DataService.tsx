@@ -1,4 +1,5 @@
 let userData = {};
+const api = 'https://rememberwhenagain.azurewebsites.net/';
 
 export async function createAccount(createdUser: { Id: number; Username: string; Password: string; }) {
     const res = await fetch('https://rememberwhenagain.azurewebsites.net/User/adduser', {
@@ -61,13 +62,6 @@ export async function GetLoggedInUserData(username: string) {
     userData = data;
     return userData
 }
-
-// export async function GetPublishedMemoryItem() {
-//     let res = await fetch('https://rememberwhenwebsite.azurewebsites.net/Memory/GetPublishedItems');
-//     let data = res.json();
-//     return data;
-// }
-
 
 export function checkToken() {
     let result = false;

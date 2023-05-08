@@ -8,6 +8,7 @@ import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import AddIcon from '@mui/icons-material/Add';
 import { checkToken, getFolderByUserId, getMemoryItemsByUserId, loggedInData } from '../Services/DataService';
 import { MyContext } from '../context';
+import DesktopNav from '../DesktopNavComponent/DesktopNav';
 
 export default function DashBoard() {
     const { username } = useContext(MyContext);
@@ -23,6 +24,7 @@ export default function DashBoard() {
     const { setIsEditFolder } = useContext(MyContext);
     const { setIsMemoryEdit } = useContext(MyContext);
     const { setUser } = useContext(MyContext);
+    const { setSelectedMemory } = useContext(MyContext);
 
     const navigate = useNavigate();
 
@@ -69,9 +71,15 @@ export default function DashBoard() {
         setFolderName(name);
         navigate('/ClickedFolder');
     }
+
+    const handlememoryClickDash = (memory: any) => {
+        setSelectedMemory(memory);
+        navigate('/memory')
+    }
     return (
         <Container fluid>
             <CustomNavbar />
+            <DesktopNav />
             <Row className='d-flex align-items-center'>
                 <Col xs={6}>
                     <img className='logoEle' src={logo} alt='remember when logo, elephant holding balloon' />
@@ -125,9 +133,9 @@ export default function DashBoard() {
                             <Row>
                                 {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((folder: any, idx: number) => {
                                     return (
-                                        <Col key={idx} xs={4}>
+                                        <Col className='spaceFolders' key={idx} xs={4} md={4} lg={4}>
                                             <Button onClick={() => { handleFolderClick(folder, folder.name); }} variant=''>
-                                                <img src={folderImg} />
+                                                <img src={folderImg}  className='folderSize'/>
                                                 <p className='folderFont'>{folder.name}</p>
                                             </Button>
                                         </Col>
@@ -142,7 +150,7 @@ export default function DashBoard() {
                     <Col className='memoryBox'>
                         {memoryItems.filter((item: { isDeleted: any; }) => !item.isDeleted).map((cardInfo: any, idx: number) => {
                             return (
-                                <Button key={idx} style={{ position: 'relative', pointerEvents: 'none' }} variant=''>
+                                <Button onClick={() => handlememoryClickDash(cardInfo)} key={idx} style={{ position: 'relative' }} variant=''>
                                     <img className='memoryCards' src={cardInfo.image} alt='Your memory image is here' />
                                     <div className='txtOnImg'>{cardInfo.title}</div>
                                     <div className='dateOnImg'>{cardInfo.date}</div>

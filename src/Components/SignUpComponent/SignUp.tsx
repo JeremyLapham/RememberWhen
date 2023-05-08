@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
-import { Button, Col, Container, OverlayTrigger, Popover, Row, Toast } from 'react-bootstrap';
+import { Button, Col, Container, Row, Toast } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { createAccount } from '../Services/DataService';
 
 export default function SignUpInfo() {
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
+    const [Email, setEmail] = useState('');
     const navigate = useNavigate();
 
     const handelSubmit = () => {
         let userData = {
             Id: 0,
             Username,
+            Email,
             Password
         }
-        // createAccount(userData)
         const GetLoggedInData = async () => {
             let result = await createAccount(userData)
 
@@ -39,13 +40,6 @@ export default function SignUpInfo() {
     const [showA, setShowA] = useState(false);
 
     const toggleShowA = () => setShowA(!showA);
-    // .addToast {
-    //     position: absolute;
-    //     position: fixed;
-    //     top: 0;
-    //     right: 0;
-    //     z-index: 100;
-    // }
 
     return (
         <Container fluid>
@@ -81,7 +75,7 @@ export default function SignUpInfo() {
                                 <Row>
                                     <Col>
                                         <h4 className='signUpInput'>Email</h4>
-                                        <input className='inputField' type='email' placeholder='Enter your email' />
+                                        <input onChange={({ target: { value } }) => setEmail(value)} className='inputField' type='email' placeholder='Enter your email' />
                                     </Col>
                                 </Row>
                                 <Row>

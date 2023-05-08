@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import './AddFolder.css';
 import { MyContext } from '../context';
 import { Folder, updateFolder } from '../Services/DataService';
-//import swal from 'sweetalert';
+// import swal from 'sweetalert';
+import DesktopNav from '../DesktopNavComponent/DesktopNav';
 
 export default function AddFolder() {
     const { usersId } = useContext(MyContext);
@@ -14,6 +15,7 @@ export default function AddFolder() {
     const { isEditFolder } = useContext(MyContext);
     const { folderEdit } = useContext(MyContext);
     const { setSelectedFolder } = useContext(MyContext);
+    const { setFromAddFolder } = useContext(MyContext);
 
     const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -44,14 +46,20 @@ export default function AddFolder() {
                 result = await updateFolder(fold);
             } else {
                 const fold = {
+                    id: 0,
                     userId: usersId,
                     name: folderName,
                     isDeleted: false
                 }
                 setSelectedFolder(fold);
+                setFromAddFolder(true);
                 result = await Folder(fold);
             }
-            setShowModal(true);
+            if (result) {
+                setShowModal(true);
+            } else {
+                alert('Something went wrong and your folder wasn\'t made');
+            }
         }
     }
 
@@ -100,6 +108,7 @@ export default function AddFolder() {
             <Row>
                 <Col>
                     <CustomNavbar />
+                    <DesktopNav />
                 </Col>
             </Row>
             <Row>
@@ -130,10 +139,14 @@ export default function AddFolder() {
             </Row>
 
             <Row>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={handleFolder} className='addfolderBtn' variant=''>{isEditFolder ? 'Update' : 'Add'}</Button>
+                <Col className='d-flex justify-content-end'>
+                    {isEditFolder ?
+                        <Button onClick={() => { setShow(true); }} className='addBtn' variant=''>Update</Button>
+                        :
+                        <Button onClick={() => { handleFolder(); }} className='addBtn' variant=''>Add</Button>
+                    }
                 </Col>
-                <Col className='d-flex justify-content-center'>
+                <Col className='d-flex justify-content-start'>
                     <Button onClick={handleBackToHome} className='cancelfolderBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
