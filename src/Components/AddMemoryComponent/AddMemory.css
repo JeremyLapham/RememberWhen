@@ -134,7 +134,7 @@
 }
 
 .addDescriptionTxt {
-  margin-right: 13rem;
+  margin-right: 8rem;
   font-weight: bolder;
 }
 
@@ -268,13 +268,36 @@
     height: 65px !important;
   }
 
-
   .viewBtn {
     width: 200px !important;
     height: 65px !important;
     font-size: 35px !important;
     font-weight: bold !important;
     margin-top:50px !important;
+  }
+
+  .addImgTxt {
+    margin-right: 19rem;
+  }
+  
+  .addHashtagTxt {
+    margin-right: 20rem;
+  }
+  
+  .addFolderInputTxt {
+    margin-right: 21.2rem;
+  }
+  
+  .addMemoryTxt {
+    margin-right: 18rem;
+  }
+  
+  .addDateTxt {
+    margin-right: 22.2rem;
+  }
+  
+  .addDescriptionTxt {
+    margin-right: 14.2rem;
   }
 }
 

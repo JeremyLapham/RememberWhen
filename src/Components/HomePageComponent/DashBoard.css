@@ -114,8 +114,10 @@
   color: rgb(0, 0, 0);
   font-size: 25px;
   font-weight: bold;
-  width: 100%;
+  width: 75%;
   padding: 0 2rem;
+  border-radius: 20px;
+  background-color: #ffffff54;
 }
 
 .dateOnImg {
@@ -126,8 +128,10 @@
   color: rgb(0, 0, 0);
   font-size: 15px;
   font-weight: bold;
-  width: 100%;
+  width: 50%;
   padding: 0 2rem;
+  border-radius: 20px;
+  background-color: #ffffff54;
 }
 
 .moreMemories {
@@ -155,6 +159,7 @@
 .folderFont {
   font-size: 15px;
   font-weight: bold;
+  width:55px;
 }
 
 .remmeberWhen {
@@ -194,6 +199,7 @@
 
   .dateOnImg {
     font-size: 20px;
+    border-radius: 0 0 20px 20px;
   }
 
   .welcomeTxt {
@@ -236,6 +242,8 @@
 
   .moreMemories {
     font-size: 24px !important;
+    width: 400px;
+    height: 65px;
   }
 
   .desktopAddBtn2 {
@@ -276,6 +284,7 @@
 
   .folderFont {
     font-size: 20px;
+    width:101px;
   }
 }
 

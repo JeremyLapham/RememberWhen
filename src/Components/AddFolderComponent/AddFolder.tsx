@@ -11,13 +11,11 @@ import DesktopNav from '../DesktopNavComponent/DesktopNav';
 
 export default function AddFolder() {
     const { usersId } = useContext(MyContext);
-    const { folderId } = useContext(MyContext);
     const { isEditFolder } = useContext(MyContext);
     const { folderEdit } = useContext(MyContext);
     const { setSelectedFolder } = useContext(MyContext);
     const { setFromAddFolder } = useContext(MyContext);
 
-    const [show, setShow] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [folderName, setFolderName] = useState(isEditFolder ? folderEdit.name : '');
 
@@ -44,6 +42,9 @@ export default function AddFolder() {
                 }
                 setSelectedFolder(fold);
                 result = await updateFolder(fold);
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 2000);
             } else {
                 const fold = {
                     id: 0,
@@ -58,7 +59,7 @@ export default function AddFolder() {
             if (result) {
                 setShowModal(true);
             } else {
-                alert('Something went wrong and your folder wasn\'t made');
+                alert('Something went wrong and your folder wasn\'t made or updated');
             }
         }
     }
@@ -75,35 +76,20 @@ export default function AddFolder() {
                     <Modal.Body className='modalBody'>
                         <Row>
                             <Col className='d-flex justify-content-center'>
-                                <p className='modalTxt'>Your folder was added!</p>
+                                <p className='modalTxt'>Your folder was {folderEdit ? 'Edited' : 'added'}</p>
                             </Col>
                         </Row>
                         <Row>
-
+                        {folderEdit ? '' : 
                             <Col className='d-flex justify-content-center'>
-                                <Button className='confirmDeleteBtn' variant="" onClick={handleViewFolder}>
+                                <Button className='viewBtn' variant="" onClick={handleViewFolder}>
                                     View
                                 </Button>
                             </Col>
+                            }
                         </Row>
                     </Modal.Body>
                 </Modal>
-            </Row>
-            <Row>
-                <Col xs={6}>
-                    <Toast className='addToast' onClose={() => setShow(false)} show={show} delay={3000} autohide>
-                        <Toast.Header>
-                            <img
-                                src="holder.js/20x20?text=%20"
-                                className="rounded me-2"
-                                alt=""
-                            />
-                            <strong className="me-auto">Remember when</strong>
-                            <small>1s ago</small>
-                        </Toast.Header>
-                        <Toast.Body>Folder has been added</Toast.Body>
-                    </Toast>
-                </Col>
             </Row>
             <Row>
                 <Col>
@@ -141,7 +127,7 @@ export default function AddFolder() {
             <Row>
                 <Col className='d-flex justify-content-end'>
                     {isEditFolder ?
-                        <Button onClick={() => { setShow(true); }} className='addBtn' variant=''>Update</Button>
+                        <Button onClick={() => { handleFolder(); setShowModal(true); }} className='addBtn' variant=''>Update</Button>
                         :
                         <Button onClick={() => { handleFolder(); }} className='addBtn' variant=''>Add</Button>
                     }

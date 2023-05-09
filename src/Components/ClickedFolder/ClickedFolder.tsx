@@ -66,12 +66,12 @@ export default function ClickedFolder() {
                         <Row>
 
                             <Col className='d-flex justify-content-center'>
-                                <Button className='confirmDeleteBtn' variant="" onClick={handleDeleteFolder}>
+                                <Button className='confirmDeleteBtnFold' variant="" onClick={handleDeleteFolder}>
                                     Delete
                                 </Button>
                             </Col>
                             <Col className='d-flex justify-content-center'>
-                                <Button className='cancelDelete' variant="" onClick={handleClose}>
+                                <Button className='cancelDeleteFold' variant="" onClick={handleClose}>
                                     Cancel
                                 </Button>
                             </Col>
@@ -108,7 +108,7 @@ export default function ClickedFolder() {
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <div className='displayMemory'>
-                        <Row>
+                        <Row className='d-flex justify-content-center'>
                             {memoryItem.length === 0 ? <h2>No current memories</h2> :
                                 memoryItem.filter((item: { isDeleted: any; }) => !item.isDeleted).map((memory: any, idx: any) => {
                                     return (

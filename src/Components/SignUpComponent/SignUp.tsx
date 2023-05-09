@@ -10,9 +10,11 @@ export default function SignUpInfo() {
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
     const [Email, setEmail] = useState('');
+    const [clickSignUp, setClickSignUp] = useState(false);
     const navigate = useNavigate();
 
     const handelSubmit = () => {
+        setClickSignUp(true);
         let userData = {
             Id: 0,
             Username,
@@ -23,9 +25,12 @@ export default function SignUpInfo() {
             let result = await createAccount(userData)
 
             if (result) {
-                navigate('/SignInInfo');
+                setTimeout(() => {
+                    navigate('/SignInInfo');
+                }, 2000);
             } else {
-                toggleShowA()
+                setClickSignUp(false);
+                toggleShowA();
             }
         }
         GetLoggedInData()
@@ -44,9 +49,16 @@ export default function SignUpInfo() {
     return (
         <Container fluid>
             <Row>
-                <Col md={6} className="mb-2">
-                    <Toast style={{position:'fixed', top:'30%',zIndex:100, backgroundColor:'#d7d2ce', color:'#C52E22', border: '2px solid black'}} show={showA} onClose={toggleShowA} delay={4000} autohide>
+                <Col className="mb-2">
+                    <Toast className='toast' show={showA} onClose={toggleShowA} delay={4000} autohide>
                         <Toast.Body>The Username you entered is already taken.</Toast.Body>
+                    </Toast>
+                </Col>
+            </Row>
+            <Row>
+                <Col className="mb-2">
+                    <Toast className='toast' show={clickSignUp} onClose={() => setClickSignUp(false)} delay={4000} autohide>
+                        <Toast.Body>Account has been made</Toast.Body>
                     </Toast>
                 </Col>
             </Row>
@@ -86,7 +98,7 @@ export default function SignUpInfo() {
                                 </Row>
                                 <Row>
                                     <Col className='d-flex justify-content-center'>
-                                        <Button onClick={handelSubmit} className='signUpBtn' variant=''>Sign Up</Button>
+                                        <Button onClick={handelSubmit} className='signUpBtn' variant='' disabled={clickSignUp}>Sign Up</Button>
                                     </Col>
                                 </Row>
                             </Row>

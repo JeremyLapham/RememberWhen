@@ -55,6 +55,7 @@
     width: 90px;
     height: 31px;
     margin: 30px 1rem 0 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .editBtnFold {
@@ -79,6 +80,25 @@
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 2rem;
+}
+
+.confirmDeleteBtnFold {
+    width: 90px !important;
+    height: 31px !important;
+    background: #C52E22;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px !important;
+    font-weight: 700;
+    font-size: 15px !important;
+}
+.cancelDeleteFold {
+    width: 90px !important;
+    height: 31px !important;
+    background: #857B74;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px !important;
+    font-weight: 700;
+    font-size: 15px !important;
 }
 
 @media screen and (min-width: 1024px) {
@@ -122,6 +142,7 @@
         margin: 48px 3rem 4rem 3rem;
         font-size: 30px;
         font-weight: bold;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     .moreMemories {
@@ -130,6 +151,18 @@
         font-size: 30px;
         margin-bottom: 4rem;
     }
+
+    .confirmDeleteBtnFold {
+        width: 200px !important;
+        height: 65px !important;
+        font-size: 35px !important;
+    }
+    .cancelDeleteFold {
+        width: 200px !important;
+        height: 65px !important;
+        font-size: 35px !important;
+    }
+
 
 }
 

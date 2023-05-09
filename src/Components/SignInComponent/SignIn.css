@@ -49,7 +49,6 @@
 }
 
 .signInBg {
-    bottom: 0;
     background-color: #857B74;
     height: 100%;
     margin: 47px 0 0 -12px;
@@ -98,7 +97,29 @@
     font-weight: bolder !important;
 }
 
+.loading {
+    color:white;
+    font-size:30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5);
+}
+
 @media screen and (min-width: 1024px) {
+    .loading {
+        color:white;
+        font-size:40px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5);
+    }
+
     .logo {
         margin-bottom: -5rem;
         width: 520px;

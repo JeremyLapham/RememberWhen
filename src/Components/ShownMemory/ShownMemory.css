@@ -104,30 +104,25 @@
     margin-bottom: 23px;
 }
 
-.cancelDelete {
-    width: 90px;
-    height: 31px;
-    background-color: #857B74;
-    border-radius: 5px !important;
-    font-size: 15px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 27px;
+.confirmDeleteBtn {
+    background-color: #C52E22;
 }
 
+.cancelDelete {
+    background-color: #857B74;
+}
+
+.cancelDelete,
 .confirmDeleteBtn {
     width: 90px;
     height: 31px;
-    background-color: #C52E22;
     border-radius: 5px !important;
     font-size: 15px !important;
+    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 27px;
 }
 
 .modalTxt {
@@ -147,14 +142,21 @@
     height: 152px;
 }
 
+.modalBodyUpdate {
+    background-color: #d7d2ce;
+    border: 2px solid;
+    border-radius: 10px;
+    height: 152px;
+}
+
 .backBtnDesktop {
     display: none;
 }
 
 .memoryImgModal {
-    margin:0 !important;
+    margin: 0 !important;
     padding: 0 !important;
-    height:500px;
+    height: 500px;
     width: 350px;
     object-fit: contain;
 }
@@ -169,17 +171,25 @@
 
 @media screen and (min-width: 1024px) {
     .modalBody {
-        background-color: #d7d2ce;
-        border: 2px solid;
-        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 50px;
+        left: calc(50% - 335px);
         height: 335px;
         width: 670px;
     }
 
     .modalBodyUpdate {
-        background-color: #d7d2ce;
-        border: 2px solid;
-        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 50px;
+        left: calc(50% - 532.5px);
         height: 335px;
         width: 1065px;
     }
@@ -278,18 +288,26 @@
     }
 
     .memoryImgModal {
-        margin:0 !important;
+        margin: 0 !important;
         padding: 0 !important;
-        height:800px;
+        height: 800px;
         width: 1000px;
         object-fit: contain;
     }
-    
+
     .imgModal {
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0 !important;
         padding: 0 !important;
+    }
+
+    .cancelDelete,
+    .confirmDeleteBtn {
+        width: 200px !important;
+        height: 65px !important;
+        font-size: 35px !important;
+        margin-top: 25px;
     }
 }

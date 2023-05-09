@@ -1,5 +1,5 @@
-import React from 'react';
-import logo  from '../../assets/elephantLogo.svg';
+import React, { useEffect } from 'react';
+import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
@@ -15,6 +15,10 @@ export default function SignIn() {
     const handleSignUpClick = () => {
         navigate('/SignUp');
     };
+
+    useEffect(() =>{
+        sessionStorage.clear()
+    }, []);
 
     return (
         <Container fluid className='signInPlacing'>

@@ -87,7 +87,7 @@ export default function DashBoard() {
                 <Col xs={6} className='d-flex flex-column justify-content-end'>
                     <Row>
                         <div className='d-flex justify-content-end'>
-                            <Button onClick={() => { navigate('/AddMemory'); setIsMemoryEdit(false) }} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                            <Button onClick={() => { navigate('/AddMemory'); setIsMemoryEdit(false); }} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }} disabled={folders.filter((item: { isDeleted: any; }) => !item.isDeleted).length === 0}>
                                 <Col xs={9}>
                                     <p className='addNewTxt'>Add Memory</p>
                                 </Col>
@@ -133,7 +133,7 @@ export default function DashBoard() {
                             <Row>
                                 {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((folder: any, idx: number) => {
                                     return (
-                                        <Col className='spaceFolders' key={idx} xs={4} md={4} lg={4}>
+                                        <Col className='spaceFolders' key={idx} xs={4} md={4} lg={4} xl={4}>
                                             <Button onClick={() => { handleFolderClick(folder, folder.name); }} variant=''>
                                                 <img src={folderImg}  className='folderSize'/>
                                                 <p className='folderFont'>{folder.name}</p>
@@ -163,7 +163,7 @@ export default function DashBoard() {
 
             <Row className="desktopBtnRow">
                 <Col className="desktopAddCol">
-                    <Button variant='' onClick={() => { navigate("/AddMemory"); setIsMemoryEdit(false); }} className="desktopAddBtn">Add Memory +</Button>
+                    <Button variant='' onClick={() => { navigate("/AddMemory"); setIsMemoryEdit(false); }} className="desktopAddBtn" disabled={folders.filter((item: { isDeleted: any; }) => !item.isDeleted).length === 0}>Add Memory +</Button>
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <Button onClick={handleClick} className="moreMemories" variant="">

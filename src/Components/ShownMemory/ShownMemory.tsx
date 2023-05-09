@@ -14,6 +14,7 @@ export default function ShownMemory() {
     const { selectedMemory } = useContext(MyContext);
     const { setMemoryEdit } = useContext(MyContext);
     const { setIsMemoryEdit } = useContext(MyContext);
+    console.log(selectedMemory)
 
     const handleClose = () => setShow(false);
     const handleCloseImg = () => setShowImg(false);

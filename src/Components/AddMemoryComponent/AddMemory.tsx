@@ -20,6 +20,7 @@ export default function AddMemory() {
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
+    // console.log(memoryEdit.image)
 
     const [memoryImage, setMemoryImage] = useState(isEditMemory ? memoryEdit.image : '');
     const [memoryTitle, setMemoryTitle] = useState(isEditMemory ? memoryEdit.title : '');
@@ -27,12 +28,12 @@ export default function AddMemory() {
     const [memoryTags, setMemoryTags] = useState(isEditMemory ? memoryEdit.tags : '');
     const [memoryDate, setMemoryDate] = useState(isEditMemory ? memoryEdit.date : '');
     const [memoryId, setMemoryId] = useState(isEditMemory ? memoryEdit.id : 0);
-    const [memoryPublisherName, setPublisherName] = useState('');
+    const [folder, setFolder] = useState(0);
     const [folders, setFolders] = useState([]);
 
     const handleTitle = ({ target }) => setMemoryTitle(target.value);
     const handleDescription = ({ target }) => setMemoryDescription(target.value);
-    const handleFolder = ({ target: { value } }) => setFolderId(value);
+    const handleFolder = ({ target: { value } }) => { setFolderId(value); setFolder(value); console.log(value) };
     const handleTags = ({ target }) => setMemoryTags(target.value);
     const handleDate = ({ target }) => setMemoryDate(target.value);
 
@@ -43,24 +44,22 @@ export default function AddMemory() {
             setMemoryImage(reader.result);
         }
         reader.readAsDataURL(file);
-        setSelectedImage(e.target.files[0]);
+        setSelectedImage(file);
     }
 
     const handleSave = async () => {
-        if (memoryImage === '' || memoryDate === '' || memoryTitle === '' || memoryDescription === '' || memoryTags === '' || folderId === null) {
+        if (memoryImage === '' || memoryDate === '' || memoryTitle === '' || memoryDescription === '' || memoryTags === '' || folder === 0) {
             swal("Please make sure you enter in every field");
         } else {
             let item = {
                 Id: memoryId,
                 Userid: usersId,
                 FolderId: folderId,
-                PublishedName: memoryPublisherName,
                 title: memoryTitle,
                 image: memoryImage,
                 description: memoryDescription,
                 date: memoryDate,
                 tags: memoryTags,
-                Category: '',
                 isPublished: true,
                 isDeleted: false
             }
@@ -68,6 +67,9 @@ export default function AddMemory() {
             let result = false;
             if (isEditMemory) {
                 result = await updateMemoryItem(item);
+                setTimeout(() => {
+                    navigate('/memory')
+                }, 500);
             } else {
                 result = await addMemoryItem(item);
             }
@@ -100,7 +102,7 @@ export default function AddMemory() {
         <Container fluid>
             <Row>
                 <Modal className='modalBG' show={show} onHide={handleClose}>
-                    <Modal.Body className={isEditMemory ? 'modalBodyUpdate' : `modalBody`}>
+                    <Modal.Body className={isEditMemory ? `modalBodyUpdate` : `modalBody`}>
                         <Row>
                             <Col className='d-flex justify-content-center'>
                                 {isEditMemory ?
@@ -116,9 +118,7 @@ export default function AddMemory() {
                                     <Row className='d-flex justify-content-center'>
                                         <Col>
                                             <Button onClick={() => {
-                                                handleSave(); setTimeout(() => {
-                                                    navigate('/dashboard')
-                                                }, 1000);
+                                                handleSave();
                                             }} className='changeBtn' variant=''>Change</Button>
                                         </Col>
                                         <Col>
@@ -147,7 +147,7 @@ export default function AddMemory() {
                             <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
                                 <Form.Label className='addImgTxt'>Add image</Form.Label>
                                 <Button style={{ position: 'relative' }} id='custom-input' className='selectedImgBtn'>
-                                    {selectedImage && <img className='selectedImg' src={URL.createObjectURL(selectedImage)} alt="Selected image" />}
+                                    {selectedImage && <img className='selectedImg' src={memoryImage || URL.createObjectURL(selectedImage)} alt="Selected image" />}
                                     <Form.Control className='input1' onChange={handleImage} type="file" accept='image/png, image/jpg' placeholder="Enter an image" />
                                 </Button>
                             </Form.Group>
@@ -171,7 +171,7 @@ export default function AddMemory() {
                                     <option hidden>Folder</option>
                                     {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((option: any, idx: number) => {
                                         return (
-                                            <option key={idx} value={option.id} >{option.name}</option>
+                                            <option key={idx} value={option.id}>{option.name}</option>
                                         );
                                     })}
                                 </Form.Select>
