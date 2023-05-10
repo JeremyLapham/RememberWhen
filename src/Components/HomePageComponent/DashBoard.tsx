@@ -130,11 +130,11 @@ export default function DashBoard() {
                 <Container>
                     <Row>
                         <Col className='d-flex justify-content-center folderDisplay'>
-                            <Row>
+                            <Row className='desktopFolder'>
                                 {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((folder: any, idx: number) => {
                                     return (
                                         <Col className='spaceFolders' key={idx} xs={4} md={4} lg={4} xl={4}>
-                                            <Button onClick={() => { handleFolderClick(folder, folder.name); }} variant=''>
+                                            <Button className='folderBtn' onClick={() => { handleFolderClick(folder, folder.name); }} variant=''>
                                                 <img src={folderImg}  className='folderSize'/>
                                                 <p className='folderFont'>{folder.name}</p>
                                             </Button>

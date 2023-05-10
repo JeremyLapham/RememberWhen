@@ -33,7 +33,7 @@ export default function AddMemory() {
 
     const handleTitle = ({ target }) => setMemoryTitle(target.value);
     const handleDescription = ({ target }) => setMemoryDescription(target.value);
-    const handleFolder = ({ target: { value } }) => { setFolderId(value); setFolder(value); console.log(value) };
+    const handleFolder = ({ target: { value } }) => { setFolderId(value); setFolder(value); };
     const handleTags = ({ target }) => setMemoryTags(target.value);
     const handleDate = ({ target }) => setMemoryDate(target.value);
 
