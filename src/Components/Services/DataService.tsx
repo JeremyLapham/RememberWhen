@@ -2,7 +2,7 @@ let userData = {};
 const api = 'https://rememberwhenagain.azurewebsites.net/';
 
 export async function createAccount(createdUser: { Id: number; Username: string; Password: string; }) {
-    const res = await fetch('https://rememberwhenagain.azurewebsites.net/User/adduser', {
+    const res = await fetch(`${api}User/adduser`, {
         method: "POST",
         headers: {
             'Content-Type': "application/json"
@@ -19,7 +19,7 @@ export async function createAccount(createdUser: { Id: number; Username: string;
 }
 
 export async function login(loginUser: { Username: string; Password: string; }) {
-    const res = await fetch('https://rememberwhenagain.azurewebsites.net/User/Login', {
+    const res = await fetch(`${api}User/Login`, {
         method: "POST",
         headers: {
             'Content-Type': "application/json"
@@ -37,8 +37,8 @@ export async function login(loginUser: { Username: string; Password: string; }) 
     return data;
 }
 
-export async function Folder(folder: any) {
-    const res = await fetch('https://rememberwhenagain.azurewebsites.net/Folder/AddFolder', {
+export async function Folder(folder: object) {
+    const res = await fetch(`${api}Folder/AddFolder`, {
         method: "POST",
         headers: {
             'Content-Type': "application/json"
@@ -57,7 +57,7 @@ export async function Folder(folder: any) {
 }
 
 export async function GetLoggedInUserData(username: string) {
-    let res = await fetch(`https://rememberwhenagain.azurewebsites.net/User/userbyusername/${username}`);
+    let res = await fetch(`${api}User/userbyusername/${username}`);
     let data = await res.json();
     userData = data;
     return userData
@@ -77,7 +77,7 @@ export function loggedInData() {
 }
 
 export async function addMemoryItem(memoryItem: object) {
-    const res = await fetch('https://rememberwhenagain.azurewebsites.net/Memory/AddMemoryItem', {
+    const res = await fetch(`${api}Memory/AddMemoryItem`, {
         method: "POST",
         headers: {
             'Content-Type': "application/json"
@@ -94,24 +94,24 @@ export async function addMemoryItem(memoryItem: object) {
 }
 
 export async function getMemoryItemsByUserId(userid: number) {
-    let res = await fetch(`https://rememberwhenagain.azurewebsites.net/Memory/GetItemsByUserId/${userid}`);
+    let res = await fetch(`${api}Memory/GetItemsByUserId/${userid}`);
     let data = await res.json();
     return data;
 }
 
 export async function getFolderByUserId(userid: number) {
-    let res = await fetch(`https://rememberwhenagain.azurewebsites.net/Folder/GetFoldersByUserId/${userid}`);
+    let res = await fetch(`${api}Folder/GetFoldersByUserId/${userid}`);
     let data = await res.json();
     return data;
 }
 export async function getMemoryByFolderId(folderId: number) {
-    let res = await fetch(`https://rememberwhenagain.azurewebsites.net/Memory/GetItemsByFolderId/${folderId}`);
+    let res = await fetch(`${api}Memory/GetItemsByFolderId/${folderId}`);
     let data = await res.json();
     return data;
 }
 
 export async function updateMemoryItem(memoryItem: object) {
-    const res = await fetch('https://rememberwhenagain.azurewebsites.net/Memory/UpdateMemoryItem', {
+    const res = await fetch(`${api}Memory/UpdateMemoryItem`, {
         method: "PUT",
         headers: {
             'Content-Type': "application/json"
@@ -128,7 +128,7 @@ export async function updateMemoryItem(memoryItem: object) {
 }
 
 export async function updateFolder(folder: object) {
-    const res = await fetch('https://rememberwhenagain.azurewebsites.net/Folder/UpdateFolder', {
+    const res = await fetch(`${api}Folder/UpdateFolder`, {
         method: "PUT",
         headers: {
             'Content-Type': "application/json"
@@ -145,7 +145,7 @@ export async function updateFolder(folder: object) {
 }
 
 export async function DeleteFolder(folder: object) {
-    const res = await fetch('https://rememberwhenagain.azurewebsites.net/Folder/DeleteFolder', {
+    const res = await fetch(`${api}Folder/DeleteFolder`, {
         method: "POST",
         headers: {
             'Content-Type': "application/json"
@@ -161,7 +161,7 @@ export async function DeleteFolder(folder: object) {
     return data;
 }
 export async function DeleteMemory(memory: object) {
-    const res = await fetch('https://rememberwhenagain.azurewebsites.net/Memory/DeleteMemoryItem', {
+    const res = await fetch(`${api}Memory/DeleteMemoryItem`, {
         method: "POST",
         headers: {
             'Content-Type': "application/json"
