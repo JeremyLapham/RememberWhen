@@ -28,12 +28,30 @@
     border-right: 2px solid black !important;
 }
 
+<<<<<<< HEAD
 @media screen and (max-width: 380px) {
+=======
+@media screen and (max-width: 425px) {
+>>>>>>> 5251a62403ffa9fa8ee1529971a4a0345ec7defd
     .logo {
+        display: none !important;
+    }
+
+<<<<<<< HEAD
+    .navTitle {
+        display: none !important;
+    }
+=======
+    .navRow {
         display: none !important;
     }
 
     .navTitle {
         display: none !important;
     }
+
+    .navLogo {
+        display: none !important;
+    }
+>>>>>>> 5251a62403ffa9fa8ee1529971a4a0345ec7defd
 }

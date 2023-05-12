@@ -28,6 +28,7 @@
   position: absolute;
   top: 0%;
   left: 0%;
+  object-fit: cover;
 }
 
 #custom-input2 {
@@ -62,7 +63,7 @@
 }
 
 .addCancelBtn {
-  width: 68px;
+  width: 75px;
   height: 31px;
   display: flex;
   justify-content: center;
@@ -72,18 +73,20 @@
   font-weight: bold !important;
   margin-bottom: 3rem;
   padding: 0 !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .addBtn {
-  width: 68px;
-  height: 31px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 75px !important;
+  height: 31px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center ;
   background-color: #A99282 !important;
   font-size: 15px !important;
   font-weight: bold !important;
   margin-bottom: 3rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .textInputs {
@@ -115,11 +118,6 @@
   font-weight: bolder;
 }
 
-/* .addAudioTxt {
-  margin-right: 7rem;
-  font-weight: bolder;
-} */
-
 .addFolderInputTxt {
   margin-right: 15.5rem;
   font-weight: bolder;
@@ -136,7 +134,7 @@
 }
 
 .addDescriptionTxt {
-  margin-right: 13rem;
+  margin-right: 8rem;
   font-weight: bolder;
 }
 
@@ -154,17 +152,62 @@
   margin-bottom: 3.5rem;
 }
 
+.viewBtn {
+  width: 90px !important;
+  height: 35px !important;
+  background-color: #857B74 !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.changeBtn {
+  width: 90px !important;
+  height: 31px !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  background-color: #E9EDC9 !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cancelBtn {
+  width: 90px !important;
+  height: 31px !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  background-color: #857B74 !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 @media screen and (min-width: 1024px) {
   .addBtn {
-    width: 150px !important;
-    height: 48px !important;
+    width: 200px !important;
+    height: 65px !important;
     font-size: 25px !important;
     margin-left: 20rem !important;
   }
+  
+  .changeBtn {
+    width: 200px !important;
+    height: 65px !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+    background-color: #E9EDC9 !important;
+  }
+  
+  .cancelBtn {
+    width: 200px !important;
+    height: 65px !important;
+    font-size: 25px !important;
+    font-weight: bold !important;
+    background-color: #857B74 !important;
+  }
 
   .addCancelBtn {
-    width: 150px !important;
-    height: 48px !important;
+    width: 200px !important;
+    height: 65px !important;
     font-size: 25px !important;
     margin-right: 20rem !important;
   }
@@ -198,8 +241,63 @@
   }
 
   .selectedImgBtn {
-    width: 15rem !important;
-    height: 15rem !important;
+    width: 400px !important;
+    height: 400px !important;
+  }
+
+  .selectedImg {
+    height: 400px;
+    width: 400px;
+    top: 0%;
+    left: 0%;
+    object-fit: cover;
+  }
+
+  #custom-input {
+    height: 400px;
+    width: 400px;
+  }
+
+  .input1 {
+    height: 400px;
+    width: 400px;
+  }
+
+  .textInputs {
+    width: 400px !important;
+    height: 65px !important;
+  }
+
+  .viewBtn {
+    width: 200px !important;
+    height: 65px !important;
+    font-size: 35px !important;
+    font-weight: bold !important;
+    margin-top:50px !important;
+  }
+
+  .addImgTxt {
+    margin-right: 19rem;
+  }
+  
+  .addHashtagTxt {
+    margin-right: 20rem;
+  }
+  
+  .addFolderInputTxt {
+    margin-right: 21.2rem;
+  }
+  
+  .addMemoryTxt {
+    margin-right: 18rem;
+  }
+  
+  .addDateTxt {
+    margin-right: 22.2rem;
+  }
+  
+  .addDescriptionTxt {
+    margin-right: 14.2rem;
   }
 }
 

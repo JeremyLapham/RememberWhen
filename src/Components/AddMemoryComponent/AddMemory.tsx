@@ -1,38 +1,43 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Col, Container, Row, Button, Form, Toast } from 'react-bootstrap';
+import { Col, Container, Row, Button, Form, Toast, Modal } from 'react-bootstrap';
 import './AddMemory.css';
 import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem, getFolderByUserId } from '../Services/DataService';
 import { MyContext } from '../context';
+<<<<<<< HEAD
 import DesktopNav from '../../Components/DesktopNavComponent/DesktopNav';
+=======
+import swal from 'sweetalert';
+import DesktopNav from '../DesktopNavComponent/DesktopNav';
+>>>>>>> 5251a62403ffa9fa8ee1529971a4a0345ec7defd
 
 export default function AddMemory() {
     const { usersId } = useContext(MyContext);
     const { folderId } = useContext(MyContext);
     const { setMemoryItems } = useContext(MyContext);
     const { setFolderId } = useContext(MyContext);
+    const { memoryEdit } = useContext(MyContext);
+    const { isEditMemory } = useContext(MyContext);
+    const { setSelectedMemory } = useContext(MyContext);
 
     const navigate = useNavigate()
     const [show, setShow] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
-    // const [selectedAudio, setSelectedAudio] = useState('');
+    // console.log(memoryEdit.image)
 
-    const [memoryImage, setMemoryImage] = useState('');
-    const [memoryTitle, setMemoryTitle] = useState('');
-    const [memoryDescription, setMemoryDescription] = useState('');
-    const [memoryTags, setMemoryTags] = useState('');
-    const [memoryDate, setMemoryDate] = useState('');
-    const [memoryId, setMemoryId] = useState(0);
-    const [memoryPublisherName, setPublisherName] = useState('');
+    const [memoryImage, setMemoryImage] = useState(isEditMemory ? memoryEdit.image : '');
+    const [memoryTitle, setMemoryTitle] = useState(isEditMemory ? memoryEdit.title : '');
+    const [memoryDescription, setMemoryDescription] = useState(isEditMemory ? memoryEdit.description : '');
+    const [memoryTags, setMemoryTags] = useState(isEditMemory ? memoryEdit.tags : '');
+    const [memoryDate, setMemoryDate] = useState(isEditMemory ? memoryEdit.date : '');
+    const [memoryId, setMemoryId] = useState(isEditMemory ? memoryEdit.id : 0);
+    const [folder, setFolder] = useState(0);
     const [folders, setFolders] = useState([]);
-
-    const [editBool, setEdit] = useState(false);
-
 
     const handleTitle = ({ target }) => setMemoryTitle(target.value);
     const handleDescription = ({ target }) => setMemoryDescription(target.value);
-    const handleFolder = ({ target: { value } }) => setFolderId(value);
+    const handleFolder = ({ target: { value } }) => { setFolderId(value); setFolder(value); };
     const handleTags = ({ target }) => setMemoryTags(target.value);
     const handleDate = ({ target }) => setMemoryDate(target.value);
 
@@ -43,40 +48,43 @@ export default function AddMemory() {
             setMemoryImage(reader.result);
         }
         reader.readAsDataURL(file);
-        setSelectedImage(e.target.files[0]);
+        setSelectedImage(file);
     }
 
-    // const handleAudio = () => {
-    //     setSelectedAudio(sound)
-    // };
-
     const handleSave = async () => {
-        const item = {
-            Id: memoryId,
-            Userid: usersId,
-            FolderId: folderId, //figure out how to make this change based on the folder that the user set
-            PublishedName: memoryPublisherName,
-            Title: memoryTitle,
-            Image: memoryImage,
-            Description: memoryDescription,
-            Date: memoryDate,
-            Tags: memoryTags,
-            Category: '',
-            isPublished: true,
-            isDeleted: false
-        }
-        let result = false;
-        if (editBool) {
-            result = await updateMemoryItem(item);
+        if (memoryImage === '' || memoryDate === '' || memoryTitle === '' || memoryDescription === '' || memoryTags === '' || folder === 0) {
+            swal("Please make sure you enter in every field");
         } else {
-            result = await addMemoryItem(item);
-        }
+            let item = {
+                Id: memoryId,
+                Userid: usersId,
+                FolderId: folderId,
+                title: memoryTitle,
+                image: memoryImage,
+                description: memoryDescription,
+                date: memoryDate,
+                tags: memoryTags,
+                isPublished: true,
+                isDeleted: false
+            }
+            setSelectedMemory(item);
+            let result = false;
+            if (isEditMemory) {
+                result = await updateMemoryItem(item);
+                setTimeout(() => {
+                    navigate('/memory')
+                }, 500);
+            } else {
+                result = await addMemoryItem(item);
+            }
+            setShow(true);
 
-        if (result) {
-            let userMemoryItems = await getMemoryItemsByUserId(usersId);
-            setMemoryItems(userMemoryItems);
-        } else {
-            alert(`Blog Item was not ${editBool ? 'Updated' : 'Added'}`)
+            if (result) {
+                let userMemoryItems = await getMemoryItemsByUserId(usersId);
+                setMemoryItems(userMemoryItems);
+            } else {
+                alert(`Blog Item was not ${isEditMemory ? 'Updated' : 'Added'}`)
+            }
         }
     }
 
@@ -89,50 +97,67 @@ export default function AddMemory() {
         GetFolders()
     }, []);
 
+    const handleClose = () => setShow(false);
+
+    const handleViewMemory = async () => {
+        navigate('/memory');
+    }
     return (
         <Container fluid>
             <DesktopNav/>
             <Row>
-                <Col xs={6}>
-                    <Toast className='addToast' onClose={() => setShow(false)} show={show} delay={3000} autohide>
-                        <Toast.Header>
-                            <img
-                                src="holder.js/20x20?text=%20"
-                                className="rounded me-2"
-                                alt=""
-                            />
-                            <strong className="me-auto">Remember when</strong>
-                            <small>1s ago</small>
-                        </Toast.Header>
-                        <Toast.Body>Memory has been added</Toast.Body>
-                    </Toast>
-                </Col>
+                <Modal className='modalBG' show={show} onHide={handleClose}>
+                    <Modal.Body className={isEditMemory ? `modalBodyUpdate` : `modalBody`}>
+                        <Row>
+                            <Col className='d-flex justify-content-center'>
+                                {isEditMemory ?
+                                    <p className='modalTxt'>Do you wish to save the changes to your memory?</p>
+                                    :
+                                    <p className='modalTxt'>Your memory was added!</p>
+                                }
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col className='d-flex justify-content-center'>
+                                {isEditMemory ?
+                                    <Row className='d-flex justify-content-center'>
+                                        <Col>
+                                            <Button onClick={() => {
+                                                handleSave();
+                                            }} className='changeBtn' variant=''>Change</Button>
+                                        </Col>
+                                        <Col>
+                                            <Button onClick={() => { setShow(false); }} className='cancelBtn' variant=''>Cancel</Button>
+                                        </Col>
+                                    </Row>
+                                    :
+                                    <Button className='viewBtn' variant="" onClick={handleViewMemory}>View</Button>
+                                }
+                            </Col>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
             </Row>
             <CustomNavbar />
+            <DesktopNav />
+            <Row>
+                <Col className='d-flex justify-content-center'>
+                    <h2 style={{ margin: '1rem 0' }}>add your <span style={{ color: '#848383' }}>memory...</span></h2>
+                </Col>
+            </Row>
             <Row className='desktopInfoRow'>
-                <Col md={4} className='firstInfoCol'>
+                <Col md={4} lg={4} className='firstInfoCol'>
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center" controlId="Image">
                                 <Form.Label className='addImgTxt'>Add image</Form.Label>
                                 <Button style={{ position: 'relative' }} id='custom-input' className='selectedImgBtn'>
-                                    {selectedImage && <img className='selectedImg' src={URL.createObjectURL(selectedImage)} alt="Selected image" />}
+                                    {selectedImage && <img className='selectedImg' src={memoryImage || URL.createObjectURL(selectedImage)} alt="Selected image" />}
                                     <Form.Control className='input1' onChange={handleImage} type="file" accept='image/png, image/jpg' placeholder="Enter an image" />
                                 </Button>
                             </Form.Group>
                         </Col>
                     </Row>
-                    {/* <Row>
-                <Col>
-                    <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                        <Form.Label>Add audio</Form.Label>
-                        <Button style={{ position: 'relative' }} id='custom-input2'>
-                            {selectedAudio && <img className='selectedImg2' src={selectedAudio} alt="Selected image" />}
-                            <Form.Control className='input2' onChange={handleAudio} type='file' accept='audio/mp3' />
-                        </Button>
-                    </Form.Group>
-                </Col>
-            </Row> */}
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center">
@@ -142,16 +167,16 @@ export default function AddMemory() {
                         </Col>
                     </Row>
                 </Col>
-                <Col md={4} className='secondInfoCol'>
+                <Col md={4} lg={4} className='secondInfoCol'>
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center">
                                 <Form.Label className='addFolderInputTxt'>Folder</Form.Label>
                                 <Form.Select className='textInputs' onChange={handleFolder} value={folderId}>
                                     <option hidden>Folder</option>
-                                    {folders.map((option: any, idx: number) => {
+                                    {folders.filter((item: { isDeleted: any; }) => !item.isDeleted).map((option: any, idx: number) => {
                                         return (
-                                            <option key={idx} value={option.id} >{option.name}</option>
+                                            <option key={idx} value={option.id}>{option.name}</option>
                                         );
                                     })}
                                 </Form.Select>
@@ -178,18 +203,22 @@ export default function AddMemory() {
                     <Row>
                         <Col>
                             <Form.Group className="mb-3 d-flex flex-column align-items-center">
-                                <Form.Label className='addDescriptionTxt'>Description</Form.Label>
-                                <textarea className='textInputs' placeholder='Description' onChange={handleDescription} value={memoryDescription} />
+                                <Form.Label className='addDescriptionTxt'>Memory Description</Form.Label>
+                                <textarea style={{ minHeight: '130px' }} className='textInputs' placeholder='Memory Description' onChange={handleDescription} value={memoryDescription} />
                             </Form.Group>
                         </Col>
                     </Row>
                 </Col>
                 <Row className='desktopAddRow'>
-                    <Col className='d-flex justify-content-center'>
-                        <Button onClick={() => { setShow(true); handleSave(); navigate('/dashboard') }} className='addBtn' variant=''>Add</Button>
+                    <Col className='d-flex justify-content-end'>
+                        {isEditMemory ?
+                            <Button onClick={() => { setShow(true); }} className='addBtn' variant=''>Update</Button>
+                            :
+                            <Button onClick={() => { handleSave(); }} className='addBtn' variant=''>Add</Button>
+                        }
                     </Col>
-                    <Col className='d-flex justify-content-center'>
-                        <Button onClick={() => navigate(-1)} className='addCancelBtn' variant=''>Cancel</Button>
+                    <Col className='d-flex justify-content-start'>
+                        <Button onClick={() => navigate('/dashboard')} className='addCancelBtn' variant=''>Cancel</Button>
                     </Col>
                 </Row>
             </Row>

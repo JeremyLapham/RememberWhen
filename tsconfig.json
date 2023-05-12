@@ -15,7 +15,9 @@
       "src/Components/HomePageComponent/DashBoard.tsx",
       "src/Components/ClickedFolder/ClickedFolder.tsx",
       "src/Components/ShownMemory/ShownMemory.tsx",
-      "src/Components/Logout/Logout.tsx"
+      "src/Components/Logout/Logout.tsx",
+      "src/Components/DesktopNavComponent/DesktopNav.tsx",
+
     ],
     "include": [
       "src/Components/AddMemoryComponent/AddMemory.tsx",

@@ -1,5 +1,5 @@
-import React from 'react';
-import logo  from '../../assets/elephantLogo.svg';
+import React, { useEffect } from 'react';
+import logo from '../../assets/elephantLogo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row } from 'react-bootstrap';
@@ -16,8 +16,12 @@ export default function SignIn() {
         navigate('/SignUp');
     };
 
+    useEffect(() =>{
+        sessionStorage.clear()
+    }, []);
+
     return (
-        <Container className='signInPlacing'>
+        <Container fluid className='signInPlacing'>
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <img className='logo' src={logo} alt='remember when logo, elephant holding balloon' />

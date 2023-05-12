@@ -1,21 +1,27 @@
 import React, { useContext, useState } from 'react';
 import CustomNavbar from '../navComponent/NavbarComponent';
-import { Container, Row, Col, Form, Button, Toast } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Toast, Modal } from 'react-bootstrap';
 import heart from '../../assets/folderpic.png';
 import { useNavigate } from 'react-router-dom';
 import './AddFolder.css';
 import { MyContext } from '../context';
 import { Folder, updateFolder } from '../Services/DataService';
+<<<<<<< HEAD
 import DesktopNav from '../../Components/DesktopNavComponent/DesktopNav';
 
+=======
+import swal from 'sweetalert';
+import DesktopNav from '../DesktopNavComponent/DesktopNav';
+>>>>>>> 5251a62403ffa9fa8ee1529971a4a0345ec7defd
 
 export default function AddFolder() {
     const { usersId } = useContext(MyContext);
-    const { folderId } = useContext(MyContext);
     const { isEditFolder } = useContext(MyContext);
     const { folderEdit } = useContext(MyContext);
+    const { setSelectedFolder } = useContext(MyContext);
+    const { setFromAddFolder } = useContext(MyContext);
 
-    const [show, setShow] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [folderName, setFolderName] = useState(isEditFolder ? folderEdit.name : '');
 
     const navigate = useNavigate();
@@ -28,46 +34,73 @@ export default function AddFolder() {
 
 
     const handleFolder = async () => {
-        let result = false;
-        if (isEditFolder) {
-            const fold = {
-                Id: folderEdit.id,
-                userId: usersId,
-                name: folderName,
-                isDeleted: false
-            }
-            result = await updateFolder(fold);
+        if (folderName === '') {
+            swal("Please enter a name for your folder");
         } else {
-            const fold = {
-                userId: usersId,
-                name: folderName,
-                isDeleted: false
+            let result = false;
+            if (isEditFolder) {
+                const fold = {
+                    Id: folderEdit.id,
+                    userId: usersId,
+                    name: folderName,
+                    isDeleted: false
+                }
+                setSelectedFolder(fold);
+                result = await updateFolder(fold);
+                setTimeout(() => {
+                    navigate('/dashboard');
+                }, 2000);
+            } else {
+                const fold = {
+                    id: 0,
+                    userId: usersId,
+                    name: folderName,
+                    isDeleted: false
+                }
+                setSelectedFolder(fold);
+                setFromAddFolder(true);
+                result = await Folder(fold);
             }
-            result = await Folder(fold);
+            if (result) {
+                setShowModal(true);
+            } else {
+                alert('Something went wrong and your folder wasn\'t made or updated');
+            }
         }
+    }
+
+    const handleClose = () => setShowModal(false);
+
+    const handleViewFolder = async () => {
+        navigate('/ClickedFolder');
     }
     return (
         <Container fluid>
             <DesktopNav/>
             <Row>
-                <Col xs={6}>
-                    <Toast className='addToast' onClose={() => setShow(false)} show={show} delay={3000} autohide>
-                        <Toast.Header>
-                            <img
-                                src="holder.js/20x20?text=%20"
-                                className="rounded me-2"
-                                alt=""
-                            />
-                            <strong className="me-auto">Remember when</strong>
-                            <small>1s ago</small>
-                        </Toast.Header>
-                        <Toast.Body>Folder has been added</Toast.Body>
-                    </Toast>
-                </Col>
+                <Modal className='modalBG' show={showModal} onHide={handleClose}>
+                    <Modal.Body className='modalBody'>
+                        <Row>
+                            <Col className='d-flex justify-content-center'>
+                                <p className='modalTxt'>Your folder was {folderEdit ? 'Edited' : 'added'}</p>
+                            </Col>
+                        </Row>
+                        <Row>
+                        {folderEdit ? '' : 
+                            <Col className='d-flex justify-content-center'>
+                                <Button className='viewBtn' variant="" onClick={handleViewFolder}>
+                                    View
+                                </Button>
+                            </Col>
+                            }
+                        </Row>
+                    </Modal.Body>
+                </Modal>
             </Row>
             <Row>
                 <Col>
                     <CustomNavbar />
+                    <DesktopNav />
                 </Col>
             </Row>
             <Row>
@@ -97,23 +130,18 @@ export default function AddFolder() {
                 </Col>
             </Row>
 
-            <Row className='d-flex justify-content-center desktopAddRow2'>
-                <Col md={3} className='d-flex justify-content-center folderBtnCol'>
-                    <Button onClick={handleFolder} className='addfolderBtn' variant=''>{isEditFolder ? 'Update' : 'Add'}</Button>
+            <Row>
+                <Col className='d-flex justify-content-end'>
+                    {isEditFolder ?
+                        <Button onClick={() => { handleFolder(); setShowModal(true); }} className='addBtn' variant=''>Update</Button>
+                        :
+                        <Button onClick={() => { handleFolder(); }} className='addBtn' variant=''>Add</Button>
+                    }
                 </Col>
-                <Col md={3} className='d-flex justify-content-center folderBtnCol'>
+                <Col className='d-flex justify-content-start'>
                     <Button onClick={handleBackToHome} className='cancelfolderBtn' variant=''>Cancel</Button>
                 </Col>
             </Row>
-
-            {/* <Row className='d-flex justify-content-center desktopAddRow2'>
-                <Col lg={2} className='d-flex justify-content-center folderBtnCol'>
-                    <Button onClick={() => setShow(true)} className='addfolderBtn' variant=''>Add</Button>
-                </Col>
-                <Col lg={2} className='d-flex justify-content-center folderBtnCol'>
-                    <Button onClick={handleBackToHome} className='cancelfolderBtn' variant=''>Cancel</Button>
-                </Col>
-            </Row> */}
         </Container>
     )
 }

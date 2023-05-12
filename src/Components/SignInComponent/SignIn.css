@@ -14,7 +14,8 @@
 
 .logo {
     margin-bottom: -1.5rem;
-    width:260px;
+    width: 260px;
+    display: block !important;
 }
 
 .signInBtn {
@@ -36,7 +37,7 @@
     font-size: 18px;
     margin-top: 1rem;
     margin-left: 2rem;
-    margin-bottom:2.5rem;
+    margin-bottom: 2.5rem;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -48,13 +49,12 @@
 }
 
 .signInBg {
-    bottom:0;
     background-color: #857B74;
     height: 100%;
-    margin-left: -12px;
-    margin-top: 47px;
-    width: 100vw;
+    margin: 47px 0 0 -12px;
+    min-width: 100vw;
     border-radius: 50px 50px 0 0;
+    box-sizing: border-box;
 }
 
 .inputField {
@@ -84,10 +84,10 @@
 }
 
 .dontHaveAccount {
-    width:64px;
+    width: 64px;
     font-size: 14px;
-    margin:0 !important;
-    padding:0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     text-decoration: underline;
 }
 
@@ -97,7 +97,46 @@
     font-weight: bolder !important;
 }
 
+.loading {
+    color:white;
+    font-size:30px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5);
+}
+
 @media screen and (min-width: 1024px) {
+    .loading {
+        color:white;
+        font-size:40px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 1000px 1000px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo {
+        margin-bottom: -5rem;
+        width: 520px;
+    }
+
+    .signInBtn {
+        width: 470px;
+        height: 70px;
+        font-size: 25px;
+    }
+
+    .signInBtnTwo {
+        width: 500px;
+        height: 70px;
+        font-size: 30px;
+    }
+
     .inputField {
         margin-left: 25rem;
         width: 500px;

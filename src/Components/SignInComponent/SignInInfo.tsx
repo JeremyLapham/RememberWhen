@@ -1,6 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import logo from '../../assets/elephantLogo.svg';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignIn.css';
 import { Button, Col, Container, Row, Toast } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +11,16 @@ export default function SignInInfo() {
 
     const [Username, setUsername] = useState('');
     const [Password, setPassword] = useState('');
+    const [clickedSignIn, setClickedSignIn] = useState(false);
+    const [dots, setDots] = useState('');
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setDots((prevDots) => prevDots.length >= 3 ? '' : prevDots + '.');
+        }, 500);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const navigate = useNavigate();
 
@@ -20,6 +29,7 @@ export default function SignInInfo() {
     };
 
     const handleLogin = async (name: any) => {
+        setClickedSignIn(true)
         let userData = {
             Username,
             Password
@@ -33,14 +43,14 @@ export default function SignInInfo() {
                 navigate('/DashBoard', { state: { user: name } });
             }
         } catch (error) {
-            console.error(error);
+            setClickedSignIn(false)
             toggleShowA()
         }
     }
 
     const [showA, setShowA] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
-    const handleShowPassword =(e: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
+    const handleShowPassword = (e: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
         setIsChecked(e.target.checked);
     }
 
@@ -50,11 +60,15 @@ export default function SignInInfo() {
         <Container fluid>
             <Row>
                 <Col md={6} className="mb-2">
-                    <Toast style={{ position: 'fixed', top: '30%', zIndex: 100, backgroundColor: '#d7d2ce', color: '#C52E22', border: '2px solid black' }} show={showA} onClose={toggleShowA} delay={4000} autohide>
+                    <Toast className='toast' show={showA} onClose={toggleShowA} delay={4000} autohide>
                         <Toast.Body>Invalid Username or Password</Toast.Body>
                     </Toast>
                 </Col>
             </Row>
+            <div>
+                {clickedSignIn ? 
+                <h1 className='loading'>{`Loading${dots}`}</h1> : ''}
+                </div>
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <img className='logo mt-5' src={logo} alt='remember when logo, elephant holding balloon' />
@@ -86,7 +100,7 @@ export default function SignInInfo() {
                                 <Row className='d-flex align-items-center'>
                                     <Col className='d-flex justify-content-start'>
                                         <label>
-                                            <input className='showPassword' type="checkbox" checked={isChecked} onChange={handleShowPassword}/>
+                                            <input className='showPassword' type="checkbox" checked={isChecked} onChange={handleShowPassword} />
                                             Show password
                                         </label>
                                     </Col>

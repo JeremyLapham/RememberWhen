@@ -52,6 +52,7 @@
   display: flex;
   justify-content: center;
 }
+
 .addNewFolderTxt {
   font-size: 15px;
   margin-bottom: -1px;
@@ -97,9 +98,24 @@
   scroll-behavior: smooth;
 }
 
+.memoryBox::-webkit-scrollbar {
+	height: 15px;
+	background-color: #F5F5F5;
+}
+
+.memoryBox::-webkit-scrollbar-thumb {
+	background-color: #000000;
+  border-radius: 10px;
+}
+.memoryBox::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
 .memoryCards {
   height: 355px;
   width: 300px;
+  object-fit: cover;
   border-radius: 20px;
   background-color: rgba(163, 163, 163, 0.6);
 }
@@ -112,8 +128,10 @@
   color: rgb(0, 0, 0);
   font-size: 25px;
   font-weight: bold;
-  width: 100%;
+  width: 75%;
   padding: 0 2rem;
+  border-radius: 20px;
+  background-color: #ffffff54;
 }
 
 .dateOnImg {
@@ -124,8 +142,10 @@
   color: rgb(0, 0, 0);
   font-size: 15px;
   font-weight: bold;
-  width: 100%;
+  width: 50%;
   padding: 0 2rem;
+  border-radius: 20px;
+  background-color: #ffffff54;
 }
 
 .moreMemories {
@@ -153,12 +173,14 @@
 .folderFont {
   font-size: 15px;
   font-weight: bold;
+  width:55px;
 }
 
 .remmeberWhen {
   font-size: 20px;
   color: #848383;
 }
+
 .rememberWhenTop {
   height: 114px;
   display: flex;
@@ -166,9 +188,15 @@
   align-items: center;
 }
 
+.spaceFolders {
+  display: flex;
+  flex-direction: column;
+}
+
 @media screen and (min-width: 1024px) {
   .logoEle {
     margin-top: -8px;
+    display: none !important;
   }
 
   .helloTopTxt {
@@ -185,6 +213,7 @@
 
   .dateOnImg {
     font-size: 20px;
+    border-radius: 0 0 20px 20px;
   }
 
   .welcomeTxt {
@@ -195,6 +224,8 @@
 
   .memoryBox {
     margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
   }
 
   .remmeberWhen {
@@ -211,11 +242,11 @@
 
   .desktopAddBtn {
     color: black !important;
-    width: 300px;
-    height: 45px;
+    width: 400px;
+    height: 65px;
     background-color: #ffffff !important;
     font-weight: bold !important;
-    font-size: 24px !important;
+    font-size: 30px !important;
     margin-top: 35px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -225,15 +256,17 @@
 
   .moreMemories {
     font-size: 24px !important;
+    width: 400px;
+    height: 65px;
   }
 
   .desktopAddBtn2 {
     color: black !important;
-    width: 300px;
-    height: 45px;
+    width: 400px;
+    height: 65px;
     background-color: #ffffff !important;
     font-weight: bold !important;
-    font-size: 24px !important;
+    font-size: 30px !important;
     margin-top: 35px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -245,8 +278,39 @@
     text-align: center;
   }
 
+<<<<<<< HEAD
   .logoEle {
     display: none !important;
+=======
+  .folderDisplay {
+    height: 550px;
+    margin: 0 12px 0 12px;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
+  .desktopFolder {
+    width:700px;
+  }
+
+  .folderBtn {
+    width:100px;
+  }
+
+  .spaceFolders {
+    margin: 0 0;
+  }
+
+  .folderSize {
+    width: 101px;
+    height: 131px;
+    object-fit: cover;
+  }
+
+  .folderFont {
+    font-size: 20px;
+    width:101px;
+>>>>>>> 5251a62403ffa9fa8ee1529971a4a0345ec7defd
   }
 }
 
@@ -261,12 +325,16 @@
   }
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 425px) {
   .desktopAddCol {
     display: none !important;
   }
+<<<<<<< HEAD
 
   .desktopNavbar {
     display: none !important;
   }
 }
+=======
+}
+>>>>>>> 5251a62403ffa9fa8ee1529971a4a0345ec7defd

@@ -7,7 +7,11 @@ import './ClickedFolder.css';
 import AddIcon from '@mui/icons-material/Add';
 import { MyContext } from '../context';
 import { DeleteFolder, getMemoryByFolderId } from '../Services/DataService';
+<<<<<<< HEAD
 import DesktopNav from '../../Components/DesktopNavComponent/DesktopNav';
+=======
+import DesktopNav from '../DesktopNavComponent/DesktopNav';
+>>>>>>> 5251a62403ffa9fa8ee1529971a4a0345ec7defd
 
 export default function ClickedFolder() {
     const { folderName } = useContext(MyContext);
@@ -15,12 +19,14 @@ export default function ClickedFolder() {
     const { setSelectedMemory } = useContext(MyContext);
     const { setFolderEdit } = useContext(MyContext);
     const { setIsEditFolder } = useContext(MyContext);
+    const { setIsMemoryEdit } = useContext(MyContext);
+    const { setFromAddFolder } = useContext(MyContext);
+    const { fromAddFolder } = useContext(MyContext);
 
     const [memoryItem, setMemoryItem] = useState([]);
 
     useEffect(() => {
         const GetMemories = async () => {
-            // console.log(selectedFolder);
             let memory = await getMemoryByFolderId(selectedFolder.id);
             setMemoryItem(memory);
         }
@@ -65,12 +71,12 @@ export default function ClickedFolder() {
                         <Row>
 
                             <Col className='d-flex justify-content-center'>
-                                <Button className='confirmDeleteBtn' variant="" onClick={handleDeleteFolder}>
+                                <Button className='confirmDeleteBtnFold' variant="" onClick={handleDeleteFolder}>
                                     Delete
                                 </Button>
                             </Col>
                             <Col className='d-flex justify-content-center'>
-                                <Button className='cancelDelete' variant="" onClick={handleClose}>
+                                <Button className='cancelDeleteFold' variant="" onClick={handleClose}>
                                     Cancel
                                 </Button>
                             </Col>
@@ -79,9 +85,10 @@ export default function ClickedFolder() {
                 </Modal>
             </Row>
             <CustomNavbar />
+            <DesktopNav />
             <Row>
                 <Col>
-                    <h1 className='nameFolder text-center'>{folderName}...</h1>
+                    <h1 className='nameFolder text-center'>{fromAddFolder ? selectedFolder.name : folderName}...</h1>
                 </Col>
             </Row>
             <Row className='d-flex align-items-center'>
@@ -91,7 +98,7 @@ export default function ClickedFolder() {
                 <Col className='d-flex flex-column justify-content-end'>
                     <Row>
                         <div className='d-flex justify-content-end'>
-                            <Button onClick={() => navigate('/AddMemory')} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
+                            <Button onClick={() => { navigate('/AddMemory'); setIsMemoryEdit(false) }} className='addNew' variant='' style={{ display: 'flex', alignItems: 'center' }}>
                                 <Col xs={9}>
                                     <p className='addNewTxt'>Add Memory</p>
                                 </Col>
@@ -106,33 +113,40 @@ export default function ClickedFolder() {
             <Row>
                 <Col className='d-flex justify-content-center'>
                     <div className='displayMemory'>
-                        <Row>
-                            {memoryItem.map((memory: any, idx: any) => {
-                                return (
-                                    <Col key={idx} xs={4} className='cardNoPad'>
-                                        <Button onClick={() => handleClickedMemory(memory)} variant='' className='allFolderBtn'>
-                                            <img className='folderImg' src={memory.image} alt='clickable image' />
-                                        </Button>
-                                        <p className='text-center memoryTitle'>{memory.title}</p>
-                                        <p className='text-center memoryDate'>{memory.date}</p>
-                                    </Col>
-                                );
-                            })}
+                        <Row className='d-flex justify-content-center'>
+                            {memoryItem.length === 0 ? <h2>No current memories</h2> :
+                                memoryItem.filter((item: { isDeleted: any; }) => !item.isDeleted).map((memory: any, idx: any) => {
+                                    return (
+                                        <Col key={idx} xs={4} md={3} lg={3} className='cardNoPad'>
+                                            <Button onClick={() => handleClickedMemory(memory)} variant='' className='allFolderBtn'>
+                                                <img className='folderImg' src={memory.image} alt='clickable image' />
+                                            </Button>
+                                            <p className='text-center memoryTitle'>{memory.title}</p>
+                                            <p className='text-center memoryDate'>{memory.date}</p>
+                                        </Col>
+                                    );
+                                })
+                            }
                         </Row>
                     </div>
                 </Col>
             </Row>
-            <Row>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={handleEditFolder} className='' variant='warning'>Edit</Button>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <Button onClick={handleEditFolder} className='editBtnFold' variant='' >Edit</Button>
+                <Button onClick={() => { setShow(true); }} className='deleteBtnFold' variant='' >Delete</Button>
+                <Button className='shareBtnFold' variant=''>Share</Button>
+            </div>
+            <Row className="desktopBtnRow">
+                <Col className="desktopAddCol">
+                    <Button variant='' onClick={() => { navigate("/AddMemory"); setIsMemoryEdit(false); }} className="desktopAddBtn">Add Memory +</Button>
                 </Col>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => { setShow(true); }} className='' variant='danger'>Delete</Button>
+                <Col className="d-flex justify-content-center">
+                    <Button onClick={() => navigate('/dashboard')} className="moreMemories" variant="">
+                        Back
+                    </Button>
                 </Col>
-            </Row>
-            <Row>
-                <Col className='d-flex justify-content-center'>
-                    <Button onClick={() => navigate(-1)} className='moreMemories' variant=''>Go Back</Button>
+                <Col className="desktopAddCol">
+                    <Button variant='' onClick={() => { navigate("/AddFolder"); setIsEditFolder(false); }} className="desktopAddBtn2">Add Folder +</Button>
                 </Col>
             </Row>
         </Container>
