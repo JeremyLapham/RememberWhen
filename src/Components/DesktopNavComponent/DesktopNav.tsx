@@ -34,24 +34,24 @@ export default function DesktopNav() {
                         <Button className='navBtn'>Home</Button>
                     </Nav.Link>
                 </Col>
-                <Col md={2} className='borderCol'>
-                    <Nav.Link as={Link} to='/Settings'>
-                        <Button className='navBtn'>Setting</Button>
-                    </Nav.Link>
-                </Col>
-                <Col md={3}>
-                    <Nav.Link as={Link} to='/AddMemory' onClick={() => setIsMemoryEdit(false)}>
+                <Col md={3} className='borderCol'>
+                    <Nav.Link as={Link} to='/AddMemory'>
                         <Button className='navBtn'>Add Memory</Button>
                     </Nav.Link>
                 </Col>
-                <Col md={3} className='borderCol'>
-                    <Nav.Link as={Link} to='/AddFolder' onClick={() => setIsEditFolder(false)}>
+                <Col md={3}>
+                    <Nav.Link as={Link} to='/AddFolder' onClick={() => setIsMemoryEdit(false)}>
                         <Button className='navBtn'>Add Folder</Button>
                     </Nav.Link>
                 </Col>
-                <Col md={2}>
-                    <Nav.Link as={Link} to='/DashBoard' onClick={handleMoreMemoryClick}>
+                <Col md={3} className='borderCol'>
+                    <Nav.Link as={Link} to='/DashBoard' onClick={() => setIsEditFolder(false)}>
                         <Button className='navBtn'>Memories</Button>
+                    </Nav.Link>
+                </Col>
+                <Col md={1}>
+                    <Nav.Link as={Link} to='/Settings' onClick={handleMoreMemoryClick}>
+                        <Button className='navBtn'>Logout</Button>
                     </Nav.Link>
                 </Col>
             </Row>

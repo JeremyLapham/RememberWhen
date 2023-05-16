@@ -4,6 +4,10 @@
     margin-top: 1rem;
 }
 
+.desktopNavbar {
+    margin-top: -2rem;
+}
+
 .navTitle {
     margin-top: 2rem;
     font-size: 30px;
@@ -11,12 +15,12 @@
 }
 
 .navRow {
-    margin-left: 17rem !important;
+    margin-left: 20rem !important;
     margin-top: 2rem !important;
 }
 
 .navBtn {
-    font-size: 18px !important;
+    font-size: 16px !important;
     background-color: #D7D2CE !important;
     color: black !important;
     border-style: none !important;
@@ -26,6 +30,8 @@
 .borderCol {
     border-left: 2px solid black !important;
     border-right: 2px solid black !important;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 @media screen and (max-width: 425px) {
