@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import CustomNavbar from '../../Components/navComponent/NavbarComponent';
 import { addMemoryItem, getMemoryItemsByUserId, updateMemoryItem, getFolderByUserId } from '../Services/DataService';
 import { MyContext } from '../context';
-import swal from 'sweetalert';
+import DesktopNav from '../DesktopNavComponent/DesktopNav';
+// import swal from 'sweetalert';
 
 export default function AddMemory() {
     const { usersId } = useContext(MyContext);
